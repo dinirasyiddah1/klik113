@@ -1,0 +1,23 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>latihan DOM</title>
+</head>
+<body>
+
+<p style="font-size:12pt;">Paragraf 1.</p>
+<p style="font-size:12pt;">Paragraf 2.</p>
+<p style="font-size:12pt;">Paragraf 3.</p>
+ 
+<p id="demo"></p>
+     
+  <script>
+    var x = document.getElementsByTagName("p");
+    document.getElementById("demo").innerHTML =
+     'Paragraf pertama (indeks 0) adalah: ' + x[0].innerHTML;
+    
+     x[0].style="font-size:72pt";
+</script>
+     
+</body>
+</html>

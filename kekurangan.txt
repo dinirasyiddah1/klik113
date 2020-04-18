@@ -1,0 +1,14 @@
+aplikasi
+1. input alamat berdasarkan lokasi poligon (librari tidak bentrok dengan librari draw manajer)
+
+database
+1. menghilangkan relasi kendaraan dengan instansi
+
+laporan
+1. context diagram, dfd, erd, arsitektur aplikasi, ui
+
+
+
+
+DAMKAR
+1. instansi terlibat termasuk damkar atau tidak?
