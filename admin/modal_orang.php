@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="../assets/css/select2.min.css"/>
+</head>
+<body>
 <?php
 include("connect.php");
 
@@ -9,11 +15,6 @@ include("connect.php");
             <!-- Modal -->
               <form method="post" action="modal_orang_aksi.php">
               <table>
-               
-                <div class="form-group">
-                    <label for="orang">People ID</label>
-                    <input type="text" class="form-control" id="orang" name="orang" autocomplete="off">
-                </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" autocomplete="off">
@@ -28,18 +29,18 @@ include("connect.php");
                 </div>
                 <div class="dropdown">
                     <label for="id_suku">Tribe</label>
-                    <select name="suku">
-                      <option>-----</option>
+                    <select id="suku" class="form-control" name="suku">
+                    
+                      <option value="">Please Select</option>
                       <?php
                               $query = "SELECT * FROM suku";
                               $sql=pg_query($query) or die (pg_error());
                               while ($row = pg_fetch_assoc($sql)) {
                           ?>
-                          <option name="<?=$row['id_suku']?>" id="<?=$row['id_suku']?>" value="<?=$row['id_suku']?>" required><?=$row['nama_suku']?></option>
+                          <option value="<?=$row['id_suku']?>" required><?=$row['nama_suku']?></option>
                           <?php }
                             ?>
         
-                        <option>-- Add new --</option>
                   </select>
                  </div>
                  <br>
@@ -58,10 +59,18 @@ include("connect.php");
                     <br>
                              
             </form>
-            <div class="modal-footer">
+            
       
             <button type="submit" class="btn btn-primary" value="simpan" >SAVE</button>
                 
-            </div> 
-                  
-       
+            <script src="../assets/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#suku").select2({
+                    placeholder: "Please Select"
+                });
+                
+            });
+        </script>  
+</body>
+</html>

@@ -1,126 +1,173 @@
+var map;
 var drawingManager;
 var selectedShape;
 var markers = [];
-// ===== CALLBACK MAPS DRAWER =====
-function initMap(){
-    map = new google.maps.Map(document.getElementById('map'),{
-    center: new google.maps.LatLng(-0.9345808,  100.2511829),
-    zoom: 8,
-    mapTypeId: google.maps.MapTypeId.SATELLITE,
-    disableDefaultUI: true,
-    zoomControl: true,
-    mapTypeControl: true
-  }); 
-  
-  aktifkanGeolocation();
-  
-  //mencari lokasi dengan latlng
-  var geocoder = new google.maps.Geocoder;
-  var infowindow = new google.maps.InfoWindow;
-        document.getElementById('btnlatlng').addEventListener('click', function() {
+
+function initialize() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -0.9416672, lng: 100.4266585},
+      zoom: 20,
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+      disableDefaultUI: true,
+      zoomControl: true,
+      mapTypeControl: true,
+      gestureHandling: 'greedy'
+    });
+
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+    document.getElementById('btnlatlng').addEventListener('click', function() {
     setMapOnAll(null);
         geocodeLatLng(geocoder, map, infowindow);
     });
-    function geocodeLatLng(geocoder, map, infowindow) {
-      var input = document.getElementById('latlng').value;
-      var latlngStr = input.split(',', 2);
-      var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-      geocoder.geocode({'location': latlng}, function(results, status) {
-        if (status === 'OK') {
-          if (results[0]) {
-            map.setZoom(11);
-            var marker = new google.maps.Marker({
-              position: latlng,
-              map: map
-            });
-            infowindow.setContent(results[0].formatted_address);
-            infowindow.open(map, marker);
-          } else {
-            window.alert('No results found');
-          }
+
+  function geocodeLatLng(geocoder, map, infowindow) {
+  var input = document.getElementById('latlng').value;
+  var latlngStr = input.split(',', 2);
+  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(20);
+        var marker = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+    //map.setCenter(latlng);
+    markers.push(marker);
+          /* infowindow.setContent(results[1].formatted_address);
+          infowindow.open(map, marker); */
+    $('#showm,#hidem').remove();
+    $('#floating-panel').append('<button class="btn btn-default my-btn" id="hidem" onclick="clearMarkers()" type="button" title="Hide marker"><i class="fa fa-map-marker"></button>');
         } else {
-          window.alert('Geocoder failed due to: ' + status);
+          window.alert('No results found');
         }
-      });
-    }
-    //menampilkan digitasi
-    unit_dig = new google.maps.Data();
-	unit_dig.loadGeoJson('incident.php?id_kejadian='+id.value);
-	unit_dig.setMap(map);
-	unit_dig.setStyle({
-		fillColor: 'red',
-		strokeColor: 'red'
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
+  }
+        
+  //        unit_dig = new google.maps.Data();
+  // unit_dig.loadGeoJson('incident.php?id_kejadian='+id.value);
+  // unit_dig.setMap(map);
+  // unit_dig.setStyle({
+  //   fillColor: 'red',
+  //   strokeColor: 'red'
+  // });
+  if (document.getElementById("id_kej")!=null) {
+    var id= document.getElementById("id_kej").value;
+    //alert(id)
+    $.ajax({ url: 'incident.php?id_kejadian='+id, dataType: 'json', cache: false, success: function(arrays){
+      for(i=0;i<arrays.features.length;i++){
+          var ambil_array = arrays.features[i];
+          tampilkandigit(ambil_array);
+      }
+    }});
+  }
+
+function tampilkandigit(ambil_array) {
+  var data = ambil_array;
+  var arrayGeometries = data.geometry.coordinates;
+  
+  var number = 0;
+  var coordinate=[];
+  var k;
+  while(number < arrayGeometries[0][0].length){
+      var one = arrayGeometries[0][0][number][0];
+      var two = arrayGeometries[0][0][number][1];
+      coordinate[number]= {lat:two,lng: one};
+      k = coordinate[number];
+      number += 1;
+  }
+
+  show_digit = new google.maps.Polygon({
+    paths: coordinate,
+    strokeColor: 'red',
+    strokeOpacity: 0.5,
+    strokeWeight: 1,
+    fillColor: 'red',
+    fillOpacity: 0.7
   });
-  //zoom peta sesuai digitasi
-  var bounds = new google.maps.LatLngBounds();
-  unit_dig.addListener('addfeature', function(e) {
-    processPoints(e.feature.getGeometry(), bounds.extend, bounds);
-    map.fitBounds(bounds);
-  });
+  show_digit.setMap(map);
+  var lat = data.jenis;
+  var lng = data.jenis;
+  var senter = {lat:lat, lng:lng};
+  map.setCenter(coordinate[number-1]);
+  //alert(coordinate[number-1])
+}
+
+  
+var infoWindow = new google.maps.InfoWindow({map: map});
+var bounds = new google.maps.LatLngBounds();
   var polyOptions = {
   fillColor: 'blue',
   strokeColor: 'blue',
   draggable: true
   };
-  //menampilkan drawing manager
-    drawingManager = new google.maps.drawing.DrawingManager({
-    drawingMode: google.maps.drawing.OverlayType.POLYGON,
-    drawingControlOptions: {
-      position: google.maps.ControlPosition.TOP_LEFT,
-      drawingModes: [
-        google.maps.drawing.OverlayType.POLYGON
-      ]
-    },
-    polygonOptions: polyOptions,
-    map: map
-  });
-  //event digitasi di google map
-  google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event){
-    if (event.type == google.maps.drawing.OverlayType.POLYGON){
-      //console.log('polygon path array', event.overlay.getPath().getArray());
-      var str_input ='MULTIPOLYGON(((';
-      var i=0;
-      var coor = [];
-      $.each(event.overlay.getPath().getArray(), function(key, latlng){
-        var lat = latlng.lat();
-        var lon = latlng.lng();
-        coor[i] = lon +' '+ lat;
-        str_input += lon +' '+ lat +',';
-        i++;
-      });
-      str_input = str_input+''+coor[0]+')))';
-      $("#geom").val(str_input);
-      drawingManager.setDrawingMode(null);
-      drawingManager.setOptions({
-        drawingControl: false
-      });
-      // Add an event listener that selects the newly-drawn shape when the user mouses down on it.
-      var newShape = event.overlay;
-      newShape.type = event.type;
+
+//menampilkan drawing manager
+  drawingManager = new google.maps.drawing.DrawingManager({
+  drawingMode: google.maps.drawing.OverlayType.POLYGON,
+  drawingControlOptions: {
+    position: google.maps.ControlPosition.TOP_LEFT,
+    drawingModes: [
+      google.maps.drawing.OverlayType.POLYGON
+    ]
+  },
+  polygonOptions: polyOptions,
+  map: map
+});
+
+//event digitasi di google map
+google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event){
+  if (event.type == google.maps.drawing.OverlayType.POLYGON){
+    //console.log('polygon path array', event.overlay.getPath().getArray());
+    var str_input ='MULTIPOLYGON(((';
+    var i=0;
+    var coor = [];
+    $.each(event.overlay.getPath().getArray(), function(key, latlng){
+      var lat = latlng.lat();
+      var lon = latlng.lng();
+      coor[i] = lon +' '+ lat;
+      str_input += lon +' '+ lat +',';
+      i++;
+    });
+    str_input = str_input+''+coor[0]+')))';
+    $("#geom").val(str_input);
+    drawingManager.setDrawingMode(null);
+    drawingManager.setOptions({
+      drawingControl: false
+    });
+    // Add an event listener that selects the newly-drawn shape when the user mouses down on it.
+    var newShape = event.overlay;
+    newShape.type = event.type;
+    setSelection(newShape);
+    google.maps.event.addListener(newShape, 'click', function(){
       setSelection(newShape);
-      google.maps.event.addListener(newShape, 'click', function(){
-        setSelection(newShape);
-      });
+    });
+  }
+  function getCoordinate(){
+    var polygonBounds = newShape.getPath();
+    str_input ='MULTIPOLYGON(((';
+    for(var i = 0 ; i < polygonBounds.length ; i++){
+      coor[i] = polygonBounds.getAt(i).lng() +' '+ polygonBounds.getAt(i).lat();
+      str_input += polygonBounds.getAt(i).lng() +' '+ polygonBounds.getAt(i).lat() +',';
     }
-    function getCoordinate(){
-      var polygonBounds = newShape.getPath();
-      str_input ='MULTIPOLYGON(((';
-      for(var i = 0 ; i < polygonBounds.length ; i++){
-        coor[i] = polygonBounds.getAt(i).lng() +' '+ polygonBounds.getAt(i).lat();
-        str_input += polygonBounds.getAt(i).lng() +' '+ polygonBounds.getAt(i).lat() +',';
-      }
-      str_input = str_input+''+coor[0]+')))';     
-      $("#geom").val(str_input);
-    }
-    google.maps.event.addListener(newShape.getPath(), 'set_at', getCoordinate);
-    google.maps.event.addListener(newShape.getPath(), 'insert_at', getCoordinate);
-    google.maps.event.addListener(newShape.getPath(), 'remove_at', getCoordinate);
-  });
+    str_input = str_input+''+coor[0]+')))';     
+    $("#geom").val(str_input);
+  }
+  google.maps.event.addListener(newShape.getPath(), 'set_at', getCoordinate);
+  google.maps.event.addListener(newShape.getPath(), 'insert_at', getCoordinate);
+  google.maps.event.addListener(newShape.getPath(), 'remove_at', getCoordinate);
+});
   google.maps.event.addListener(drawingManager, 'drawingmode_changed', clearSelection);
   google.maps.event.addListener(map, 'click', clearSelection);
   google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', deleteSelectedShape);
 }
-google.maps.event.addDomListener(window, 'load', initMap);
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
 function processPoints(geometry, callback, thisArg) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
@@ -170,61 +217,23 @@ function showMarkers() {
   $('#showm').remove();
   $('#floating-panel').append('<button class="btn btn-default my-btn" id="hidem" onclick="clearMarkers()" type="button" title="Hide marker"><i class="fa fa-map-marker"></i></button>');
 }
-function hideReg() {
-  unit_dig.setMap(null);
-  $('#hider').remove();
-  $('#regedit').append('<button class="btn btn-default my-btn" id="showr" title="Show region" onclick="showReg()"><i class="fa fa-eye-slash"> Show region</i></button>');
-}
-function showReg() {
-  unit_dig.setMap(map);
-  $('#showr').remove();
-  $('#regedit').append('<button class="btn btn-default my-btn" id="hider" title="Hide region" onclick="hideReg()"><i class="fa fa-eye-slash"> Hide region</i></button>');
-}
+
 function resizeMap() {
    if(typeof map =="undefined") return;
    setTimeout( function(){resizingMap();} , 400);
 }
+
 function resizingMap() {
    if(typeof map =="undefined") return;
    var center = map.getCenter();
    google.maps.event.trigger(map, "resize");
    map.setCenter(center); 
+
+  var infoWindow = new google.maps.InfoWindow({map: map});
 }
 
-function aktifkanGeolocation(){ //posisi saat ini
-
-    navigator.geolocation.getCurrentPosition(function(position) {
-    //hapusMarkerInfowindow();
-     hapusInfo();
-      pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-
-      };console.log(pos.lat);
-        marker = new google.maps.Marker({
-      position: pos,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      });
-      centerLokasi = new google.maps.LatLng(pos.lat, pos.lng);
-      markers.push(marker);
-      infowindow = new google.maps.InfoWindow({
-      position: pos,
-      content: "<a style='color:black;'>You Are Here</a> "
-      });
-      infowindow.open(map, marker);
-      map.setCenter(pos);
-    });   
-  }
-
-  function previewImage() {
-    document.getElementById("image-preview").style.display = "block";
-    var oFReader = new FileReader();
-     oFReader.readAsDataURL(document.getElementById("image-source").files[0]);
-
-    oFReader.onload = function(oFREvent) {
-      document.getElementById("image-preview").src = oFREvent.target.result;
-    };
-  };
-
-  
+function hapusmarkerdankoor(){
+  setMapOnAll(null);
+  markers = [];
+  document.getElementById('latlng').value=null;
+}

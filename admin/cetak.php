@@ -118,21 +118,24 @@
         <tr>
             <td><td><td><td>
             <td>RT/RW &nbsp;&nbsp;&nbsp;&nbsp; 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <?=$hasil['rt'];?> / <?=$hasil['rw'];?></td>
             
-            <td></td>
         </tr>
         <tr>
             <td><td><td><td>
-            <td>Kelurahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+            <td>Kelurahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <?=$hasil['kelurahan'];?></td>
             
-            <td></td>
         </tr>
         <tr>
             <td><td><td><td>
-            <td>Kecamatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td>
+            <?php
+                $query = pg_query("SELECT C.nama_kecamatan
+                FROM kejadian AS K, kecamatan AS C
+                WHERE ST_CONTAINS(C.geom, K.geom) AND K.id_kejadian='$id'");
+                $data = pg_fetch_array($query);
+            ?>
+            <td>Kecamatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <?=$data['nama_kecamatan'];?></td>
             
-            <td><?=$hasil['nama_kecamatan'];?></td>
         </tr>
         <tr>
             <th>5.</th>

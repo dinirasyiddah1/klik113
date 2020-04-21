@@ -105,7 +105,7 @@ $query = pg_query("SELECT * FROM pos_damkar");
             /* fungsi AJAX untuk melakukan fetch data */
             $.ajax({
                 type : 'post',
-                url : 'modal_coba.php',
+                url : 'modal_pos.php',
                 /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
                 data :  'getDetail='+ getDetail,
                 /* memanggil fungsi getDetail dan mengirimkannya */

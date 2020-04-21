@@ -46,19 +46,30 @@ include 'connect.php';
           $data=pg_query("SELECT * FROM public.pos_damkar WHERE id_pos_damkar='$id'")or die(pg_error());
           
           
-          $no=1;
-          while($hasil=pg_fetch_array($data)){ 
-            $img=$hasil['images'];
+          $hasil=pg_fetch_array($data);
+          // $no=1;
+          // while($hasil=pg_fetch_array($data)){ 
+          //   $img=$hasil['images'];
         ?>
-        <form method="post" action="update_pos.php" enctype="multipart/form-data">
+        <form method="post" action="update_pos.php?id_pos_damkar=<?=$id;?>" enctype="multipart/form-data">
                 <table>
+                
                 <div class="form-group">
-                  <label for="id"><span style="color:red">*</span> Fire Station ID</label>
-                  <input type="text" class="form-control" id="id" name="id_pos_damkar" value="<?=$hasil['id_pos_damkar'];?>" required>
-                </div>
-                <div class="form-group">
+                <input type="hidden" name="" id="id" name="id_pos_damkar" value="<?=$id; ?>">
+                      
                   <label for="geom"><span style="color:red">*</span> Coordinat</label>
-                  <textarea class="form-control" id="geom" name="geom" value="<?=$hasil['geom'];?>" readonly required><?=$hasil['geom'];?></textarea>
+                  <?php 
+                     $query_geom = pg_query("SELECT ST_AsText(geom) As geom
+                        FROM public.pos_damkar
+                        WHERE id_pos_damkar = '$id'");
+                     $data_geom=pg_fetch_array($query_geom);
+                          ?>
+                      <textarea class="form-control readonly" id="geom" name="geom" autocomplete="off" value="<?=$data_geom['geom'];?>"  required><?=$data_geom['geom']; ?></textarea>
+                      <script>
+                        $(".readonly").on('keydown paste', function(e){
+                            e.preventDefault();
+                        });
+                    </script>  
                 </div>
                 <div class="form-group">
                   <label for="nama_pos"><span style="color:red">*</span> Fire Station Name</label>
@@ -70,14 +81,15 @@ include 'connect.php';
                 </div>
                 <div class="form-group">
                   <label for="image">Gambar</label>
-                  <input type="file"id="image" class="form-control-file" name="image" value="<?=$hasil['image'];?>">
+                  <input type="file"id="image" class="form-control-file" name="gambar[]" value="<?=$hasil['image'];?>" multiple>
+                  
+                  
                   <br>
                 </div>	
                     </td></tr>
                     <tr><td colspan="2"><button class="btn btn-warning" type="submit" value="simpan">SIMPAN</button></td></tr>
                 </table>
         </form>
-          <?php }?>
         </div>
         </div>
 
@@ -90,7 +102,6 @@ include 'connect.php';
       // This example requires the Drawing library. Include the libraries=drawing
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
-
       function initMap() {
         map = new google.maps.Map(
         document.getElementById('map'), 
@@ -100,7 +111,6 @@ include 'connect.php';
               mapTypeId: google.maps.MapTypeId.ROADMAP
           }
         );
-
         var drawingManager = new google.maps.drawing.DrawingManager({
           drawingMode: google.maps.drawing.OverlayType.MARKER,
           drawingControl: true,
@@ -121,8 +131,8 @@ include 'connect.php';
         drawingManager.setMap(map);
       }
     </script> -->
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing&callback=initMap">
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing">
          
     </script>
     <script src="map_pos.js" type="text/javascript"></script>

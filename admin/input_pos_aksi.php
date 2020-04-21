@@ -44,10 +44,11 @@ $sql = pg_query
 
 $jumlah = count($_FILES['gambar']['name']);
     if ($jumlah > 0) {
+		mkdir('\\ms4w\\Apache\\htdocs\\klik113\\file\\firestation\\'.$id_pos, 0777, true);
       for ($i=0; $i < $jumlah; $i++) { 
         $file_name = $_FILES['gambar']['name'][$i];
         $tmp_name = $_FILES['gambar']['tmp_name'][$i];				
-        move_uploaded_file($tmp_name, "../file/firestation/".$file_name);
+		move_uploaded_file($tmp_name, "../file/fireincident/".$id_pos."/".$file_name);
         pg_query($conn,"INSERT INTO gambar_pos VALUES('$id_pos','$id_gambar', '$file_name')");		
         $id_gambar++;		
       }

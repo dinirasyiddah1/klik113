@@ -12,6 +12,7 @@ include 'connect.php';
   <?php
       include ('include/head.php');
     ?>
+    <link rel="stylesheet" href="../assets/css/select2.min.css"/>
   </head>
   <body>
   <?php include('include/sidebar.php'); ?>
@@ -59,7 +60,7 @@ include 'connect.php';
                     <label for="orang">People involved</label>
                     <button type="button" class="btn btn-info" data-toggle='modal'  data-target='#show'> + Data Entry</button>  
                     <br>
-                    
+                      <input type="hidden" name="" id="id_kej" value="<?=$id; ?>">
                       <label for="geom"><span style="color:red">*</span> Coordinat</label>
                      <?php 
                      $query_geom = pg_query("SELECT ST_AsText(geom) As geom
@@ -313,8 +314,17 @@ include 'connect.php';
                       <button type="button" class="btn btn-info" data-toggle='modal'  data-target='#show'> + Enter agent data</button>
                       
                       <select id="instansi" name="instansi[]" class="form-control" required multiple="multiple" > 
-                    
+                          <?php
+                            $instansi_query = pg_query("SELECT nama_instansi FROM kejadian
+                                              INNER JOIN detail_instansi ON detail_instansi.id_kejadian = kejadian.id_kejadian
+                                              INNER JOIN instansi ON instansi.id_instansi = detail_instansi.id_instansi
+                                              WHERE kejadian.id_kejadian = '$id'");
+                            while($instansi_data = pg_fetch_array($instansi_query)){
+                            
+                          ?>
+                          <option selected="selected" value="<?=$instansi_data['id_instansi'];?>"><?=$instansi_data['nama_instansi'];?></option>
                       <?php
+                            };
                               $query_instansi = pg_query("SELECT * FROM instansi");
                               while ($instansi = pg_fetch_array($query_instansi)) {
                           ?>
@@ -325,32 +335,34 @@ include 'connect.php';
                         ?>
                           <option>-- Add new --</option>
                     </select>
-                    <?php
-                      $query_id = pg_query("SELECT min(detail_instansi.id_instansi) AS minid FROM kejadian
-                          INNER JOIN detail_instansi ON detail_instansi.id_kejadian=kejadian.id_kejadian
-                          INNER JOIN instansi ON instansi.id_instansi = detail_instansi.id_instansi
-                          WHERE kejadian.id_kejadian = '$id'");
-                      $data = pg_fetch_array($query_id);
-                      $id_instansi = $data['minid'];
-                      
-                      $query = pg_query("SELECT * FROM kejadian
-                                  INNER JOIN detail_instansi ON detail_instansi.id_kejadian=kejadian.id_kejadian
-                                  INNER JOIN instansi ON instansi.id_instansi = detail_instansi.id_instansi
-                                  WHERE detail_instansi.id_instansi = '$id_instansi'");
-                      
-                      while($data_ins = pg_fetch_array($query)){
-                      ?>
-                      <input type="text" class="form-control" id="instansi" name="instansi" value="<?=$data_ins['nama_instansi']?>" autocomplete="off">
                     
-                      <?php
-                      $id_instansi++;
-                      }
-                    ?>
+                      
                     
                       
                       <br>
                     <label for="kendaraan">Vehicle / Equipment</label>
-                      <input type="text" class="form-control" id="kendaraan" name="kendaraan" autocomplete="off">
+                    <select id="kendaraan" name="kendaraan[]" class="form-control" required multiple="multiple" > 
+                    <?php
+                            $kendaraan_query = pg_query("SELECT nama_kendaraan FROM kejadian
+                                              INNER JOIN detail_kendaraan ON detail_kendaraan.id_kejadian = kejadian.id_kejadian
+                                              INNER JOIN kendaraan ON kendaraan.nomor_plat = detail_kendaraan.nomor_plat
+                                              WHERE kejadian.id_kejadian = '$id'");
+                            while($kendaraan_data = pg_fetch_array($kendaraan_query)){
+                            
+                          ?>
+                          <option selected="selected" value="<?=$kendaraan_data['nomor_plat'];?>"><?=$kendaraan_data['nama_kendaraan'];?></option>
+                    <?php
+                            };
+                            $query_kendaraan = pg_query("SELECT * FROM kendaraan");
+                            while ($kendaraan = pg_fetch_array($query_kendaraan)) {
+                        ?>
+                        <option value="<?=$kendaraan['nomor_plat']?>" >Unit <?=$kendaraan['nama_kendaraan']?></option>
+
+                      <?php
+                        }
+                      ?>
+                        <option>-- Add new --</option>
+                  </select>
                   </div>   
                 </div>
                 <div class="form-group">
@@ -457,8 +469,7 @@ include 'connect.php';
         drawingManager.setMap(map);
       }
     </script> -->
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing">
          
     </script>
     <script src="map_incident.js" type="text/javascript"></script>
@@ -467,8 +478,20 @@ include 'connect.php';
     <!-- <script src="script.js" type="text/javascript"></script> -->
     
     <!-- <script src="map.js" type="text/javascript"></script> -->
+    <script src="../assets/js/select2.min.js"></script>
+      <script>
+        $(document).ready(function () {
+                
+                $("#instansi").select2({
+                    placeholder: "Please Select"
+                });
+                $("#kendaraan").select2({
+                    placeholder: "Please Select"
+                });
+                
+            });
 
-
+      </script>
 
     
   </body>

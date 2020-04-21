@@ -20,7 +20,13 @@ $kendaraan		= $_POST['kendaraan'];
 $kerusakan		= $_POST['kerusakan'];
 $luas_area		= $_POST['luas_area'];
 $taksiran_kerugian	= $_POST['taksiran_kerugian'];
+$admin			= $_POST['admin'];
 $tanggal		= $_POST['tanggal'];
+$rt 			= $_POST['rt'];
+$rw 			= $_POST['rw'];
+$kelurahan		= $_POST['kelurahan'];
+$korban			= $_POST['korban'];
+$kondisi		= $_POST['kondisi'];
 $image=$_FILES['image']['name'];
 
 $query = pg_query("SELECT max(id_kejadian) AS maxid FROM kejadian");
@@ -37,42 +43,44 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 				// query SQL untuk insert data
 			$sql = pg_query
 			("INSERT INTO public.kejadian
-				(id_kejadian, jam, id_regu, lokasi, kronologis, geom, kerusakan, luas_area, taksiran_kerugian, tanggal)
+				(id_kejadian, jam, id_regu, lokasi, kronologis, geom, kerusakan, luas_area, taksiran_kerugian,username_admin, tanggal)
 				VALUES 
 				('$id_kejadian', '$waktu', '$regu', '$alamat', '$kronologis', ST_GeomFromText('$geom'), '$kerusakan', '$luas_area', '$taksiran_kerugian', '$tanggal')
 			");
 
-			foreach($id_penyebab as $penyebab)
+			foreach($id_penyebab as $penyebab_val){
 			$sql_penyebab = pg_query(
 				"INSERT INTO detail_penyebab (id_penyebab,id_kejadian,penyebab)
 				VALUES
-				('$penyebab','$id_kejadian','$penyebab')
+				('$penyebab_val','$id_kejadian','$penyebab')
 				"
 			);
 			};
 
-			foreach($pelapor as $pelapor)
+		foreach($pelapor as $pelapor_val){
 			$sql_pelapor = pg_query(
 				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelapor)
 				VALUES
-				 ('$id_kejadian','$pelapor','')
+				 ('$id_kejadian','$pelapor_val','')
 				"
 			);
-
-			foreach($objek_terbakar as $objek_terbakar)
+		};
+		foreach($objek_terbakar as $objek_terbakar_val){
 			$sql_objek_terbakar = pg_query(
 				"INSERT INTO detail_objek_terbakar (id_objek,id_kejadian,id_orang,jenis_kejadian)
 				VALUES
-				 ('$objek_terbakar','$id_kejadian','$pemilik','$jenis_kejadian')
+				 ('$objek_terbakar_val','$id_kejadian','$pemilik','$jenis_kejadian')
 				"
 			);
-
+			};
+		foreach ($saksi as $saksi_val) {	
 			$sql_saksi = pg_query(
 				"INSERT INTO detail_saksi (id_kejadian,id_orang,status_saksi)
 				VALUES
-				 ('$id_kejadian','$saksi','')
+				 ('$id_kejadian','$saksi_val','')
 				"
 			);
+		};
 
 		foreach ($instansi as $value) {
 			$sql_instansi = pg_query(
@@ -82,12 +90,25 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 				"
 			);
 		};
-			var_dump ($personil);
+			
 		foreach ($kendaraan as $isi) {
 			$sql_kendaraan = pg_query(
 				"INSERT INTO detail_kendaraan (id_kejadian,nomor_plat)
 				VALUES
 				 ('$id_kejadian','$isi')
+				"
+			);
+		};
+
+		$korbans = pg_query("SELECT max(status_korban) AS maxstat FROM detail_korban");
+		$status_korban = pg_fetch_array($korbans);
+		$skorban = $status_korban['maxstat'];
+
+		foreach ($korban as $korban_data) {
+			$sql_kendaraan = pg_query(
+				"INSERT INTO detail_korban (id_kejadian,id_korban,id_kondisi,status_korban)
+				VALUES
+				 ('$id_kejadian','$korban_data','$kondisi', '$skorban')
 				"
 			);
 		};

@@ -104,9 +104,7 @@ include 'connect.php';
         drawingManager.setMap(map);
       }
     </script> -->
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing&callback=initMap">
-         
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing">
     </script>
     <script src="map_pos.js" type="text/javascript"></script>
     <!-- <script src="placeid.js" type="text/javascript"> </script> -->
