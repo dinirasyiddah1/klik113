@@ -17,7 +17,6 @@ include 'admin/connect.php';
 	$id = $_GET['id_pos_damkar'];
 	//bikin string 
 	$sql = pg_query("select * from pos_damkar where id_pos_damkar='$id'");
-	$sql1 = pg_query("select * from gambar_pos where id_pos_damkar='$id'");
 	
 	//tampilakan data
   $data = pg_fetch_assoc($sql);
@@ -70,16 +69,52 @@ include 'admin/connect.php';
                 </div>
       <div class="card" style="width:185%"> 
         <div class="col-sm-3" id="hide2">
-          <div class="panel-body">
-              <?php
-              while($data1 = pg_fetch_array($sql1)){
-                echo"
-                <img class='card-img-top' src=".$data1['url_photo']."  alt='Card image' style='width:100%'>
-          
-                ";
-              }
-              ?>
-                </div>
+          <!-- menampilkan foto-->
+          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+<!-- Indicators -->
+<ul class="carousel-indicators">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_pos where id_pos_damkar='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
+  <?php $i++; }?>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_pos where id_pos_damkar='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <div class="item <?=$actives;?>">
+    <img src="file/firestation/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" height="400">
+  </div>
+  <?php $i++; }?>
+</div>
+
+<!-- Left and right controls -->
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>
         </div>
         <div class="col-sm-9">
           <div class="card-body">

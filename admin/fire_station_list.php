@@ -69,14 +69,21 @@ $query = pg_query("SELECT * FROM pos_damkar");
                 <a class='btn btn-success' href='edit_pos.php?id_pos_damkar=".$row['id_pos_damkar']."'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a>
                 
 
-                <a class='btn btn-danger ' href='hapus_pos.php?id_pos_damkar=".$row['id_pos_damkar']."' onclick='return confirm()'><span style='color:black'><i class='fa fa-trash-o'></i>  </span> </a>
+                <a class='btn btn-danger ' href='hapus_pos.php?id_pos_damkar=".$row['id_pos_damkar']."' onclick='return konfirmasi()'><span style='color:black'><i class='fa fa-trash-o'></i>  </span> </a>
                 </td>
                 
                 </tr>";
             $no++;
         }
         ?>
-    
+    <script type="text/javascript" language="JavaScript">
+          function konfirmasi()
+          {
+          tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+          if (tanya == true) return true;
+          else return false;
+          }
+        </script>
 <!-- Modal start here -->
 <div class="modal fade" id="show" role="dialog">
         <div class="modal-dialog" role="document">

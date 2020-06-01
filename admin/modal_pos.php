@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>.carousel-inner > .item > img,.carousel-inner > .item > a > img { width: 80%; margin: auto;}</style>
-</head>
+    
+    </head>
 <body>
 <?php
 include("connect.php");
@@ -45,46 +45,54 @@ if($_POST['getDetail']) {
                     
                 </div>
                   
-                <table> 
+                </table> 
 
 
-<div id="WJSlider" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-    <?php
-            $sql2 = pg_query("SELECT * FROM pos_damkar
-                        INNER JOIN gambar_pos ON gambar_pos.id_pos_damkar = pos_damkar.id_pos_damkar 
-                        where pos_damkar.id_pos_damkar='$id'") or die(pg_error());
-            $i=0;
-            while($row2 = pg_fetch_array($sql2)){
-             echo "<li data-target='#WJSlider' data-slide-to='".$i."'></li>";
-             $i++;
-        ?>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        
-      <div class="item active">
-      &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../file/firestation/<?php echo $row2['nama_photo']; ?>" style="width:450px;height:350px;">
-        <div class="carousel-caption">
-          <h3><?php echo $row2['alamat']; ?></h3>
-          <p>Ini adalah deskripsi singkat dari judul gambar yang pertama.</p>
-        </div>
-      </div> 
-      <?php    
-            }
-            ?> 
-    </div>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+<!-- Indicators -->
+<ul class="carousel-indicators">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_pos where id_pos_damkar='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
+  <?php $i++; }?>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_pos where id_pos_damkar='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <div class="item <?=$actives;?>">
+    <img src="../file/firestation/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" >
+  </div>
+  <?php $i++; }?>
+</div>
+
 <!-- Left and right controls -->
-<a class="left carousel-control" href="#WJSlider" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Kembali</span>
-    </a>
-    <a class="right carousel-control" href="#WJSlider" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Lanjut</span>
-    </a>
-  </div>                   
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>                   
             </form>
             <div class="modal-footer">
       

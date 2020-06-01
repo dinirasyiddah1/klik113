@@ -18,7 +18,7 @@ include 'connect.php';
             margin: 10px 0px 10px 0px;
         }
     </style>
-  </head>
+     </head>
 
   <body>
   <?php   
@@ -152,21 +152,24 @@ include 'connect.php';
         <tr>
         <th></th>
             <th>&nbsp;&nbsp;&nbsp;RT/RW &nbsp;&nbsp;&nbsp;&nbsp; 
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; <?=$hasil['rt'];?>/<?=$hasil['rw'];?></th>
             
-            <td></td>
         </tr>
         <tr>
         <th></th>
-            <th>&nbsp;&nbsp;&nbsp;Kelurahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+            <th>&nbsp;&nbsp;&nbsp;Kelurahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<?=$hasil['kelurahan'];?></th>
             
-            <td></td>
         </tr>
         <tr>
         <th></th>
-            <th>&nbsp;&nbsp;&nbsp;Kecamatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</th>
+        <?php
+                $query = pg_query("SELECT C.nama_kecamatan
+                FROM kejadian AS K, kecamatan AS C
+                WHERE ST_CONTAINS(C.geom, K.geom) AND K.id_kejadian='$id'");
+                $data = pg_fetch_array($query);
+            ?>
+            <th>&nbsp;&nbsp;&nbsp;Kecamatan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<?=$data['nama_kecamatan'];?></th>
             
-            <td><?=$hasil['nama_kecamatan'];?></td>
         </tr>
         <tr>
         <th>5.</th>
@@ -431,28 +434,53 @@ include 'connect.php';
               </div>
               <div class="col-sm-5">
               <div class="panel-body">
+              
 								<!-- menampilkan foto-->
-					   	 			<section class="panel panel-info" >
-					                   
-					                       <!--  <a class="btn btn-primary btn-lg btn-block">Tambah Panti Asuhan</a> -->
-					                        <div class="panel-body">
-					                        	<table>
-					                        		<tbody>
-                                      <?php
-                                      $id = $_GET['id_kejadian'];
-                                      $sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
-                                          while($data1 = pg_fetch_array($sql1)){
-                                            echo"
-                                            <img class='img-thumbnail' src='../file/fireincident/".$id."/".$data1['nama_photo']."'   alt='Card image' style='width:20%'>
-          
-                                            ";
-                                          };
-                                      ?>
+                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-					                        			</tbody>	
-					                        	</table>				
-					                    </div>
-					                </section>
+<!-- Indicators -->
+<ul class="carousel-indicators">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
+  <?php $i++; }?>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+  <div class="item <?=$actives;?>">
+    <img src="../file/fireincident/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" height="400">
+  </div>
+  <?php $i++; }?>
+</div>
+
+<!-- Left and right controls -->
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+</div>
 					       </div>
         </div>
       </section>

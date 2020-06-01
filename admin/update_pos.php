@@ -33,7 +33,7 @@ if ($jumlah > 0) {
   for ($i=0; $i < $jumlah; $i++) { 
 	$file_name = $_FILES['gambar']['name'][$i];
 	$tmp_name = $_FILES['gambar']['tmp_name'][$i];				
-	move_uploaded_file($tmp_name, "../file/firestaion/".$file_name);
+	move_uploaded_file($tmp_name, "../file/firestation/".$id."/".$file_name);
 	pg_query($conn,"INSERT INTO gambar_pos VALUES('$id','$id_gambar', '$file_name')");		
 	$id_gambar++;		
   }

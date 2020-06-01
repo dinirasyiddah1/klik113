@@ -98,7 +98,7 @@ include 'connect.php';
                     <label for="penyebabn">3. The Cause Of The Incident</label>
                     <input type="text" class="form-control" id="penyebab" name="penyebab" placeholder="ex: Kompor Gas" autocomplete="off">
                     <br>
-                    &nbsp;<label for="objek_terbakar">Category Of Cause</label>&nbsp;
+                    &nbsp;<label for="kategori_penyebab">Category Of Cause</label>&nbsp;
                     <select id="kategori_penyebab" name="kategori_penyebab[]" class="form-control" required multiple="multiple">
                     
                     <?php
@@ -302,8 +302,8 @@ include 'connect.php';
                   </select>
                   </div>
                   <div class="col-sm-5">
-                  <select id="kondisi" name="kondisi" class="form-control">
-                    <option value="" disabled selected>Condition</option>
+                  <select id="kondisi" name="kondisi[]" class="form-control" multiple="multiple">
+                    
                     <?php
                         $query = "SELECT * FROM kondisi";
                         $sql=pg_query($query) or die (pg_error());
@@ -476,6 +476,9 @@ include 'connect.php';
                     placeholder: "Please Select"
                 });
                 $("#korban").select2({
+                    placeholder: "Please Select"
+                });
+                $("#kondisi").select2({
                     placeholder: "Please Select"
                 });
                 $("#admin").select2({

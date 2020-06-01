@@ -11,7 +11,6 @@ $alamat         = $_POST['alamat'];
 $image=$_FILES['url_photo']['name'];
 
 
-$i=0;
 
 $query = pg_query("SELECT max(id_pos_damkar) as maxid FROM pos_damkar");
 $data = pg_fetch_array($query);
@@ -48,7 +47,7 @@ $jumlah = count($_FILES['gambar']['name']);
       for ($i=0; $i < $jumlah; $i++) { 
         $file_name = $_FILES['gambar']['name'][$i];
         $tmp_name = $_FILES['gambar']['tmp_name'][$i];				
-		move_uploaded_file($tmp_name, "../file/fireincident/".$id_pos."/".$file_name);
+		move_uploaded_file($tmp_name, "../file/firestation/".$id_pos."/".$file_name);
         pg_query($conn,"INSERT INTO gambar_pos VALUES('$id_pos','$id_gambar', '$file_name')");		
         $id_gambar++;		
       }
