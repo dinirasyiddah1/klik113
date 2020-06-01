@@ -318,7 +318,7 @@ __ref._mediarecorder /*anywheresoftware.b4j.object.JavaObject*/ .RunMethod("stop
        catch (Exception e5) {
 			ba.setLastException(e5);RDebugUtils.currentLine=2490373;
  //BA.debugLineNum = 2490373;BA.debugLine="Log(LastException)";
-__c.LogImpl("52490373",BA.ObjectToString(__c.LastException(ba)),0);
+__c.LogImpl("02490373",BA.ObjectToString(__c.LastException(ba)),0);
  };
 RDebugUtils.currentLine=2490375;
  //BA.debugLineNum = 2490375;BA.debugLine="RecordingVideo = False";
@@ -407,7 +407,7 @@ case 7:
 this.state = 8;
 RDebugUtils.currentLine=2031624;
  //BA.debugLineNum = 2031624;BA.debugLine="Log(\"Camera not found.\")";
-parent.__c.LogImpl("52031624","Camera not found.",0);
+parent.__c.LogImpl("02031624","Camera not found.",0);
 RDebugUtils.currentLine=2031625;
  //BA.debugLineNum = 2031625;BA.debugLine="id = Camera.CameraIDs(0)";
 __ref._id /*String*/  = __ref._camera /*anywheresoftware.b4a.objects.Camera2*/ .getCameraIDs()[(int) (0)];
@@ -446,7 +446,7 @@ case 11:
 this.state = 12;
 RDebugUtils.currentLine=2031630;
  //BA.debugLineNum = 2031630;BA.debugLine="Log(\"Failed to open camera\")";
-parent.__c.LogImpl("52031630","Failed to open camera",0);
+parent.__c.LogImpl("02031630","Failed to open camera",0);
 RDebugUtils.currentLine=2031631;
  //BA.debugLineNum = 2031631;BA.debugLine="Return 0";
 if (true) {
@@ -837,7 +837,7 @@ case 3:
 this.state = 12;
 RDebugUtils.currentLine=4063236;
  //BA.debugLineNum = 4063236;BA.debugLine="Log(\"Focus not supported\")";
-parent.__c.LogImpl("54063236","Focus not supported",0);
+parent.__c.LogImpl("04063236","Focus not supported",0);
  if (true) break;
 
 case 5:
@@ -884,7 +884,7 @@ case 8:
 this.state = 11;
 RDebugUtils.currentLine=4063244;
  //BA.debugLineNum = 4063244;BA.debugLine="Log(\"Focus failed\")";
-parent.__c.LogImpl("54063244","Focus failed",0);
+parent.__c.LogImpl("04063244","Focus failed",0);
  if (true) break;
 
 case 10:
@@ -892,7 +892,7 @@ case 10:
 this.state = 11;
 RDebugUtils.currentLine=4063246;
  //BA.debugLineNum = 4063246;BA.debugLine="Log(\"Focused!\")";
-parent.__c.LogImpl("54063246","Focused!",0);
+parent.__c.LogImpl("04063246","Focused!",0);
  if (true) break;
 
 case 11:
@@ -1146,10 +1146,10 @@ if (true) return BA.ObjectToString(_consts.Get(_i));
  }else {
 RDebugUtils.currentLine=4849670;
  //BA.debugLineNum = 4849670;BA.debugLine="Log(Consts)'ignore";
-__c.LogImpl("54849670",BA.ObjectToString(_consts),0);
+__c.LogImpl("04849670",BA.ObjectToString(_consts),0);
 RDebugUtils.currentLine=4849671;
  //BA.debugLineNum = 4849671;BA.debugLine="Log(\"Unknown const: \" & i)";
-__c.LogImpl("54849671","Unknown const: "+BA.NumberToString(_i),0);
+__c.LogImpl("04849671","Unknown const: "+BA.NumberToString(_i),0);
 RDebugUtils.currentLine=4849672;
  //BA.debugLineNum = 4849672;BA.debugLine="Return \"\"";
 if (true) return "";
@@ -1880,10 +1880,10 @@ _res.Add(_consts.Get(_mode));
  }else {
 RDebugUtils.currentLine=4915209;
  //BA.debugLineNum = 4915209;BA.debugLine="Log(Consts) 'ignore";
-__c.LogImpl("54915209",BA.ObjectToString(_consts),0);
+__c.LogImpl("04915209",BA.ObjectToString(_consts),0);
 RDebugUtils.currentLine=4915210;
  //BA.debugLineNum = 4915210;BA.debugLine="Log(\"Unknown consts: \" & mode)";
-__c.LogImpl("54915210","Unknown consts: "+BA.NumberToString(_mode),0);
+__c.LogImpl("04915210","Unknown consts: "+BA.NumberToString(_mode),0);
  };
  }
 };
@@ -2133,7 +2133,7 @@ RDebugUtils.currentLine=5111808;
  //BA.debugLineNum = 5111808;BA.debugLine="Private Sub PrintAllKeys (CameraMap As Object, tit";
 RDebugUtils.currentLine=5111809;
  //BA.debugLineNum = 5111809;BA.debugLine="Log($\"******  ${title} **********\"$)";
-__c.LogImpl("55111809",("******  "+__c.SmartStringFormatter("",(Object)(_title))+" **********"),0);
+__c.LogImpl("05111809",("******  "+__c.SmartStringFormatter("",(Object)(_title))+" **********"),0);
 RDebugUtils.currentLine=5111810;
  //BA.debugLineNum = 5111810;BA.debugLine="Dim jo As JavaObject = CameraMap";
 _jo = new anywheresoftware.b4j.object.JavaObject();
@@ -2200,7 +2200,7 @@ _value = (Object)(__ref._objectstolist /*anywheresoftware.b4a.objects.collection
 ;
 RDebugUtils.currentLine=5111827;
  //BA.debugLineNum = 5111827;BA.debugLine="Log($\"${k.RunMethod(\"getName\", Null)}: ${value}\"";
-__c.LogImpl("55111827",(""+__c.SmartStringFormatter("",_k.RunMethod("getName",(Object[])(__c.Null)))+": "+__c.SmartStringFormatter("",_value)+""),0);
+__c.LogImpl("05111827",(""+__c.SmartStringFormatter("",_k.RunMethod("getName",(Object[])(__c.Null)))+": "+__c.SmartStringFormatter("",_value)+""),0);
  }
 };
 RDebugUtils.currentLine=5111829;

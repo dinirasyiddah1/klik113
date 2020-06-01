@@ -55,28 +55,10 @@ public boolean isSingleton() {
 		return pcBA;
 	}
 public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.keywords.Common");
-public static RemoteObject _frontcamera = RemoteObject.createImmutable(false);
-public static RemoteObject _videomode = RemoteObject.createImmutable(false);
-public static RemoteObject _videofiledir = RemoteObject.createImmutable("");
-public static RemoteObject _videofilename = RemoteObject.createImmutable("");
-public static RemoteObject _mytaskindex = RemoteObject.createImmutable(0);
-public static RemoteObject _rp = RemoteObject.declareNull("anywheresoftware.b4a.objects.RuntimePermissions");
-public static RemoteObject _cam = RemoteObject.declareNull("b4a.example.camex2");
-public static RemoteObject _pnlcamera = RemoteObject.declareNull("anywheresoftware.b4a.objects.PanelWrapper");
-public static RemoteObject _pnlpicture = RemoteObject.declareNull("anywheresoftware.b4a.objects.PanelWrapper");
-public static RemoteObject _pnlbackground = RemoteObject.declareNull("anywheresoftware.b4a.objects.PanelWrapper");
-public static RemoteObject _buttons = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.List");
-public static RemoteObject _btnautoexposure = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _progressbar1 = RemoteObject.declareNull("anywheresoftware.b4a.objects.ProgressBarWrapper");
-public static RemoteObject _openstate = RemoteObject.createImmutable(false);
-public static RemoteObject _busystate = RemoteObject.createImmutable(false);
-public static RemoteObject _btnrecord = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _btnmode = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _btncamera = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _barzoom = RemoteObject.declareNull("anywheresoftware.b4a.objects.SeekBarWrapper");
 public static b4a.example.starter _starter = null;
 public static b4a.example.actkamera _actkamera = null;
+public static b4a.example.actlapor _actlapor = null;
   public Object[] GetGlobals() {
-		return new Object[] {"Activity",main.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"barZoom",main.mostCurrent._barzoom,"btnAutoExposure",main.mostCurrent._btnautoexposure,"btnCamera",main.mostCurrent._btncamera,"btnMode",main.mostCurrent._btnmode,"btnRecord",main.mostCurrent._btnrecord,"busystate",main._busystate,"buttons",main.mostCurrent._buttons,"cam",main.mostCurrent._cam,"frontCamera",main._frontcamera,"MyTaskIndex",main._mytaskindex,"openstate",main._openstate,"pnlBackground",main.mostCurrent._pnlbackground,"pnlCamera",main.mostCurrent._pnlcamera,"pnlPicture",main.mostCurrent._pnlpicture,"ProgressBar1",main.mostCurrent._progressbar1,"rp",main._rp,"Starter",Debug.moduleToString(b4a.example.starter.class),"VideoFileDir",main._videofiledir,"VideoFileName",main._videofilename,"VideoMode",main._videomode};
+		return new Object[] {"Activity",main.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"Starter",Debug.moduleToString(b4a.example.starter.class)};
 }
 }
