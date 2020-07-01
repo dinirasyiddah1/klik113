@@ -55,7 +55,7 @@ actkamera,activity_create,1,0,35,49
 ,videofiledir,,rp,,videofilename,,barzoom,,btnautoexposure,,btncamera,,btnmode,,btnrecord,,pnlcamera,,progressbar1,,pnlbackground,,pnlpicture,,cam,,buttons,,videomode,,openstate,,busystate
 ,videofiledir,,videofilename,,barzoom,,btnautoexposure,,btncamera,,btnmode,,btnrecord,,pnlcamera,,progressbar1,,pnlbackground,,pnlpicture,,buttons,,openstate,,busystate,,videomode
 camex2,initialize,camex2,getsupportedhardwarelevel,,setstate,camex2,inttoconst
-actkamera,setstate,0,0,203,225
+actkamera,setstate,0,0,182,204
 ,buttons,,btncamera,,btnrecord,,openstate,,progressbar1,,busystate,,videomode,,barzoom
 ,openstate,,busystate,,videomode
 
@@ -71,11 +71,11 @@ actkamera,opencamera,0,0,55,74
 ,rp,,videomode,,cam,,mytaskindex,,buttons,,btncamera,,btnrecord,,openstate,,progressbar1,,busystate,,barzoom,,videofiledir,,videofilename
 ,mytaskindex,,openstate,,busystate,,videomode
 ,setstate,camex2,opencamera,,preparesurface,camex2,stop,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist,camex2,preparesurfaceforvideo,camex2,preparesurface,camex2,startpreview,camex2,closesession,camex2,createsurface,camex2,gethintorientation,camex2,getfromcameracharacteristic,camex2,getisfrontfacingcamera,camex2,setsettingsfrommap
-actkamera,barzoom_valuechanged,0,0,227,237
+actkamera,barzoom_valuechanged,0,0,206,216
 ,cam,,mytaskindex,,videomode
 
 camex2,getactivearraysize,camex2,getmaxdigitalzoom,camex2,setpreviewcropregion,camex2,startpreview,camex2,getfromcameracharacteristic,camex2,setsettingsfrommap,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist
-actkamera,btnautoexposure_click,0,0,193,200
+actkamera,btnautoexposure_click,0,0,172,179
 ,cam,,btnautoexposure,,mytaskindex,,videomode
 
 camex2,getsupportedautoexposuremodes,camex2,getautoexposuremode,camex2,setautoexposuremode,camex2,startpreview,camex2,intstoconstslist,camex2,getfromcameracharacteristic,camex2,inttoconst,camex2,getfromcapturerequest,camex2,setbothmaps,camex2,setsettingsfrommap,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist
@@ -93,15 +93,15 @@ actkamera,preparesurface,0,0,76,90
 ,setstate,camex2,preparesurfaceforvideo,camex2,preparesurface,camex2,startpreview,camex2,closesession,camex2,createsurface,camex2,gethintorientation,camex2,getfromcameracharacteristic,camex2,getisfrontfacingcamera,camex2,setsettingsfrommap,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist
 actkamera,btnrecord_click,0,0,115,122
 ,videomode,,openstate,,cam,,mytaskindex,,videofiledir,,videofilename,,buttons,,btncamera,,btnrecord,,progressbar1,,busystate,,barzoom,,frontcamera,,rp,,pnlbackground,,pnlpicture
-,openstate,,busystate,,videomode,,mytaskindex,,rp
+,openstate,,busystate,,videomode,,mytaskindex
 ,capturevideo,,takepicture,,setstate,camex2,startvideorecording,camex2,stopvideorecording,,preparesurface,,handleerror,camex2,closesession,camex2,preparesurfaceforvideo,camex2,preparesurface,camex2,startpreview,camex2,createsurface,camex2,gethintorientation,camex2,getfromcameracharacteristic,camex2,getisfrontfacingcamera,camex2,setsettingsfrommap,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist,,opencamera,camex2,opencamera,camex2,stop,camex2,focusandtakepicture,camex2,datatofile,camex2,datatobitmap,camex2,getfromcapturerequest,camex2,waitforfocuswithtimeout,camex2,takepicturenow
 actkamera,capturevideo,0,0,124,140
 ,openstate,,videomode,,cam,,mytaskindex,,videofiledir,,videofilename,,buttons,,btncamera,,btnrecord,,progressbar1,,busystate,,barzoom,,frontcamera,,rp
 ,openstate,,busystate,,videomode,,mytaskindex
 ,setstate,camex2,startvideorecording,camex2,stopvideorecording,,preparesurface,,handleerror,camex2,closesession,camex2,preparesurfaceforvideo,camex2,preparesurface,camex2,startpreview,camex2,createsurface,camex2,gethintorientation,camex2,getfromcameracharacteristic,camex2,getisfrontfacingcamera,camex2,setsettingsfrommap,camex2,printallkeys,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist,,opencamera,camex2,opencamera,camex2,stop
-actkamera,takepicture,0,0,148,186
-,openstate,,videomode,,cam,,mytaskindex,,videofiledir,,pnlbackground,,pnlpicture,,rp,,buttons,,btncamera,,btnrecord,,progressbar1,,busystate,,barzoom,,frontcamera,,videofilename
-,rp,,openstate,,busystate,,videomode,,mytaskindex
+actkamera,takepicture,0,0,148,165
+,openstate,,videomode,,cam,,mytaskindex,,videofiledir,,pnlbackground,,pnlpicture,,buttons,,btncamera,,btnrecord,,progressbar1,,busystate,,barzoom,,frontcamera,,rp,,videofilename
+,openstate,,busystate,,videomode,,mytaskindex
 ,setstate,camex2,focusandtakepicture,camex2,datatofile,camex2,datatobitmap,,handleerror,camex2,getfromcapturerequest,camex2,setsettingsfrommap,camex2,waitforfocuswithtimeout,camex2,takepicturenow,camex2,gethintorientation,camex2,printallkeys,camex2,startpreview,camex2,getfromcameracharacteristic,camex2,getisfrontfacingcamera,camex2,floatstolist,camex2,intstolist,camex2,boolstolist,camex2,bytestolist,camex2,objectstolist,,opencamera,camex2,opencamera,,preparesurface,camex2,stop,camex2,preparesurfaceforvideo,camex2,preparesurface,camex2,closesession,camex2,createsurface
 actkamera,handleerror,0,0,142,146
 ,frontcamera,,rp,,videomode,,cam,,mytaskindex,,buttons,,btncamera,,btnrecord,,openstate,,progressbar1,,busystate,,barzoom,,videofiledir,,videofilename
@@ -111,7 +111,7 @@ actkamera,globals,0,1,17,33
 
 
 
-actkamera,pnlpicture_click,0,0,188,191
+actkamera,pnlpicture_click,0,0,167,170
 ,pnlbackground
 
 

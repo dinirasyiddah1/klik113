@@ -17,6 +17,8 @@ Sub Process_Globals
 	Private VideoFileDir, VideoFileName As String
 	Private MyTaskIndex As Int
 	Private rp As RuntimePermissions
+	Private  SQL1 As SQL
+	Private  Cursor1 As Cursor
 
 End Sub
 
@@ -26,7 +28,7 @@ Sub Globals
 	Private cam As CamEx2
 	Private pnlCamera As Panel
 	
-	Private pnlPicture As Panel
+	Private ImageView1 As ImageView
 	Private pnlBackground As Panel
 	Private buttons As List
 	Private btnAutoExposure As Button
@@ -49,6 +51,8 @@ Sub Activity_Create(FirstTime As Boolean)
 	Log(cam.SupportedHardwareLevel)
 	buttons = Array(btnAutoExposure, btnMode)
 	SetState(False, False, VideoMode)
+	'initialize the database ..Create new db if not present (True) ... but should be there as a result of above statement !
+	SQL1.Initialize (File.DirDefaultExternal,"database.db",True)
 
 
 	
@@ -160,7 +164,7 @@ Sub TakePicture
 		Dim bmp As Bitmap = cam.DataToBitmap(Data)
 		Log("Picture taken: " & bmp) 'ignore
 		pnlBackground.SetVisibleAnimated(100, True)
-		pnlPicture.SetBackgroundImage(bmp.Resize(pnlPicture.Width, pnlPicture.Height, True)).Gravity = Gravity.CENTER
+		ImageView1.SetBackgroundImage(bmp.Resize(ImageView1.Width, ImageView1.Height, True)).Gravity = Gravity.CENTER
 		Sleep(4000)
 		pnlBackground.SetVisibleAnimated(500, False)
 	Catch
@@ -168,31 +172,17 @@ Sub TakePicture
 	End Try
 	
 	'cara simpan dari forum by erel
-	Dim rp As RuntimePermissions
-	rp.CheckAndRequest(rp.PERMISSION_WRITE_EXTERNAL_STORAGE)
-	Wait For Activity_PermissionResult (Permission As String, Result As Boolean)
-	If Result Then
-		File.Copy(File.DirAssets, "1.jpg", File.DirRootExternal, "Pictures/1.jpg")
-		Dim FilePath As String = File.Combine(File.DirRootExternal, "Pictures/1.jpg")
-		Dim Phone As Phone
-		If Phone.SdkVersion <= 18 Then           ' min - 4.3.1
-			Dim i As Intent
-			i.Initialize("android.intent.action.MEDIA_SCANNER_SCAN_FILE", "file://" & FilePath)
-			Phone.SendBroadcastIntent(i)
-		Else
-			Dim ctxt As JavaObject
-			ctxt.InitializeContext
-			Dim MediaScannerConnection As JavaObject
-			MediaScannerConnection.InitializeStatic("android.media.MediaScannerConnection")
-			Dim interface As Object = MediaScannerConnection.CreateEventFromUI("android.media.MediaScannerConnection.OnScanCompletedListener", "ScanCompleted", _
-           Null)
-			MediaScannerConnection.RunMethod("scanFile", Array(ctxt, Array As String(FilePath), Array As String("image/jpeg"), interface))
-		End If
-	End If
+	
 End Sub
 
-Sub pnlPicture_Click
+Sub ImageView1_Click
 	pnlBackground.Visible = False
+	
+	Dim Value As Object
+	'dari picture2DB
+	
+	
+	
 	StartActivity(actLapor)
 End Sub
 

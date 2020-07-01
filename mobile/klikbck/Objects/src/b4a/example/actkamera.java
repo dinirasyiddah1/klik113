@@ -383,7 +383,7 @@ RDebugUtils.currentLine=917511;
 mostCurrent._cam._initialize /*String*/ (null,mostCurrent.activityBA,mostCurrent._pnlcamera);
 RDebugUtils.currentLine=917512;
  //BA.debugLineNum = 917512;BA.debugLine="Log(cam.SupportedHardwareLevel)";
-anywheresoftware.b4a.keywords.Common.LogImpl("0917512",mostCurrent._cam._getsupportedhardwarelevel /*String*/ (null),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("6917512",mostCurrent._cam._getsupportedhardwarelevel /*String*/ (null),0);
 RDebugUtils.currentLine=917513;
  //BA.debugLineNum = 917513;BA.debugLine="buttons = Array(btnAutoExposure, btnMode)";
 mostCurrent._buttons = anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._btnautoexposure.getObject()),(Object)(mostCurrent._btnmode.getObject())});
@@ -610,7 +610,7 @@ this.state = 9;
 ;
 RDebugUtils.currentLine=1048590;
  //BA.debugLineNum = 1048590;BA.debugLine="Log(\"Start success: \" & Success)";
-anywheresoftware.b4a.keywords.Common.LogImpl("01048590","Start success: "+BA.ObjectToString(_success),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("61048590","Start success: "+BA.ObjectToString(_success),0);
 RDebugUtils.currentLine=1048591;
  //BA.debugLineNum = 1048591;BA.debugLine="SetState(Success, False, VideoMode)";
 _setstate(_success,anywheresoftware.b4a.keywords.Common.False,parent._videomode);
@@ -1115,14 +1115,6 @@ this.parent = parent;
 b4a.example.actkamera parent;
 byte[] _data = null;
 anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper _bmp = null;
-String _permission = "";
-boolean _result = false;
-String _filepath = "";
-anywheresoftware.b4a.phone.Phone _phone = null;
-anywheresoftware.b4a.objects.IntentWrapper _i = null;
-anywheresoftware.b4j.object.JavaObject _ctxt = null;
-anywheresoftware.b4j.object.JavaObject _mediascannerconnection = null;
-Object _interface = null;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
@@ -1159,9 +1151,9 @@ _setstate(parent._openstate,anywheresoftware.b4a.keywords.Common.True,parent._vi
 RDebugUtils.currentLine=1572867;
  //BA.debugLineNum = 1572867;BA.debugLine="Wait For(cam.FocusAndTakePicture(MyTaskIndex)) C";
 anywheresoftware.b4a.keywords.Common.WaitFor("complete", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "actkamera", "takepicture"), parent.mostCurrent._cam._focusandtakepicture /*anywheresoftware.b4a.keywords.Common.ResumableSubWrapper*/ (null,parent._mytaskindex));
-this.state = 17;
+this.state = 7;
 return;
-case 17:
+case 7:
 //C
 this.state = 6;
 _data = (byte[]) result[0];
@@ -1178,7 +1170,7 @@ _bmp = new anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper();
 _bmp = parent.mostCurrent._cam._datatobitmap /*anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper*/ (null,_data);
 RDebugUtils.currentLine=1572871;
  //BA.debugLineNum = 1572871;BA.debugLine="Log(\"Picture taken: \" & bmp) 'ignore";
-anywheresoftware.b4a.keywords.Common.LogImpl("01572871","Picture taken: "+BA.ObjectToString(_bmp),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("61572871","Picture taken: "+BA.ObjectToString(_bmp),0);
 RDebugUtils.currentLine=1572872;
  //BA.debugLineNum = 1572872;BA.debugLine="pnlBackground.SetVisibleAnimated(100, True)";
 parent.mostCurrent._pnlbackground.SetVisibleAnimated((int) (100),anywheresoftware.b4a.keywords.Common.True);
@@ -1188,9 +1180,9 @@ parent.mostCurrent._pnlpicture.SetBackgroundImageNew((android.graphics.Bitmap)(_
 RDebugUtils.currentLine=1572874;
  //BA.debugLineNum = 1572874;BA.debugLine="Sleep(4000)";
 anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "actkamera", "takepicture"),(int) (4000));
-this.state = 18;
+this.state = 8;
 return;
-case 18:
+case 8:
 //C
 this.state = 6;
 ;
@@ -1211,111 +1203,11 @@ if (true) break;
 
 case 6:
 //C
-this.state = 7;
+this.state = -1;
 this.catchState = 0;
 ;
 RDebugUtils.currentLine=1572881;
- //BA.debugLineNum = 1572881;BA.debugLine="Dim rp As RuntimePermissions";
-parent._rp = new anywheresoftware.b4a.objects.RuntimePermissions();
-RDebugUtils.currentLine=1572882;
- //BA.debugLineNum = 1572882;BA.debugLine="rp.CheckAndRequest(rp.PERMISSION_WRITE_EXTERNAL_S";
-parent._rp.CheckAndRequest(processBA,parent._rp.PERMISSION_WRITE_EXTERNAL_STORAGE);
-RDebugUtils.currentLine=1572883;
- //BA.debugLineNum = 1572883;BA.debugLine="Wait For Activity_PermissionResult (Permission As";
-anywheresoftware.b4a.keywords.Common.WaitFor("activity_permissionresult", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "actkamera", "takepicture"), null);
-this.state = 19;
-return;
-case 19:
-//C
-this.state = 7;
-_permission = (String) result[0];
-_result = (Boolean) result[1];
-;
-RDebugUtils.currentLine=1572884;
- //BA.debugLineNum = 1572884;BA.debugLine="If Result Then";
-if (true) break;
-
-case 7:
-//if
-this.state = 16;
-if (_result) { 
-this.state = 9;
-}if (true) break;
-
-case 9:
-//C
-this.state = 10;
-RDebugUtils.currentLine=1572885;
- //BA.debugLineNum = 1572885;BA.debugLine="File.Copy(File.DirAssets, \"1.jpg\", File.DirRootE";
-anywheresoftware.b4a.keywords.Common.File.Copy(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"1.jpg",anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"Pictures/1.jpg");
-RDebugUtils.currentLine=1572886;
- //BA.debugLineNum = 1572886;BA.debugLine="Dim FilePath As String = File.Combine(File.DirRo";
-_filepath = anywheresoftware.b4a.keywords.Common.File.Combine(anywheresoftware.b4a.keywords.Common.File.getDirRootExternal(),"Pictures/1.jpg");
-RDebugUtils.currentLine=1572887;
- //BA.debugLineNum = 1572887;BA.debugLine="Dim Phone As Phone";
-_phone = new anywheresoftware.b4a.phone.Phone();
-RDebugUtils.currentLine=1572888;
- //BA.debugLineNum = 1572888;BA.debugLine="If Phone.SdkVersion <= 18 Then           ' min -";
-if (true) break;
-
-case 10:
-//if
-this.state = 15;
-if (_phone.getSdkVersion()<=18) { 
-this.state = 12;
-}else {
-this.state = 14;
-}if (true) break;
-
-case 12:
-//C
-this.state = 15;
-RDebugUtils.currentLine=1572889;
- //BA.debugLineNum = 1572889;BA.debugLine="Dim i As Intent";
-_i = new anywheresoftware.b4a.objects.IntentWrapper();
-RDebugUtils.currentLine=1572890;
- //BA.debugLineNum = 1572890;BA.debugLine="i.Initialize(\"android.intent.action.MEDIA_SCANN";
-_i.Initialize("android.intent.action.MEDIA_SCANNER_SCAN_FILE","file://"+_filepath);
-RDebugUtils.currentLine=1572891;
- //BA.debugLineNum = 1572891;BA.debugLine="Phone.SendBroadcastIntent(i)";
-_phone.SendBroadcastIntent((android.content.Intent)(_i.getObject()));
- if (true) break;
-
-case 14:
-//C
-this.state = 15;
-RDebugUtils.currentLine=1572893;
- //BA.debugLineNum = 1572893;BA.debugLine="Dim ctxt As JavaObject";
-_ctxt = new anywheresoftware.b4j.object.JavaObject();
-RDebugUtils.currentLine=1572894;
- //BA.debugLineNum = 1572894;BA.debugLine="ctxt.InitializeContext";
-_ctxt.InitializeContext(processBA);
-RDebugUtils.currentLine=1572895;
- //BA.debugLineNum = 1572895;BA.debugLine="Dim MediaScannerConnection As JavaObject";
-_mediascannerconnection = new anywheresoftware.b4j.object.JavaObject();
-RDebugUtils.currentLine=1572896;
- //BA.debugLineNum = 1572896;BA.debugLine="MediaScannerConnection.InitializeStatic(\"androi";
-_mediascannerconnection.InitializeStatic("android.media.MediaScannerConnection");
-RDebugUtils.currentLine=1572897;
- //BA.debugLineNum = 1572897;BA.debugLine="Dim interface As Object = MediaScannerConnectio";
-_interface = _mediascannerconnection.CreateEventFromUI(processBA,"android.media.MediaScannerConnection.OnScanCompletedListener","ScanCompleted",anywheresoftware.b4a.keywords.Common.Null);
-RDebugUtils.currentLine=1572899;
- //BA.debugLineNum = 1572899;BA.debugLine="MediaScannerConnection.RunMethod(\"scanFile\", Ar";
-_mediascannerconnection.RunMethod("scanFile",new Object[]{(Object)(_ctxt.getObject()),(Object)(new String[]{_filepath}),(Object)(new String[]{"image/jpeg"}),_interface});
- if (true) break;
-
-case 15:
-//C
-this.state = 16;
-;
- if (true) break;
-
-case 16:
-//C
-this.state = -1;
-;
-RDebugUtils.currentLine=1572902;
- //BA.debugLineNum = 1572902;BA.debugLine="End Sub";
+ //BA.debugLineNum = 1572881;BA.debugLine="End Sub";
 if (true) break;
 }} 
        catch (Exception e0) {
@@ -1337,7 +1229,7 @@ RDebugUtils.currentLine=1507328;
  //BA.debugLineNum = 1507328;BA.debugLine="Sub HandleError (Error As Exception)";
 RDebugUtils.currentLine=1507329;
  //BA.debugLineNum = 1507329;BA.debugLine="Log(\"Error: \" & Error)";
-anywheresoftware.b4a.keywords.Common.LogImpl("01507329","Error: "+BA.ObjectToString(_error),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("61507329","Error: "+BA.ObjectToString(_error),0);
 RDebugUtils.currentLine=1507330;
  //BA.debugLineNum = 1507330;BA.debugLine="ToastMessageShow(Error, True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(_error.getObject()),anywheresoftware.b4a.keywords.Common.True);

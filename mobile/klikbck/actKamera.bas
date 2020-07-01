@@ -167,28 +167,7 @@ Sub TakePicture
 		HandleError(LastException)
 	End Try
 	
-	'cara simpan dari forum by erel
-	Dim rp As RuntimePermissions
-	rp.CheckAndRequest(rp.PERMISSION_WRITE_EXTERNAL_STORAGE)
-	Wait For Activity_PermissionResult (Permission As String, Result As Boolean)
-	If Result Then
-		File.Copy(File.DirAssets, "1.jpg", File.DirRootExternal, "Pictures/1.jpg")
-		Dim FilePath As String = File.Combine(File.DirRootExternal, "Pictures/1.jpg")
-		Dim Phone As Phone
-		If Phone.SdkVersion <= 18 Then           ' min - 4.3.1
-			Dim i As Intent
-			i.Initialize("android.intent.action.MEDIA_SCANNER_SCAN_FILE", "file://" & FilePath)
-			Phone.SendBroadcastIntent(i)
-		Else
-			Dim ctxt As JavaObject
-			ctxt.InitializeContext
-			Dim MediaScannerConnection As JavaObject
-			MediaScannerConnection.InitializeStatic("android.media.MediaScannerConnection")
-			Dim interface As Object = MediaScannerConnection.CreateEventFromUI("android.media.MediaScannerConnection.OnScanCompletedListener", "ScanCompleted", _
-           Null)
-			MediaScannerConnection.RunMethod("scanFile", Array(ctxt, Array As String(FilePath), Array As String("image/jpeg"), interface))
-		End If
-	End If
+	
 End Sub
 
 Sub pnlPicture_Click

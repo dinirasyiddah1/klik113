@@ -92,7 +92,7 @@ include 'admin/connect.php';
                                       <?php
                                           while($data1 = pg_fetch_array($sql1)){
                                             echo"
-                                            <img class='img-thumbnail' src=".$data1['url_photo']."   alt='Card image' style='width:20%'>
+                                            <img class='img-thumbnail' src='file/fireincident/".$id."/".$data1['nama_photo']."'   alt='Card image' style='width:20%'>
           
                                             ";
                                           };
