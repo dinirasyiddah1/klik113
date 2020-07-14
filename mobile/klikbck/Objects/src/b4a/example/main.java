@@ -346,6 +346,8 @@ public static boolean isAnyActivityVisible() {
 vis = vis | (main.mostCurrent != null);
 vis = vis | (actkamera.mostCurrent != null);
 vis = vis | (actlapor.mostCurrent != null);
+vis = vis | (gps.mostCurrent != null);
+vis = vis | (actgps.mostCurrent != null);
 return vis;}
 
 private static BA killProgramHelper(BA ba) {
@@ -394,11 +396,39 @@ BA.applicationContext.stopService(new android.content.Intent(BA.applicationConte
             if (__a != null)
 				__a.finish();}
 
+ {
+            Activity __a = null;
+            if (gps.previousOne != null) {
+				__a = gps.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(gps.mostCurrent == null ? null : gps.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+ {
+            Activity __a = null;
+            if (actgps.previousOne != null) {
+				__a = actgps.previousOne.get();
+			}
+            else {
+                BA ba = killProgramHelper(actgps.mostCurrent == null ? null : actgps.mostCurrent.processBA);
+                if (ba != null) __a = ba.activity;
+            }
+            if (__a != null)
+				__a.finish();}
+
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, srvgps.class));
 }
 public anywheresoftware.b4a.keywords.Common __c = null;
 public b4a.example.starter _starter = null;
 public b4a.example.actkamera _actkamera = null;
 public b4a.example.actlapor _actlapor = null;
+public b4a.example.gps _gps = null;
+public b4a.example.actgps _actgps = null;
+public b4a.example.srvgps _srvgps = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="main";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
@@ -434,13 +464,13 @@ public static String  _btnreport_click() throws Exception{
 RDebugUtils.currentModule="main";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "btnreport_click", false))
 	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnreport_click", null));}
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub btnReport_Click";
-RDebugUtils.currentLine=327681;
- //BA.debugLineNum = 327681;BA.debugLine="StartActivity(actKamera)";
-anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._actkamera.getObject()));
-RDebugUtils.currentLine=327682;
- //BA.debugLineNum = 327682;BA.debugLine="End Sub";
+RDebugUtils.currentLine=720896;
+ //BA.debugLineNum = 720896;BA.debugLine="Sub btnReport_Click";
+RDebugUtils.currentLine=720897;
+ //BA.debugLineNum = 720897;BA.debugLine="StartActivity(actGPS)";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._actgps.getObject()));
+RDebugUtils.currentLine=720898;
+ //BA.debugLineNum = 720898;BA.debugLine="End Sub";
 return "";
 }
 }

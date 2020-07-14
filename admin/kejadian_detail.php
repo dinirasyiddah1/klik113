@@ -470,6 +470,7 @@ while($data1 = pg_fetch_array($sql1)){
   <?php $i++; }?>
 </div>
 
+
 <!-- Left and right controls -->
 <a class="left carousel-control" href="#myCarousel" data-slide="prev">
 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -481,6 +482,12 @@ while($data1 = pg_fetch_array($sql1)){
   </a>
 
 </div>
+<br><br>
+<div>
+    <!-- cetak laporan -->
+    <a class='btn btn-warning'  href='cetak.php?id_kejadian=<?=$hasil['id_kejadian']?>' target="_BLANK"><span style='color:black'><i class='fa fa-print'> Cetak Laporan</i></span></a>
+        
+    </div>
 					       </div>
         </div>
       </section>
@@ -488,6 +495,7 @@ while($data1 = pg_fetch_array($sql1)){
     </div><!-- /#wrapper -->
 
     
+
 
     
     <script async defer

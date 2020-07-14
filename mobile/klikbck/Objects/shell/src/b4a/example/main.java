@@ -58,7 +58,10 @@ public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.
 public static b4a.example.starter _starter = null;
 public static b4a.example.actkamera _actkamera = null;
 public static b4a.example.actlapor _actlapor = null;
+public static b4a.example.gps _gps = null;
+public static b4a.example.actgps _actgps = null;
+public static b4a.example.srvgps _srvgps = null;
   public Object[] GetGlobals() {
-		return new Object[] {"Activity",main.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"Starter",Debug.moduleToString(b4a.example.starter.class)};
+		return new Object[] {"actGPS",Debug.moduleToString(b4a.example.actgps.class),"Activity",main.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"gps",Debug.moduleToString(b4a.example.gps.class),"srvGPS",Debug.moduleToString(b4a.example.srvgps.class),"Starter",Debug.moduleToString(b4a.example.starter.class)};
 }
 }

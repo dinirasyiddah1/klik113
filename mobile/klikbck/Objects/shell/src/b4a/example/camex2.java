@@ -44,6 +44,9 @@ public static b4a.example.main _main = null;
 public static b4a.example.starter _starter = null;
 public static b4a.example.actkamera _actkamera = null;
 public static b4a.example.actlapor _actlapor = null;
+public static b4a.example.gps _gps = null;
+public static b4a.example.actgps _actgps = null;
+public static b4a.example.srvgps _srvgps = null;
 public static Object[] GetGlobals(RemoteObject _ref) throws Exception {
 		return new Object[] {"AE_MODE",_ref.getField(false, "_ae_mode"),"AF_MODE",_ref.getField(false, "_af_mode"),"AF_STATE",_ref.getField(false, "_af_state"),"bothMaps",_ref.getField(false, "_bothmaps"),"Camera",_ref.getField(false, "_camera"),"CaptureSettingMap",_ref.getField(false, "_capturesettingmap"),"CaptureSize",_ref.getField(false, "_capturesize"),"CONTROL_MODE",_ref.getField(false, "_control_mode"),"EFFECT_MODE",_ref.getField(false, "_effect_mode"),"FLASH_MODE",_ref.getField(false, "_flash_mode"),"FLASH_STATE",_ref.getField(false, "_flash_state"),"FocusState",_ref.getField(false, "_focusstate"),"id",_ref.getField(false, "_id"),"jcamera",_ref.getField(false, "_jcamera"),"MediaRecorder",_ref.getField(false, "_mediarecorder"),"mFront",_ref.getField(false, "_mfront"),"mPanel",_ref.getField(false, "_mpanel"),"PreviewRequest",_ref.getField(false, "_previewrequest"),"PreviewSettingsMap",_ref.getField(false, "_previewsettingsmap"),"PreviewSize",_ref.getField(false, "_previewsize"),"PrintKeys",_ref.getField(false, "_printkeys"),"RecordingVideo",_ref.getField(false, "_recordingvideo"),"SCENE_MODE",_ref.getField(false, "_scene_mode"),"StaticCameraCharacteristics",_ref.getField(false, "_staticcameracharacteristics"),"StaticCaptureRequest",_ref.getField(false, "_staticcapturerequest"),"StaticCaptureResult",_ref.getField(false, "_staticcaptureresult"),"SUPPORTED_HARDWARE_LEVEL",_ref.getField(false, "_supported_hardware_level"),"TaskIndex",_ref.getField(false, "_taskindex"),"tv",_ref.getField(false, "_tv")};
 }

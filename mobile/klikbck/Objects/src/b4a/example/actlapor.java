@@ -341,6 +341,9 @@ public anywheresoftware.b4a.keywords.Common __c = null;
 public b4a.example.main _main = null;
 public b4a.example.starter _starter = null;
 public b4a.example.actkamera _actkamera = null;
+public b4a.example.gps _gps = null;
+public b4a.example.actgps _actgps = null;
+public b4a.example.srvgps _srvgps = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="actlapor";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))

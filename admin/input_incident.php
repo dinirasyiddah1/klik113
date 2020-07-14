@@ -37,7 +37,7 @@ include 'connect.php';
 			  
 <div class="col-lg-6">
 <div class="panel-body">
-        <form method="post" action="input_incident_aksi.php" enctype="multipart/form-data">
+        <form method="post" action="..admin/input_incident_aksi.php" enctype="multipart/form-data">
                 <table>
                 <br>
                     <div class="form-group">

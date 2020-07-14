@@ -65,9 +65,9 @@ try {
 if (RapidSub.canDelegate("btnreport_click")) { return b4a.example.main.remoteMe.runUserSub(false, "main","btnreport_click");}
  BA.debugLineNum = 44;BA.debugLine="Sub btnReport_Click";
 Debug.ShouldStop(2048);
- BA.debugLineNum = 45;BA.debugLine="StartActivity(actKamera)";
+ BA.debugLineNum = 45;BA.debugLine="StartActivity(actGPS)";
 Debug.ShouldStop(4096);
-main.mostCurrent.__c.runVoidMethod ("StartActivity",main.processBA,(Object)((main.mostCurrent._actkamera.getObject())));
+main.mostCurrent.__c.runVoidMethod ("StartActivity",main.processBA,(Object)((main.mostCurrent._actgps.getObject())));
  BA.debugLineNum = 46;BA.debugLine="End Sub";
 Debug.ShouldStop(8192);
 return RemoteObject.createImmutable("");
@@ -93,11 +93,17 @@ public static void initializeProcessGlobals() {
 starter_subs_0._process_globals();
 actkamera_subs_0._process_globals();
 actlapor_subs_0._process_globals();
+gps_subs_0._process_globals();
+actgps_subs_0._process_globals();
+srvgps_subs_0._process_globals();
 main.myClass = BA.getDeviceClass ("b4a.example.main");
 starter.myClass = BA.getDeviceClass ("b4a.example.starter");
 actkamera.myClass = BA.getDeviceClass ("b4a.example.actkamera");
 camex2.myClass = BA.getDeviceClass ("b4a.example.camex2");
 actlapor.myClass = BA.getDeviceClass ("b4a.example.actlapor");
+gps.myClass = BA.getDeviceClass ("b4a.example.gps");
+actgps.myClass = BA.getDeviceClass ("b4a.example.actgps");
+srvgps.myClass = BA.getDeviceClass ("b4a.example.srvgps");
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);

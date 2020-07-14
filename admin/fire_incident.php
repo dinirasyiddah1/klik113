@@ -89,9 +89,8 @@ include "connect.php";
       
       <td></td>
       <td>
-         <a class='btn btn-primary' href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-eye'></i></span></a>
-        <a class='btn btn-success' href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a>
-        <a class='btn btn-warning' href='cetak.php?id_kejadian=<?=$hasil['id_kejadian']?>' target="_BLANK"><span style='color:black'><i class='fa fa-print'></i></span></a>
+         <a class='btn btn-info' href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-eye'></i></span></a>
+        <a class='btn btn-primary' href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a>
         <script type="text/javascript" language="JavaScript">
           function konfirmasi()
           {

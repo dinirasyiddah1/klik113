@@ -46,6 +46,21 @@ function initialize() {
         window.alert('Geocoder failed due to: ' + status);
       }
     });
+
+    var myLatLng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+
+
   }
         
   //        unit_dig = new google.maps.Data();

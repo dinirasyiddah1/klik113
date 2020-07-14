@@ -70,7 +70,7 @@ function viewpos()
           markersDua.push(marker);
           map.setCenter(centerBaru);
           // console.log(nama);
-           $('#hasilcari').append("<tr><td>"+name+"</td><td width='30%'><a align='center' role='button' class='btn btn-success' onclick='detpos(\""+id+"\");detailinfopos(\""+id+"\");'>Show</a></td></tr>");
+           $('#hasilcari').append("<tr><td>"+name+"</td><td width='30%'><a align='center' role='button' class='btn btn-success' onclick='detailinfopos(\""+id+"\")'>Show</a></td></tr>");
         }
       } 
       $('#hasilpencarian').append("<h5 class='box-title' id='hasilpencarian'>Result :</h5>"+rows.length);
@@ -1105,8 +1105,13 @@ function cari_tahun(rows) //fungsi cari panti
 
           <ul class="nav navbar-nav navbar-right navbar-user">                     
             <li class="dropdown user-dropdown">
-              <a href="login.php" class="" ><i class="fa fa-sign-in"></i> Log In</a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sign-in"></i> Log In <b class="caret"></b></a>
               
+              <ul class="dropdown-menu">
+                <li><a href="login.php"><img src="https://img.icons8.com/color/48/000000/administrator-male.png" width="30%"/> Admin</a></li>
+                <li><a href="login_petugas.php"><img src="https://img.icons8.com/color/48/000000/worker-beard.png" width="30%"/> Petugas </a></li>
+                
+              </ul>
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
