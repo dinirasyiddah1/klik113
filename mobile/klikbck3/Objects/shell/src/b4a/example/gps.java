@@ -60,7 +60,8 @@ public static b4a.example.starter _starter = null;
 public static b4a.example.actkamera _actkamera = null;
 public static b4a.example.actlapor _actlapor = null;
 public static b4a.example.srvgps _srvgps = null;
+public static b4a.example.httputils2service _httputils2service = null;
   public Object[] GetGlobals() {
-		return new Object[] {"Activity",gps.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"Main",Debug.moduleToString(b4a.example.main.class),"srvGPS",Debug.moduleToString(b4a.example.srvgps.class),"Starter",Debug.moduleToString(b4a.example.starter.class)};
+		return new Object[] {"Activity",gps.mostCurrent._activity,"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"HttpUtils2Service",Debug.moduleToString(b4a.example.httputils2service.class),"Main",Debug.moduleToString(b4a.example.main.class),"srvGPS",Debug.moduleToString(b4a.example.srvgps.class),"Starter",Debug.moduleToString(b4a.example.starter.class)};
 }
 }

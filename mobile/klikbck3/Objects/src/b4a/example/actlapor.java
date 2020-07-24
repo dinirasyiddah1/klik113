@@ -329,6 +329,17 @@ public class actlapor extends Activity implements B4AActivity{
     }
 
 
+public static class _id_lines{
+public boolean IsInitialized;
+public String id_laporan;
+public void Initialize() {
+IsInitialized = true;
+id_laporan = "";
+}
+@Override
+		public String toString() {
+			return BA.TypeToString(this, false);
+		}}
 
 public static void initializeProcessGlobals() {
              try {
@@ -338,13 +349,23 @@ public static void initializeProcessGlobals() {
             }
 }
 public anywheresoftware.b4a.keywords.Common __c = null;
+public static String _server = "";
 public anywheresoftware.b4a.objects.LabelWrapper _lbllon = null;
 public anywheresoftware.b4a.objects.LabelWrapper _lbllat = null;
+public anywheresoftware.b4a.objects.PanelWrapper _pnlbg = null;
+public anywheresoftware.b4a.objects.PanelWrapper _pnlfile = null;
+public anywheresoftware.b4a.objects.EditTextWrapper _address = null;
+public anywheresoftware.b4a.objects.EditTextWrapper _name = null;
+public anywheresoftware.b4a.objects.EditTextWrapper _phone = null;
+public anywheresoftware.b4a.objects.ButtonWrapper _btnlapor = null;
+public static String[] _arrayid = null;
+public static String _tampil_id = "";
 public b4a.example.main _main = null;
 public b4a.example.starter _starter = null;
 public b4a.example.actkamera _actkamera = null;
 public b4a.example.srvgps _srvgps = null;
 public b4a.example.gps _gps = null;
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="actlapor";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
@@ -354,8 +375,8 @@ RDebugUtils.currentLine=5636096;
 RDebugUtils.currentLine=5636098;
  //BA.debugLineNum = 5636098;BA.debugLine="Activity.LoadLayout(\"lapor\")";
 mostCurrent._activity.LoadLayout("lapor",mostCurrent.activityBA);
-RDebugUtils.currentLine=5636101;
- //BA.debugLineNum = 5636101;BA.debugLine="End Sub";
+RDebugUtils.currentLine=5636102;
+ //BA.debugLineNum = 5636102;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
@@ -435,6 +456,254 @@ if (true) break;
             }
         }
     }
+}
+public static String  _btnlapor_click() throws Exception{
+RDebugUtils.currentModule="actlapor";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "btnlapor_click", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnlapor_click", null));}
+String _lokasi = "";
+String _nama_orang = "";
+String _no_hp = "";
+String _lat = "";
+String _lon = "";
+String _tanggal = "";
+String _jam = "";
+int _id_kejadian = 0;
+b4a.example.httpjob _job1 = null;
+RDebugUtils.currentLine=6029312;
+ //BA.debugLineNum = 6029312;BA.debugLine="Sub btnLapor_Click";
+RDebugUtils.currentLine=6029313;
+ //BA.debugLineNum = 6029313;BA.debugLine="Dim lokasi As String";
+_lokasi = "";
+RDebugUtils.currentLine=6029314;
+ //BA.debugLineNum = 6029314;BA.debugLine="lokasi = address.Text";
+_lokasi = mostCurrent._address.getText();
+RDebugUtils.currentLine=6029315;
+ //BA.debugLineNum = 6029315;BA.debugLine="Log(lokasi)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029315",_lokasi,0);
+RDebugUtils.currentLine=6029317;
+ //BA.debugLineNum = 6029317;BA.debugLine="Dim nama_orang As String";
+_nama_orang = "";
+RDebugUtils.currentLine=6029318;
+ //BA.debugLineNum = 6029318;BA.debugLine="nama_orang = name.Text";
+_nama_orang = mostCurrent._name.getText();
+RDebugUtils.currentLine=6029319;
+ //BA.debugLineNum = 6029319;BA.debugLine="Log(nama_orang)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029319",_nama_orang,0);
+RDebugUtils.currentLine=6029321;
+ //BA.debugLineNum = 6029321;BA.debugLine="Dim no_hp As String";
+_no_hp = "";
+RDebugUtils.currentLine=6029322;
+ //BA.debugLineNum = 6029322;BA.debugLine="no_hp = phone.Text";
+_no_hp = mostCurrent._phone.getText();
+RDebugUtils.currentLine=6029323;
+ //BA.debugLineNum = 6029323;BA.debugLine="Log(no_hp)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029323",_no_hp,0);
+RDebugUtils.currentLine=6029325;
+ //BA.debugLineNum = 6029325;BA.debugLine="Dim lat As String";
+_lat = "";
+RDebugUtils.currentLine=6029326;
+ //BA.debugLineNum = 6029326;BA.debugLine="lat = lblLat.Text";
+_lat = mostCurrent._lbllat.getText();
+RDebugUtils.currentLine=6029327;
+ //BA.debugLineNum = 6029327;BA.debugLine="Log(lat)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029327",_lat,0);
+RDebugUtils.currentLine=6029329;
+ //BA.debugLineNum = 6029329;BA.debugLine="Dim lon As String";
+_lon = "";
+RDebugUtils.currentLine=6029330;
+ //BA.debugLineNum = 6029330;BA.debugLine="lon = lblLon.Text";
+_lon = mostCurrent._lbllon.getText();
+RDebugUtils.currentLine=6029331;
+ //BA.debugLineNum = 6029331;BA.debugLine="Log(lon)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029331",_lon,0);
+RDebugUtils.currentLine=6029333;
+ //BA.debugLineNum = 6029333;BA.debugLine="DateTime.DateFormat = \"yyyy-MM-dd\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yyyy-MM-dd");
+RDebugUtils.currentLine=6029334;
+ //BA.debugLineNum = 6029334;BA.debugLine="Dim tanggal= DateTime.Date(DateTime.now)";
+_tanggal = anywheresoftware.b4a.keywords.Common.DateTime.Date(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
+RDebugUtils.currentLine=6029335;
+ //BA.debugLineNum = 6029335;BA.debugLine="Log(tanggal)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029335",_tanggal,0);
+RDebugUtils.currentLine=6029337;
+ //BA.debugLineNum = 6029337;BA.debugLine="DateTime.TimeFormat = \"hh:mm\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("hh:mm");
+RDebugUtils.currentLine=6029338;
+ //BA.debugLineNum = 6029338;BA.debugLine="Dim jam = DateTime.Time(DateTime.Now)";
+_jam = anywheresoftware.b4a.keywords.Common.DateTime.Time(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
+RDebugUtils.currentLine=6029339;
+ //BA.debugLineNum = 6029339;BA.debugLine="Log (jam)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029339",_jam,0);
+RDebugUtils.currentLine=6029341;
+ //BA.debugLineNum = 6029341;BA.debugLine="Dim id_kejadian As Int";
+_id_kejadian = 0;
+RDebugUtils.currentLine=6029342;
+ //BA.debugLineNum = 6029342;BA.debugLine="id_kejadian = 0";
+_id_kejadian = (int) (0);
+RDebugUtils.currentLine=6029343;
+ //BA.debugLineNum = 6029343;BA.debugLine="Log(id_kejadian)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06029343",BA.NumberToString(_id_kejadian),0);
+RDebugUtils.currentLine=6029345;
+ //BA.debugLineNum = 6029345;BA.debugLine="Dim Job1 As HttpJob";
+_job1 = new b4a.example.httpjob();
+RDebugUtils.currentLine=6029346;
+ //BA.debugLineNum = 6029346;BA.debugLine="Job1.Initialize(\"Job1\",Me)";
+_job1._initialize /*String*/ (null,processBA,"Job1",actlapor.getObject());
+RDebugUtils.currentLine=6029347;
+ //BA.debugLineNum = 6029347;BA.debugLine="Job1.PostString(\"\"&server&\"laporkan.php\",\"&nama_o";
+_job1._poststring /*String*/ (null,""+_server+"laporkan.php","&nama_orang="+_nama_orang+"&lokasi="+_lokasi+"&no_hp="+_no_hp+"&tanggal="+_tanggal+"&jam="+_jam+"&lat="+_lat+"&lon="+_lon+"&id_kejadian="+BA.NumberToString(_id_kejadian));
+RDebugUtils.currentLine=6029349;
+ //BA.debugLineNum = 6029349;BA.debugLine="End Sub";
+return "";
+}
+public static String  _executeremotequery(String _query,String _jobname) throws Exception{
+RDebugUtils.currentModule="actlapor";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "executeremotequery", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "executeremotequery", new Object[] {_query,_jobname}));}
+b4a.example.httpjob _job = null;
+RDebugUtils.currentLine=5963776;
+ //BA.debugLineNum = 5963776;BA.debugLine="Sub ExecuteRemoteQuery(Query As String, JobName As";
+RDebugUtils.currentLine=5963777;
+ //BA.debugLineNum = 5963777;BA.debugLine="Dim Job As HttpJob";
+_job = new b4a.example.httpjob();
+RDebugUtils.currentLine=5963778;
+ //BA.debugLineNum = 5963778;BA.debugLine="Job.Initialize(JobName, Me)";
+_job._initialize /*String*/ (null,processBA,_jobname,actlapor.getObject());
+RDebugUtils.currentLine=5963779;
+ //BA.debugLineNum = 5963779;BA.debugLine="Job.PostString(\"\"&server&\"json.php\",Query)";
+_job._poststring /*String*/ (null,""+_server+"json.php",_query);
+RDebugUtils.currentLine=5963781;
+ //BA.debugLineNum = 5963781;BA.debugLine="End Sub";
+return "";
+}
+public static String  _id_laporan() throws Exception{
+RDebugUtils.currentModule="actlapor";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "id_laporan", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "id_laporan", null));}
+RDebugUtils.currentLine=5898240;
+ //BA.debugLineNum = 5898240;BA.debugLine="Sub id_laporan";
+RDebugUtils.currentLine=5898241;
+ //BA.debugLineNum = 5898241;BA.debugLine="ExecuteRemoteQuery(\"SELECT max(id_laporan) FROM d";
+_executeremotequery("SELECT max(id_laporan) FROM detail_pelapor","tampil_id");
+RDebugUtils.currentLine=5898242;
+ //BA.debugLineNum = 5898242;BA.debugLine="End Sub";
+return "";
+}
+public static String  _jobdone(b4a.example.httpjob _job1) throws Exception{
+RDebugUtils.currentModule="actlapor";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "jobdone", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "jobdone", new Object[] {_job1}));}
+RDebugUtils.currentLine=6094848;
+ //BA.debugLineNum = 6094848;BA.debugLine="Sub JobDone (Job1 As HttpJob)";
+RDebugUtils.currentLine=6094849;
+ //BA.debugLineNum = 6094849;BA.debugLine="Log(\"JobName = \" & Job1.JobName & \", Success = \"";
+anywheresoftware.b4a.keywords.Common.LogImpl("06094849","JobName = "+_job1._jobname /*String*/ +", Success = "+BA.ObjectToString(_job1._success /*boolean*/ ),0);
+RDebugUtils.currentLine=6094850;
+ //BA.debugLineNum = 6094850;BA.debugLine="If Job1.Success = True Then";
+if (_job1._success /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
+RDebugUtils.currentLine=6094851;
+ //BA.debugLineNum = 6094851;BA.debugLine="Select Job1.JobName";
+switch (BA.switchObjectToInt(_job1._jobname /*String*/ ,"Job1")) {
+case 0: {
+RDebugUtils.currentLine=6094854;
+ //BA.debugLineNum = 6094854;BA.debugLine="Log(\"behasil\")";
+anywheresoftware.b4a.keywords.Common.LogImpl("06094854","behasil",0);
+RDebugUtils.currentLine=6094855;
+ //BA.debugLineNum = 6094855;BA.debugLine="Msgbox(\"Report Data Success\",\"Success\")";
+anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("Report Data Success"),BA.ObjectToCharSequence("Success"),mostCurrent.activityBA);
+ break; }
+}
+;
+ }else {
+RDebugUtils.currentLine=6094861;
+ //BA.debugLineNum = 6094861;BA.debugLine="Log(\"Error: \" & Job1.ErrorMessage)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06094861","Error: "+_job1._errormessage /*String*/ ,0);
+RDebugUtils.currentLine=6094862;
+ //BA.debugLineNum = 6094862;BA.debugLine="ToastMessageShow(\"Error: \" & Job1.ErrorMessage,";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Error: "+_job1._errormessage /*String*/ ),anywheresoftware.b4a.keywords.Common.True);
+ };
+RDebugUtils.currentLine=6094864;
+ //BA.debugLineNum = 6094864;BA.debugLine="Job1.Release";
+_job1._release /*String*/ (null);
+RDebugUtils.currentLine=6094865;
+ //BA.debugLineNum = 6094865;BA.debugLine="End Sub";
+return "";
+}
+public static String  _jobdone1(b4a.example.httpjob _job) throws Exception{
+RDebugUtils.currentModule="actlapor";
+if (Debug.shouldDelegate(mostCurrent.activityBA, "jobdone1", false))
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "jobdone1", new Object[] {_job}));}
+String _res = "";
+anywheresoftware.b4a.objects.collections.JSONParser _parser = null;
+anywheresoftware.b4a.objects.collections.List _array_id = null;
+int _i = 0;
+anywheresoftware.b4a.objects.collections.Map _m = null;
+b4a.example.actlapor._id_lines _f = null;
+RDebugUtils.currentLine=6160384;
+ //BA.debugLineNum = 6160384;BA.debugLine="Sub jobdone1 (Job As HttpJob)";
+RDebugUtils.currentLine=6160385;
+ //BA.debugLineNum = 6160385;BA.debugLine="ProgressDialogHide";
+anywheresoftware.b4a.keywords.Common.ProgressDialogHide();
+RDebugUtils.currentLine=6160386;
+ //BA.debugLineNum = 6160386;BA.debugLine="If Job.Success Then";
+if (_job._success /*boolean*/ ) { 
+RDebugUtils.currentLine=6160387;
+ //BA.debugLineNum = 6160387;BA.debugLine="Dim res As String";
+_res = "";
+RDebugUtils.currentLine=6160388;
+ //BA.debugLineNum = 6160388;BA.debugLine="Log(\"response :\" &res)";
+anywheresoftware.b4a.keywords.Common.LogImpl("06160388","response :"+_res,0);
+RDebugUtils.currentLine=6160389;
+ //BA.debugLineNum = 6160389;BA.debugLine="Dim parser As JSONParser";
+_parser = new anywheresoftware.b4a.objects.collections.JSONParser();
+RDebugUtils.currentLine=6160390;
+ //BA.debugLineNum = 6160390;BA.debugLine="parser.Initialize(res)";
+_parser.Initialize(_res);
+RDebugUtils.currentLine=6160391;
+ //BA.debugLineNum = 6160391;BA.debugLine="Select Job.JobName";
+switch (BA.switchObjectToInt(_job._jobname /*String*/ ,mostCurrent._tampil_id)) {
+case 0: {
+RDebugUtils.currentLine=6160393;
+ //BA.debugLineNum = 6160393;BA.debugLine="Dim array_id As List";
+_array_id = new anywheresoftware.b4a.objects.collections.List();
+RDebugUtils.currentLine=6160394;
+ //BA.debugLineNum = 6160394;BA.debugLine="array_id = parser.NextArray";
+_array_id = _parser.NextArray();
+RDebugUtils.currentLine=6160395;
+ //BA.debugLineNum = 6160395;BA.debugLine="For i=0 To array_id.Size -1";
+{
+final int step11 = 1;
+final int limit11 = (int) (_array_id.getSize()-1);
+_i = (int) (0) ;
+for (;_i <= limit11 ;_i = _i + step11 ) {
+RDebugUtils.currentLine=6160396;
+ //BA.debugLineNum = 6160396;BA.debugLine="Dim m As Map";
+_m = new anywheresoftware.b4a.objects.collections.Map();
+RDebugUtils.currentLine=6160397;
+ //BA.debugLineNum = 6160397;BA.debugLine="m = array_id.Get(i)";
+_m.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(_array_id.Get(_i)));
+RDebugUtils.currentLine=6160398;
+ //BA.debugLineNum = 6160398;BA.debugLine="Dim f As id_lines";
+_f = new b4a.example.actlapor._id_lines();
+RDebugUtils.currentLine=6160399;
+ //BA.debugLineNum = 6160399;BA.debugLine="f.Initialize";
+_f.Initialize();
+RDebugUtils.currentLine=6160400;
+ //BA.debugLineNum = 6160400;BA.debugLine="f.id_laporan= m.Get(\"id_laporan\")";
+_f.id_laporan /*String*/  = BA.ObjectToString(_m.Get((Object)("id_laporan")));
+RDebugUtils.currentLine=6160401;
+ //BA.debugLineNum = 6160401;BA.debugLine="arrayid (i) =f.id_laporan";
+mostCurrent._arrayid[_i] = _f.id_laporan /*String*/ ;
+ }
+};
+ break; }
+}
+;
+ };
+RDebugUtils.currentLine=6160408;
+ //BA.debugLineNum = 6160408;BA.debugLine="End Sub";
+return "";
 }
 public static String  _locationchanged(anywheresoftware.b4a.gps.LocationWrapper _location1) throws Exception{
 RDebugUtils.currentModule="actlapor";

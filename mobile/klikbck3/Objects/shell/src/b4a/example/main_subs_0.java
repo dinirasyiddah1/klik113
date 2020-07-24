@@ -95,6 +95,7 @@ actkamera_subs_0._process_globals();
 actlapor_subs_0._process_globals();
 srvgps_subs_0._process_globals();
 gps_subs_0._process_globals();
+httputils2service_subs_0._process_globals();
 main.myClass = BA.getDeviceClass ("b4a.example.main");
 starter.myClass = BA.getDeviceClass ("b4a.example.starter");
 actkamera.myClass = BA.getDeviceClass ("b4a.example.actkamera");
@@ -102,6 +103,8 @@ camex2.myClass = BA.getDeviceClass ("b4a.example.camex2");
 actlapor.myClass = BA.getDeviceClass ("b4a.example.actlapor");
 srvgps.myClass = BA.getDeviceClass ("b4a.example.srvgps");
 gps.myClass = BA.getDeviceClass ("b4a.example.gps");
+httputils2service.myClass = BA.getDeviceClass ("b4a.example.httputils2service");
+httpjob.myClass = BA.getDeviceClass ("b4a.example.httpjob");
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);

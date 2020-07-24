@@ -30,7 +30,7 @@ Debug.ShouldStop(512);
 actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_initialize" /*RemoteObject*/ ,actkamera.mostCurrent.activityBA,(Object)(actkamera.mostCurrent._pnlcamera));
  BA.debugLineNum = 43;BA.debugLine="Log(cam.SupportedHardwareLevel)";
 Debug.ShouldStop(1024);
-actkamera.mostCurrent.__c.runVoidMethod ("LogImpl","6917512",actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getsupportedhardwarelevel" /*RemoteObject*/ ),0);
+actkamera.mostCurrent.__c.runVoidMethod ("LogImpl","0917512",actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getsupportedhardwarelevel" /*RemoteObject*/ ),0);
  BA.debugLineNum = 44;BA.debugLine="buttons = Array(btnAutoExposure, btnMode)";
 Debug.ShouldStop(2048);
 actkamera.mostCurrent._buttons = actkamera.mostCurrent.__c.runMethod(false, "ArrayToList", (Object)(RemoteObject.createNewArray("Object",new int[] {2},new Object[] {(actkamera.mostCurrent._btnautoexposure.getObject()),(actkamera.mostCurrent._btnmode.getObject())})));
@@ -88,7 +88,7 @@ finally {
 		}}
 public static RemoteObject  _barzoom_valuechanged(RemoteObject _value,RemoteObject _userchanged) throws Exception{
 try {
-		Debug.PushSubsStack("barZoom_ValueChanged (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,206);
+		Debug.PushSubsStack("barZoom_ValueChanged (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,201);
 if (RapidSub.canDelegate("barzoom_valuechanged")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","barzoom_valuechanged", _value, _userchanged);}
 RemoteObject _originalsize = RemoteObject.declareNull("anywheresoftware.b4a.objects.drawable.CanvasWrapper.RectWrapper");
 RemoteObject _zoom = RemoteObject.createImmutable(0f);
@@ -97,35 +97,35 @@ RemoteObject _newwidth = RemoteObject.createImmutable(0);
 RemoteObject _newheight = RemoteObject.createImmutable(0);
 Debug.locals.put("Value", _value);
 Debug.locals.put("UserChanged", _userchanged);
- BA.debugLineNum = 206;BA.debugLine="Sub barZoom_ValueChanged (Value As Int, UserChange";
-Debug.ShouldStop(8192);
- BA.debugLineNum = 207;BA.debugLine="Dim OriginalSize As Rect = cam.ActiveArraySize";
-Debug.ShouldStop(16384);
+ BA.debugLineNum = 201;BA.debugLine="Sub barZoom_ValueChanged (Value As Int, UserChange";
+Debug.ShouldStop(256);
+ BA.debugLineNum = 202;BA.debugLine="Dim OriginalSize As Rect = cam.ActiveArraySize";
+Debug.ShouldStop(512);
 _originalsize = RemoteObject.createNew ("anywheresoftware.b4a.objects.drawable.CanvasWrapper.RectWrapper");
 _originalsize = actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getactivearraysize" /*RemoteObject*/ );Debug.locals.put("OriginalSize", _originalsize);Debug.locals.put("OriginalSize", _originalsize);
- BA.debugLineNum = 208;BA.debugLine="Dim Zoom As Float = 1 + Value / 100 * (cam.MaxDig";
-Debug.ShouldStop(32768);
+ BA.debugLineNum = 203;BA.debugLine="Dim Zoom As Float = 1 + Value / 100 * (cam.MaxDig";
+Debug.ShouldStop(1024);
 _zoom = BA.numberCast(float.class, RemoteObject.solve(new RemoteObject[] {RemoteObject.createImmutable(1),_value,RemoteObject.createImmutable(100),(RemoteObject.solve(new RemoteObject[] {actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getmaxdigitalzoom" /*RemoteObject*/ ),RemoteObject.createImmutable(1)}, "-",1, 0))}, "+/*",1, 0));Debug.locals.put("Zoom", _zoom);Debug.locals.put("Zoom", _zoom);
- BA.debugLineNum = 209;BA.debugLine="Dim Crop As Rect";
-Debug.ShouldStop(65536);
+ BA.debugLineNum = 204;BA.debugLine="Dim Crop As Rect";
+Debug.ShouldStop(2048);
 _crop = RemoteObject.createNew ("anywheresoftware.b4a.objects.drawable.CanvasWrapper.RectWrapper");Debug.locals.put("Crop", _crop);
- BA.debugLineNum = 210;BA.debugLine="Dim NewWidth As Int = OriginalSize.Width / Zoom";
-Debug.ShouldStop(131072);
+ BA.debugLineNum = 205;BA.debugLine="Dim NewWidth As Int = OriginalSize.Width / Zoom";
+Debug.ShouldStop(4096);
 _newwidth = BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getWidth"),_zoom}, "/",0, 0));Debug.locals.put("NewWidth", _newwidth);Debug.locals.put("NewWidth", _newwidth);
- BA.debugLineNum = 211;BA.debugLine="Dim NewHeight As Int = OriginalSize.Height / Zoom";
-Debug.ShouldStop(262144);
+ BA.debugLineNum = 206;BA.debugLine="Dim NewHeight As Int = OriginalSize.Height / Zoom";
+Debug.ShouldStop(8192);
 _newheight = BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getHeight"),_zoom}, "/",0, 0));Debug.locals.put("NewHeight", _newheight);Debug.locals.put("NewHeight", _newheight);
- BA.debugLineNum = 212;BA.debugLine="Crop.Initialize(OriginalSize.CenterX - NewWidth /";
-Debug.ShouldStop(524288);
+ BA.debugLineNum = 207;BA.debugLine="Crop.Initialize(OriginalSize.CenterX - NewWidth /";
+Debug.ShouldStop(16384);
 _crop.runVoidMethod ("Initialize",(Object)(BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getCenterX"),_newwidth,RemoteObject.createImmutable(2)}, "-/",1, 0))),(Object)(BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getCenterY"),_newheight,RemoteObject.createImmutable(2)}, "-/",1, 0))),(Object)(BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getCenterX"),_newwidth,RemoteObject.createImmutable(2)}, "+/",1, 0))),(Object)(BA.numberCast(int.class, RemoteObject.solve(new RemoteObject[] {_originalsize.runMethod(true,"getCenterY"),_newheight,RemoteObject.createImmutable(2)}, "+/",1, 0))));
- BA.debugLineNum = 214;BA.debugLine="cam.PreviewCropRegion = Crop";
-Debug.ShouldStop(2097152);
+ BA.debugLineNum = 209;BA.debugLine="cam.PreviewCropRegion = Crop";
+Debug.ShouldStop(65536);
 actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_setpreviewcropregion",_crop);
- BA.debugLineNum = 215;BA.debugLine="cam.StartPreview(MyTaskIndex, VideoMode)";
-Debug.ShouldStop(4194304);
+ BA.debugLineNum = 210;BA.debugLine="cam.StartPreview(MyTaskIndex, VideoMode)";
+Debug.ShouldStop(131072);
 actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_startpreview" /*RemoteObject*/ ,(Object)(actkamera._mytaskindex),(Object)(actkamera._videomode));
- BA.debugLineNum = 216;BA.debugLine="End Sub";
-Debug.ShouldStop(8388608);
+ BA.debugLineNum = 211;BA.debugLine="End Sub";
+Debug.ShouldStop(262144);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -136,33 +136,33 @@ finally {
 		}}
 public static RemoteObject  _btnautoexposure_click() throws Exception{
 try {
-		Debug.PushSubsStack("btnAutoExposure_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,172);
+		Debug.PushSubsStack("btnAutoExposure_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,167);
 if (RapidSub.canDelegate("btnautoexposure_click")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","btnautoexposure_click");}
 RemoteObject _flashes = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.List");
 RemoteObject _i = RemoteObject.createImmutable(0);
- BA.debugLineNum = 172;BA.debugLine="Sub btnAutoExposure_Click";
-Debug.ShouldStop(2048);
- BA.debugLineNum = 173;BA.debugLine="Dim flashes As List = cam.SupportedAutoExposureMo";
-Debug.ShouldStop(4096);
+ BA.debugLineNum = 167;BA.debugLine="Sub btnAutoExposure_Click";
+Debug.ShouldStop(64);
+ BA.debugLineNum = 168;BA.debugLine="Dim flashes As List = cam.SupportedAutoExposureMo";
+Debug.ShouldStop(128);
 _flashes = RemoteObject.createNew ("anywheresoftware.b4a.objects.collections.List");
 _flashes = actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getsupportedautoexposuremodes" /*RemoteObject*/ );Debug.locals.put("flashes", _flashes);Debug.locals.put("flashes", _flashes);
- BA.debugLineNum = 174;BA.debugLine="Dim i As Int = flashes.IndexOf(cam.AutoExposureMo";
-Debug.ShouldStop(8192);
+ BA.debugLineNum = 169;BA.debugLine="Dim i As Int = flashes.IndexOf(cam.AutoExposureMo";
+Debug.ShouldStop(256);
 _i = _flashes.runMethod(true,"IndexOf",(Object)((actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_getautoexposuremode" /*RemoteObject*/ ))));Debug.locals.put("i", _i);Debug.locals.put("i", _i);
- BA.debugLineNum = 175;BA.debugLine="i = (i + 1) Mod flashes.Size";
-Debug.ShouldStop(16384);
+ BA.debugLineNum = 170;BA.debugLine="i = (i + 1) Mod flashes.Size";
+Debug.ShouldStop(512);
 _i = RemoteObject.solve(new RemoteObject[] {(RemoteObject.solve(new RemoteObject[] {_i,RemoteObject.createImmutable(1)}, "+",1, 1)),_flashes.runMethod(true,"getSize")}, "%",0, 1);Debug.locals.put("i", _i);
- BA.debugLineNum = 176;BA.debugLine="cam.AutoExposureMode = flashes.Get(i)";
-Debug.ShouldStop(32768);
+ BA.debugLineNum = 171;BA.debugLine="cam.AutoExposureMode = flashes.Get(i)";
+Debug.ShouldStop(1024);
 actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_setautoexposuremode" /*RemoteObject*/ ,BA.ObjectToString(_flashes.runMethod(false,"Get",(Object)(_i))));
- BA.debugLineNum = 177;BA.debugLine="btnAutoExposure.Text = flashes.Get(i)";
-Debug.ShouldStop(65536);
+ BA.debugLineNum = 172;BA.debugLine="btnAutoExposure.Text = flashes.Get(i)";
+Debug.ShouldStop(2048);
 actkamera.mostCurrent._btnautoexposure.runMethod(true,"setText",BA.ObjectToCharSequence(_flashes.runMethod(false,"Get",(Object)(_i))));
- BA.debugLineNum = 178;BA.debugLine="cam.StartPreview(MyTaskIndex, VideoMode)";
-Debug.ShouldStop(131072);
+ BA.debugLineNum = 173;BA.debugLine="cam.StartPreview(MyTaskIndex, VideoMode)";
+Debug.ShouldStop(4096);
 actkamera.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_startpreview" /*RemoteObject*/ ,(Object)(actkamera._mytaskindex),(Object)(actkamera._videomode));
- BA.debugLineNum = 179;BA.debugLine="End Sub";
-Debug.ShouldStop(262144);
+ BA.debugLineNum = 174;BA.debugLine="End Sub";
+Debug.ShouldStop(8192);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -193,146 +193,53 @@ catch (Exception e) {
 finally {
 			Debug.PopSubsStack();
 		}}
-public static void  _btnmode_click() throws Exception{
+public static RemoteObject  _btnmode_click() throws Exception{
 try {
 		Debug.PushSubsStack("btnMode_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,101);
-if (RapidSub.canDelegate("btnmode_click")) { b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","btnmode_click"); return;}
-ResumableSub_btnMode_Click rsub = new ResumableSub_btnMode_Click(null);
-rsub.resume(null, null);
-}
-catch (Exception e) {
-			throw Debug.ErrorCaught(e);
-		} 
-finally {
-			Debug.PopSubsStack();
-		}}
-public static class ResumableSub_btnMode_Click extends BA.ResumableSub {
-public ResumableSub_btnMode_Click(b4a.example.actkamera parent) {
-this.parent = parent;
-}
-java.util.LinkedHashMap<String, Object> rsLocals = new java.util.LinkedHashMap<String, Object>();
-b4a.example.actkamera parent;
-RemoteObject _permission = RemoteObject.createImmutable("");
-RemoteObject _result = RemoteObject.createImmutable(false);
-
-@Override
-public void resume(BA ba, RemoteObject result) throws Exception{
-try {
-		Debug.PushSubsStack("btnMode_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,101);
-Debug.locals = rsLocals;Debug.currentSubFrame.locals = rsLocals;
-
-    while (true) {
-        switch (state) {
-            case -1:
-return;
-
-case 0:
-//C
-this.state = 1;
+if (RapidSub.canDelegate("btnmode_click")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","btnmode_click");}
+ BA.debugLineNum = 101;BA.debugLine="Sub btnMode_Click";
+Debug.ShouldStop(16);
  BA.debugLineNum = 102;BA.debugLine="VideoMode = Not(VideoMode)";
 Debug.ShouldStop(32);
-parent._videomode = parent.mostCurrent.__c.runMethod(true,"Not",(Object)(parent._videomode));
- BA.debugLineNum = 103;BA.debugLine="If VideoMode Then";
-Debug.ShouldStop(64);
-if (true) break;
-
-case 1:
-//if
-this.state = 8;
-if (parent._videomode.<Boolean>get().booleanValue()) { 
-this.state = 3;
-}if (true) break;
-
-case 3:
-//C
-this.state = 4;
- BA.debugLineNum = 104;BA.debugLine="rp.CheckAndRequest(rp.PERMISSION_RECORD_AUDIO)";
+actkamera._videomode = actkamera.mostCurrent.__c.runMethod(true,"Not",(Object)(actkamera._videomode));
+ BA.debugLineNum = 104;BA.debugLine="VideoMode = True";
 Debug.ShouldStop(128);
-parent._rp.runVoidMethod ("CheckAndRequest",actkamera.processBA,(Object)(parent._rp.getField(true,"PERMISSION_RECORD_AUDIO")));
- BA.debugLineNum = 105;BA.debugLine="Wait For Activity_PermissionResult (Permission A";
-Debug.ShouldStop(256);
-parent.mostCurrent.__c.runVoidMethod ("WaitFor","activity_permissionresult", actkamera.processBA, anywheresoftware.b4a.pc.PCResumableSub.createDebugResumeSub(this, "actkamera", "btnmode_click"), null);
-this.state = 9;
-return;
-case 9:
-//C
-this.state = 4;
-_permission = (RemoteObject) result.getArrayElement(true,RemoteObject.createImmutable(0));Debug.locals.put("Permission", _permission);
-_result = (RemoteObject) result.getArrayElement(true,RemoteObject.createImmutable(1));Debug.locals.put("Result", _result);
-;
- BA.debugLineNum = 106;BA.debugLine="If Result = False Then";
+actkamera._videomode = actkamera.mostCurrent.__c.getField(true,"True");
+ BA.debugLineNum = 106;BA.debugLine="SetState(openstate, busystate, VideoMode)";
 Debug.ShouldStop(512);
-if (true) break;
-
-case 4:
-//if
-this.state = 7;
-if (RemoteObject.solveBoolean("=",_result,parent.mostCurrent.__c.getField(true,"False"))) { 
-this.state = 6;
-}if (true) break;
-
-case 6:
-//C
-this.state = 7;
- BA.debugLineNum = 107;BA.debugLine="ToastMessageShow(\"No permission!\", True)";
+_setstate(actkamera._openstate,actkamera._busystate,actkamera._videomode);
+ BA.debugLineNum = 107;BA.debugLine="PrepareSurface";
 Debug.ShouldStop(1024);
-parent.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence("No permission!")),(Object)(parent.mostCurrent.__c.getField(true,"True")));
- BA.debugLineNum = 108;BA.debugLine="VideoMode = False";
-Debug.ShouldStop(2048);
-parent._videomode = parent.mostCurrent.__c.getField(true,"False");
- if (true) break;
-
-case 7:
-//C
-this.state = 8;
-;
- if (true) break;
-
-case 8:
-//C
-this.state = -1;
-;
- BA.debugLineNum = 111;BA.debugLine="SetState(openstate, busystate, VideoMode)";
-Debug.ShouldStop(16384);
-_setstate(parent._openstate,parent._busystate,parent._videomode);
- BA.debugLineNum = 112;BA.debugLine="PrepareSurface";
-Debug.ShouldStop(32768);
 _preparesurface();
- BA.debugLineNum = 113;BA.debugLine="End Sub";
-Debug.ShouldStop(65536);
-if (true) break;
-
-            }
-        }
-    }
+ BA.debugLineNum = 108;BA.debugLine="End Sub";
+Debug.ShouldStop(2048);
+return RemoteObject.createImmutable("");
+}
 catch (Exception e) {
 			throw Debug.ErrorCaught(e);
 		} 
 finally {
 			Debug.PopSubsStack();
 		}}
-}
-public static void  _activity_permissionresult(RemoteObject _permission,RemoteObject _result) throws Exception{
-}
 public static RemoteObject  _btnrecord_click() throws Exception{
 try {
-		Debug.PushSubsStack("btnRecord_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,115);
+		Debug.PushSubsStack("btnRecord_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,110);
 if (RapidSub.canDelegate("btnrecord_click")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","btnrecord_click");}
- BA.debugLineNum = 115;BA.debugLine="Sub btnRecord_Click";
-Debug.ShouldStop(262144);
- BA.debugLineNum = 116;BA.debugLine="If VideoMode Then";
-Debug.ShouldStop(524288);
+ BA.debugLineNum = 110;BA.debugLine="Sub btnRecord_Click";
+Debug.ShouldStop(8192);
+ BA.debugLineNum = 111;BA.debugLine="If VideoMode Then";
+Debug.ShouldStop(16384);
 if (actkamera._videomode.<Boolean>get().booleanValue()) { 
- BA.debugLineNum = 117;BA.debugLine="CaptureVideo";
-Debug.ShouldStop(1048576);
+ BA.debugLineNum = 112;BA.debugLine="CaptureVideo";
+Debug.ShouldStop(32768);
 _capturevideo();
  }else {
- BA.debugLineNum = 119;BA.debugLine="TakePicture";
-Debug.ShouldStop(4194304);
+ BA.debugLineNum = 114;BA.debugLine="TakePicture";
+Debug.ShouldStop(131072);
 _takepicture();
  };
- BA.debugLineNum = 122;BA.debugLine="End Sub";
-Debug.ShouldStop(33554432);
+ BA.debugLineNum = 117;BA.debugLine="End Sub";
+Debug.ShouldStop(1048576);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -343,7 +250,7 @@ finally {
 		}}
 public static void  _capturevideo() throws Exception{
 try {
-		Debug.PushSubsStack("CaptureVideo (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,124);
+		Debug.PushSubsStack("CaptureVideo (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,119);
 if (RapidSub.canDelegate("capturevideo")) { b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","capturevideo"); return;}
 ResumableSub_CaptureVideo rsub = new ResumableSub_CaptureVideo(null);
 rsub.resume(null, null);
@@ -365,7 +272,7 @@ RemoteObject _success = RemoteObject.createImmutable(false);
 @Override
 public void resume(BA ba, RemoteObject result) throws Exception{
 try {
-		Debug.PushSubsStack("CaptureVideo (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,124);
+		Debug.PushSubsStack("CaptureVideo (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,119);
 Debug.locals = rsLocals;Debug.currentSubFrame.locals = rsLocals;
 
     while (true) {
@@ -378,8 +285,8 @@ return;
 case 0:
 //C
 this.state = 1;
- BA.debugLineNum = 125;BA.debugLine="Try";
-Debug.ShouldStop(268435456);
+ BA.debugLineNum = 120;BA.debugLine="Try";
+Debug.ShouldStop(8388608);
 if (true) break;
 
 case 1:
@@ -393,11 +300,11 @@ case 3:
 //C
 this.state = 4;
 this.catchState = 11;
- BA.debugLineNum = 126;BA.debugLine="SetState(openstate, True, VideoMode)";
-Debug.ShouldStop(536870912);
+ BA.debugLineNum = 121;BA.debugLine="SetState(openstate, True, VideoMode)";
+Debug.ShouldStop(16777216);
 _setstate(parent._openstate,parent.mostCurrent.__c.getField(true,"True"),parent._videomode);
- BA.debugLineNum = 127;BA.debugLine="If cam.RecordingVideo = False Then";
-Debug.ShouldStop(1073741824);
+ BA.debugLineNum = 122;BA.debugLine="If cam.RecordingVideo = False Then";
+Debug.ShouldStop(33554432);
 if (true) break;
 
 case 4:
@@ -412,25 +319,25 @@ this.state = 8;
 case 6:
 //C
 this.state = 9;
- BA.debugLineNum = 128;BA.debugLine="cam.StartVideoRecording (MyTaskIndex)";
-Debug.ShouldStop(-2147483648);
+ BA.debugLineNum = 123;BA.debugLine="cam.StartVideoRecording (MyTaskIndex)";
+Debug.ShouldStop(67108864);
 parent.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_startvideorecording" /*RemoteObject*/ ,(Object)(parent._mytaskindex));
  if (true) break;
 
 case 8:
 //C
 this.state = 9;
- BA.debugLineNum = 130;BA.debugLine="cam.StopVideoRecording (MyTaskIndex)";
-Debug.ShouldStop(2);
+ BA.debugLineNum = 125;BA.debugLine="cam.StopVideoRecording (MyTaskIndex)";
+Debug.ShouldStop(268435456);
 parent.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_stopvideorecording" /*RemoteObject*/ ,(Object)(parent._mytaskindex));
- BA.debugLineNum = 131;BA.debugLine="File.Copy(VideoFileDir, \"temp-\" & VideoFileName";
-Debug.ShouldStop(4);
+ BA.debugLineNum = 126;BA.debugLine="File.Copy(VideoFileDir, \"temp-\" & VideoFileName";
+Debug.ShouldStop(536870912);
 parent.mostCurrent.__c.getField(false,"File").runVoidMethod ("Copy",(Object)(parent._videofiledir),(Object)(RemoteObject.concat(RemoteObject.createImmutable("temp-"),parent._videofilename)),(Object)(parent._videofiledir),(Object)(parent._videofilename));
- BA.debugLineNum = 132;BA.debugLine="ToastMessageShow($\"Video file saved: $1.2{File.";
-Debug.ShouldStop(8);
+ BA.debugLineNum = 127;BA.debugLine="ToastMessageShow($\"Video file saved: $1.2{File.";
+Debug.ShouldStop(1073741824);
 parent.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence((RemoteObject.concat(RemoteObject.createImmutable("Video file saved: "),parent.mostCurrent.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("1.2")),(Object)((RemoteObject.solve(new RemoteObject[] {parent.mostCurrent.__c.getField(false,"File").runMethod(true,"Size",(Object)(parent._videofiledir),(Object)(parent._videofilename)),RemoteObject.createImmutable(1024),RemoteObject.createImmutable(1024)}, "//",0, 0)))),RemoteObject.createImmutable(" MB"))))),(Object)(parent.mostCurrent.__c.getField(true,"True")));
- BA.debugLineNum = 133;BA.debugLine="Wait For (PrepareSurface) Complete (Success As";
-Debug.ShouldStop(16);
+ BA.debugLineNum = 128;BA.debugLine="Wait For (PrepareSurface) Complete (Success As";
+Debug.ShouldStop(-2147483648);
 parent.mostCurrent.__c.runVoidMethod ("WaitFor","complete", actkamera.processBA, anywheresoftware.b4a.pc.PCResumableSub.createDebugResumeSub(this, "actkamera", "capturevideo"), _preparesurface());
 this.state = 13;
 return;
@@ -439,8 +346,8 @@ case 13:
 this.state = 9;
 _success = (RemoteObject) result.getArrayElement(true,RemoteObject.createImmutable(0));Debug.locals.put("Success", _success);
 ;
- BA.debugLineNum = 134;BA.debugLine="SetState(openstate, False, VideoMode)";
-Debug.ShouldStop(32);
+ BA.debugLineNum = 129;BA.debugLine="SetState(openstate, False, VideoMode)";
+Debug.ShouldStop(1);
 _setstate(parent._openstate,parent.mostCurrent.__c.getField(true,"False"),parent._videomode);
  if (true) break;
 
@@ -455,8 +362,8 @@ case 11:
 //C
 this.state = 12;
 this.catchState = 0;
- BA.debugLineNum = 138;BA.debugLine="HandleError(LastException)";
-Debug.ShouldStop(512);
+ BA.debugLineNum = 133;BA.debugLine="HandleError(LastException)";
+Debug.ShouldStop(16);
 _handleerror(parent.mostCurrent.__c.runMethod(false,"LastException",actkamera.mostCurrent.activityBA));
  if (true) break;
 if (true) break;
@@ -466,8 +373,8 @@ case 12:
 this.state = -1;
 this.catchState = 0;
 ;
- BA.debugLineNum = 140;BA.debugLine="End Sub";
-Debug.ShouldStop(2048);
+ BA.debugLineNum = 135;BA.debugLine="End Sub";
+Debug.ShouldStop(64);
 if (true) break;
 }} 
        catch (Exception e0) {
@@ -521,22 +428,22 @@ return RemoteObject.createImmutable("");
 }
 public static RemoteObject  _handleerror(RemoteObject _error) throws Exception{
 try {
-		Debug.PushSubsStack("HandleError (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,142);
+		Debug.PushSubsStack("HandleError (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,137);
 if (RapidSub.canDelegate("handleerror")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","handleerror", _error);}
 Debug.locals.put("Error", _error);
- BA.debugLineNum = 142;BA.debugLine="Sub HandleError (Error As Exception)";
-Debug.ShouldStop(8192);
- BA.debugLineNum = 143;BA.debugLine="Log(\"Error: \" & Error)";
-Debug.ShouldStop(16384);
-actkamera.mostCurrent.__c.runVoidMethod ("LogImpl","61507329",RemoteObject.concat(RemoteObject.createImmutable("Error: "),_error),0);
- BA.debugLineNum = 144;BA.debugLine="ToastMessageShow(Error, True)";
-Debug.ShouldStop(32768);
+ BA.debugLineNum = 137;BA.debugLine="Sub HandleError (Error As Exception)";
+Debug.ShouldStop(256);
+ BA.debugLineNum = 138;BA.debugLine="Log(\"Error: \" & Error)";
+Debug.ShouldStop(512);
+actkamera.mostCurrent.__c.runVoidMethod ("LogImpl","01507329",RemoteObject.concat(RemoteObject.createImmutable("Error: "),_error),0);
+ BA.debugLineNum = 139;BA.debugLine="ToastMessageShow(Error, True)";
+Debug.ShouldStop(1024);
 actkamera.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence(_error.getObject())),(Object)(actkamera.mostCurrent.__c.getField(true,"True")));
- BA.debugLineNum = 145;BA.debugLine="OpenCamera(frontCamera)";
-Debug.ShouldStop(65536);
+ BA.debugLineNum = 140;BA.debugLine="OpenCamera(frontCamera)";
+Debug.ShouldStop(2048);
 _opencamera(actkamera._frontcamera);
- BA.debugLineNum = 146;BA.debugLine="End Sub";
-Debug.ShouldStop(131072);
+ BA.debugLineNum = 141;BA.debugLine="End Sub";
+Debug.ShouldStop(4096);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -674,7 +581,7 @@ this.state = 9;
 ;
  BA.debugLineNum = 69;BA.debugLine="Log(\"Start success: \" & Success)";
 Debug.ShouldStop(16);
-parent.mostCurrent.__c.runVoidMethod ("LogImpl","61048590",RemoteObject.concat(RemoteObject.createImmutable("Start success: "),_success),0);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","01048590",RemoteObject.concat(RemoteObject.createImmutable("Start success: "),_success),0);
  BA.debugLineNum = 70;BA.debugLine="SetState(Success, False, VideoMode)";
 Debug.ShouldStop(32);
 _setstate(_success,parent.mostCurrent.__c.getField(true,"False"),parent._videomode);
@@ -715,20 +622,22 @@ finally {
 			Debug.PopSubsStack();
 		}}
 }
+public static void  _activity_permissionresult(RemoteObject _permission,RemoteObject _result) throws Exception{
+}
 public static RemoteObject  _pnlpicture_click() throws Exception{
 try {
-		Debug.PushSubsStack("pnlPicture_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,167);
+		Debug.PushSubsStack("pnlPicture_Click (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,162);
 if (RapidSub.canDelegate("pnlpicture_click")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","pnlpicture_click");}
- BA.debugLineNum = 167;BA.debugLine="Sub pnlPicture_Click";
-Debug.ShouldStop(64);
- BA.debugLineNum = 168;BA.debugLine="pnlBackground.Visible = False";
-Debug.ShouldStop(128);
+ BA.debugLineNum = 162;BA.debugLine="Sub pnlPicture_Click";
+Debug.ShouldStop(2);
+ BA.debugLineNum = 163;BA.debugLine="pnlBackground.Visible = False";
+Debug.ShouldStop(4);
 actkamera.mostCurrent._pnlbackground.runMethod(true,"setVisible",actkamera.mostCurrent.__c.getField(true,"False"));
- BA.debugLineNum = 169;BA.debugLine="StartActivity(actLapor)";
-Debug.ShouldStop(256);
+ BA.debugLineNum = 164;BA.debugLine="StartActivity(actLapor)";
+Debug.ShouldStop(8);
 actkamera.mostCurrent.__c.runVoidMethod ("StartActivity",actkamera.processBA,(Object)((actkamera.mostCurrent._actlapor.getObject())));
- BA.debugLineNum = 170;BA.debugLine="End Sub";
-Debug.ShouldStop(512);
+ BA.debugLineNum = 165;BA.debugLine="End Sub";
+Debug.ShouldStop(16);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -885,17 +794,17 @@ return RemoteObject.createImmutable("");
 }
 public static RemoteObject  _setstate(RemoteObject _open,RemoteObject _busy,RemoteObject _video) throws Exception{
 try {
-		Debug.PushSubsStack("SetState (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,182);
+		Debug.PushSubsStack("SetState (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,177);
 if (RapidSub.canDelegate("setstate")) { return b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","setstate", _open, _busy, _video);}
 RemoteObject _b = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
 RemoteObject _btnrecordtext = RemoteObject.createImmutable("");
 Debug.locals.put("Open", _open);
 Debug.locals.put("Busy", _busy);
 Debug.locals.put("Video", _video);
- BA.debugLineNum = 182;BA.debugLine="Sub SetState(Open As Boolean, Busy As Boolean, Vid";
-Debug.ShouldStop(2097152);
- BA.debugLineNum = 183;BA.debugLine="For Each b As Button In buttons";
-Debug.ShouldStop(4194304);
+ BA.debugLineNum = 177;BA.debugLine="Sub SetState(Open As Boolean, Busy As Boolean, Vid";
+Debug.ShouldStop(65536);
+ BA.debugLineNum = 178;BA.debugLine="For Each b As Button In buttons";
+Debug.ShouldStop(131072);
 _b = RemoteObject.createNew ("anywheresoftware.b4a.objects.ButtonWrapper");
 {
 final RemoteObject group1 = actkamera.mostCurrent._buttons;
@@ -905,60 +814,60 @@ final int groupLen1 = group1.runMethod(true,"getSize").<Integer>get()
 for (; index1 < groupLen1;index1++){
 _b.setObject(group1.runMethod(false,"Get",index1));
 Debug.locals.put("b", _b);
- BA.debugLineNum = 184;BA.debugLine="b.Visible = Open And Not(Busy)";
-Debug.ShouldStop(8388608);
+ BA.debugLineNum = 179;BA.debugLine="b.Visible = Open And Not(Busy)";
+Debug.ShouldStop(262144);
 _b.runMethod(true,"setVisible",BA.ObjectToBoolean(RemoteObject.solveBoolean(".",_open) && RemoteObject.solveBoolean(".",actkamera.mostCurrent.__c.runMethod(true,"Not",(Object)(_busy)))));
  }
 }Debug.locals.put("b", _b);
 ;
- BA.debugLineNum = 186;BA.debugLine="btnCamera.Visible = Not(Busy)";
-Debug.ShouldStop(33554432);
+ BA.debugLineNum = 181;BA.debugLine="btnCamera.Visible = Not(Busy)";
+Debug.ShouldStop(1048576);
 actkamera.mostCurrent._btncamera.runMethod(true,"setVisible",actkamera.mostCurrent.__c.runMethod(true,"Not",(Object)(_busy)));
- BA.debugLineNum = 187;BA.debugLine="btnRecord.Visible = Open And (Video Or Not(Busy))";
-Debug.ShouldStop(67108864);
+ BA.debugLineNum = 182;BA.debugLine="btnRecord.Visible = Open And (Video Or Not(Busy))";
+Debug.ShouldStop(2097152);
 actkamera.mostCurrent._btnrecord.runMethod(true,"setVisible",BA.ObjectToBoolean(RemoteObject.solveBoolean(".",_open) && RemoteObject.solveBoolean(".",BA.ObjectToBoolean((RemoteObject.solveBoolean(".",_video) || RemoteObject.solveBoolean(".",actkamera.mostCurrent.__c.runMethod(true,"Not",(Object)(_busy))))))));
- BA.debugLineNum = 188;BA.debugLine="openstate = Open";
-Debug.ShouldStop(134217728);
+ BA.debugLineNum = 183;BA.debugLine="openstate = Open";
+Debug.ShouldStop(4194304);
 actkamera._openstate = _open;
- BA.debugLineNum = 189;BA.debugLine="ProgressBar1.Visible = Busy";
-Debug.ShouldStop(268435456);
+ BA.debugLineNum = 184;BA.debugLine="ProgressBar1.Visible = Busy";
+Debug.ShouldStop(8388608);
 actkamera.mostCurrent._progressbar1.runMethod(true,"setVisible",_busy);
- BA.debugLineNum = 190;BA.debugLine="busystate = Busy";
-Debug.ShouldStop(536870912);
+ BA.debugLineNum = 185;BA.debugLine="busystate = Busy";
+Debug.ShouldStop(16777216);
 actkamera._busystate = _busy;
- BA.debugLineNum = 191;BA.debugLine="VideoMode = Video";
-Debug.ShouldStop(1073741824);
+ BA.debugLineNum = 186;BA.debugLine="VideoMode = Video";
+Debug.ShouldStop(33554432);
 actkamera._videomode = _video;
- BA.debugLineNum = 192;BA.debugLine="barZoom.Visible = Open";
-Debug.ShouldStop(-2147483648);
+ BA.debugLineNum = 187;BA.debugLine="barZoom.Visible = Open";
+Debug.ShouldStop(67108864);
 actkamera.mostCurrent._barzoom.runMethod(true,"setVisible",_open);
- BA.debugLineNum = 193;BA.debugLine="Dim btnRecordText As String";
-Debug.ShouldStop(1);
+ BA.debugLineNum = 188;BA.debugLine="Dim btnRecordText As String";
+Debug.ShouldStop(134217728);
 _btnrecordtext = RemoteObject.createImmutable("");Debug.locals.put("btnRecordText", _btnrecordtext);
- BA.debugLineNum = 194;BA.debugLine="If VideoMode Then";
-Debug.ShouldStop(2);
+ BA.debugLineNum = 189;BA.debugLine="If VideoMode Then";
+Debug.ShouldStop(268435456);
 if (actkamera._videomode.<Boolean>get().booleanValue()) { 
- BA.debugLineNum = 195;BA.debugLine="If Busy Then";
-Debug.ShouldStop(4);
+ BA.debugLineNum = 190;BA.debugLine="If Busy Then";
+Debug.ShouldStop(536870912);
 if (_busy.<Boolean>get().booleanValue()) { 
- BA.debugLineNum = 196;BA.debugLine="btnRecordText = Chr(0xF04D)";
-Debug.ShouldStop(8);
+ BA.debugLineNum = 191;BA.debugLine="btnRecordText = Chr(0xF04D)";
+Debug.ShouldStop(1073741824);
 _btnrecordtext = BA.ObjectToString(actkamera.mostCurrent.__c.runMethod(true,"Chr",(Object)(BA.numberCast(int.class, 0xf04d))));Debug.locals.put("btnRecordText", _btnrecordtext);
  }else {
- BA.debugLineNum = 198;BA.debugLine="btnRecordText = Chr(0xF03D)";
-Debug.ShouldStop(32);
+ BA.debugLineNum = 193;BA.debugLine="btnRecordText = Chr(0xF03D)";
+Debug.ShouldStop(1);
 _btnrecordtext = BA.ObjectToString(actkamera.mostCurrent.__c.runMethod(true,"Chr",(Object)(BA.numberCast(int.class, 0xf03d))));Debug.locals.put("btnRecordText", _btnrecordtext);
  };
  }else {
- BA.debugLineNum = 201;BA.debugLine="btnRecordText = Chr(0xF030)";
-Debug.ShouldStop(256);
+ BA.debugLineNum = 196;BA.debugLine="btnRecordText = Chr(0xF030)";
+Debug.ShouldStop(8);
 _btnrecordtext = BA.ObjectToString(actkamera.mostCurrent.__c.runMethod(true,"Chr",(Object)(BA.numberCast(int.class, 0xf030))));Debug.locals.put("btnRecordText", _btnrecordtext);
  };
- BA.debugLineNum = 203;BA.debugLine="btnRecord.Text = btnRecordText";
-Debug.ShouldStop(1024);
+ BA.debugLineNum = 198;BA.debugLine="btnRecord.Text = btnRecordText";
+Debug.ShouldStop(32);
 actkamera.mostCurrent._btnrecord.runMethod(true,"setText",BA.ObjectToCharSequence(_btnrecordtext));
- BA.debugLineNum = 204;BA.debugLine="End Sub";
-Debug.ShouldStop(2048);
+ BA.debugLineNum = 199;BA.debugLine="End Sub";
+Debug.ShouldStop(64);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -969,7 +878,7 @@ finally {
 		}}
 public static void  _takepicture() throws Exception{
 try {
-		Debug.PushSubsStack("TakePicture (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,148);
+		Debug.PushSubsStack("TakePicture (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,143);
 if (RapidSub.canDelegate("takepicture")) { b4a.example.actkamera.remoteMe.runUserSub(false, "actkamera","takepicture"); return;}
 ResumableSub_TakePicture rsub = new ResumableSub_TakePicture(null);
 rsub.resume(null, null);
@@ -992,7 +901,7 @@ RemoteObject _bmp = RemoteObject.declareNull("anywheresoftware.b4a.objects.drawa
 @Override
 public void resume(BA ba, RemoteObject result) throws Exception{
 try {
-		Debug.PushSubsStack("TakePicture (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,148);
+		Debug.PushSubsStack("TakePicture (actkamera) ","actkamera",2,actkamera.mostCurrent.activityBA,actkamera.mostCurrent,143);
 Debug.locals = rsLocals;Debug.currentSubFrame.locals = rsLocals;
 
     while (true) {
@@ -1005,8 +914,8 @@ return;
 case 0:
 //C
 this.state = 1;
- BA.debugLineNum = 149;BA.debugLine="Try";
-Debug.ShouldStop(1048576);
+ BA.debugLineNum = 144;BA.debugLine="Try";
+Debug.ShouldStop(32768);
 if (true) break;
 
 case 1:
@@ -1020,11 +929,11 @@ case 3:
 //C
 this.state = 6;
 this.catchState = 5;
- BA.debugLineNum = 150;BA.debugLine="SetState(openstate, True, VideoMode)";
-Debug.ShouldStop(2097152);
+ BA.debugLineNum = 145;BA.debugLine="SetState(openstate, True, VideoMode)";
+Debug.ShouldStop(65536);
 _setstate(parent._openstate,parent.mostCurrent.__c.getField(true,"True"),parent._videomode);
- BA.debugLineNum = 151;BA.debugLine="Wait For(cam.FocusAndTakePicture(MyTaskIndex)) C";
-Debug.ShouldStop(4194304);
+ BA.debugLineNum = 146;BA.debugLine="Wait For(cam.FocusAndTakePicture(MyTaskIndex)) C";
+Debug.ShouldStop(131072);
 parent.mostCurrent.__c.runVoidMethod ("WaitFor","complete", actkamera.processBA, anywheresoftware.b4a.pc.PCResumableSub.createDebugResumeSub(this, "actkamera", "takepicture"), parent.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_focusandtakepicture" /*RemoteObject*/ ,(Object)(parent._mytaskindex)));
 this.state = 7;
 return;
@@ -1033,27 +942,27 @@ case 7:
 this.state = 6;
 _data = (RemoteObject) result.getArrayElement(false,RemoteObject.createImmutable(0));Debug.locals.put("Data", _data);
 ;
- BA.debugLineNum = 152;BA.debugLine="SetState(openstate, False, VideoMode)";
-Debug.ShouldStop(8388608);
+ BA.debugLineNum = 147;BA.debugLine="SetState(openstate, False, VideoMode)";
+Debug.ShouldStop(262144);
 _setstate(parent._openstate,parent.mostCurrent.__c.getField(true,"False"),parent._videomode);
- BA.debugLineNum = 153;BA.debugLine="cam.DataToFile(Data, VideoFileDir, \"1.jpg\")";
-Debug.ShouldStop(16777216);
+ BA.debugLineNum = 148;BA.debugLine="cam.DataToFile(Data, VideoFileDir, \"1.jpg\")";
+Debug.ShouldStop(524288);
 parent.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_datatofile" /*RemoteObject*/ ,(Object)(_data),(Object)(parent._videofiledir),(Object)(RemoteObject.createImmutable("1.jpg")));
- BA.debugLineNum = 154;BA.debugLine="Dim bmp As Bitmap = cam.DataToBitmap(Data)";
-Debug.ShouldStop(33554432);
+ BA.debugLineNum = 149;BA.debugLine="Dim bmp As Bitmap = cam.DataToBitmap(Data)";
+Debug.ShouldStop(1048576);
 _bmp = RemoteObject.createNew ("anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper");
 _bmp = parent.mostCurrent._cam.runClassMethod (b4a.example.camex2.class, "_datatobitmap" /*RemoteObject*/ ,(Object)(_data));Debug.locals.put("bmp", _bmp);Debug.locals.put("bmp", _bmp);
- BA.debugLineNum = 155;BA.debugLine="Log(\"Picture taken: \" & bmp) 'ignore";
-Debug.ShouldStop(67108864);
-parent.mostCurrent.__c.runVoidMethod ("LogImpl","61572871",RemoteObject.concat(RemoteObject.createImmutable("Picture taken: "),_bmp),0);
- BA.debugLineNum = 156;BA.debugLine="pnlBackground.SetVisibleAnimated(100, True)";
-Debug.ShouldStop(134217728);
+ BA.debugLineNum = 150;BA.debugLine="Log(\"Picture taken: \" & bmp) 'ignore";
+Debug.ShouldStop(2097152);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","01572871",RemoteObject.concat(RemoteObject.createImmutable("Picture taken: "),_bmp),0);
+ BA.debugLineNum = 151;BA.debugLine="pnlBackground.SetVisibleAnimated(100, True)";
+Debug.ShouldStop(4194304);
 parent.mostCurrent._pnlbackground.runVoidMethod ("SetVisibleAnimated",(Object)(BA.numberCast(int.class, 100)),(Object)(parent.mostCurrent.__c.getField(true,"True")));
- BA.debugLineNum = 157;BA.debugLine="pnlPicture.SetBackgroundImage(bmp.Resize(pnlPict";
-Debug.ShouldStop(268435456);
+ BA.debugLineNum = 152;BA.debugLine="pnlPicture.SetBackgroundImage(bmp.Resize(pnlPict";
+Debug.ShouldStop(8388608);
 parent.mostCurrent._pnlpicture.runMethod(false,"SetBackgroundImageNew",(Object)((_bmp.runMethod(false,"Resize",(Object)(BA.numberCast(float.class, parent.mostCurrent._pnlpicture.runMethod(true,"getWidth"))),(Object)(BA.numberCast(float.class, parent.mostCurrent._pnlpicture.runMethod(true,"getHeight"))),(Object)(parent.mostCurrent.__c.getField(true,"True"))).getObject()))).runMethod(true,"setGravity",parent.mostCurrent.__c.getField(false,"Gravity").getField(true,"CENTER"));
- BA.debugLineNum = 158;BA.debugLine="Sleep(4000)";
-Debug.ShouldStop(536870912);
+ BA.debugLineNum = 153;BA.debugLine="Sleep(4000)";
+Debug.ShouldStop(16777216);
 parent.mostCurrent.__c.runVoidMethod ("Sleep",actkamera.mostCurrent.activityBA,anywheresoftware.b4a.pc.PCResumableSub.createDebugResumeSub(this, "actkamera", "takepicture"),BA.numberCast(int.class, 4000));
 this.state = 8;
 return;
@@ -1061,8 +970,8 @@ case 8:
 //C
 this.state = 6;
 ;
- BA.debugLineNum = 159;BA.debugLine="pnlBackground.SetVisibleAnimated(500, False)";
-Debug.ShouldStop(1073741824);
+ BA.debugLineNum = 154;BA.debugLine="pnlBackground.SetVisibleAnimated(500, False)";
+Debug.ShouldStop(33554432);
 parent.mostCurrent._pnlbackground.runVoidMethod ("SetVisibleAnimated",(Object)(BA.numberCast(int.class, 500)),(Object)(parent.mostCurrent.__c.getField(true,"False")));
  Debug.CheckDeviceExceptions();
 if (true) break;
@@ -1071,8 +980,8 @@ case 5:
 //C
 this.state = 6;
 this.catchState = 0;
- BA.debugLineNum = 161;BA.debugLine="HandleError(LastException)";
-Debug.ShouldStop(1);
+ BA.debugLineNum = 156;BA.debugLine="HandleError(LastException)";
+Debug.ShouldStop(134217728);
 _handleerror(parent.mostCurrent.__c.runMethod(false,"LastException",actkamera.mostCurrent.activityBA));
  if (true) break;
 if (true) break;
@@ -1082,8 +991,8 @@ case 6:
 this.state = -1;
 this.catchState = 0;
 ;
- BA.debugLineNum = 165;BA.debugLine="End Sub";
-Debug.ShouldStop(16);
+ BA.debugLineNum = 160;BA.debugLine="End Sub";
+Debug.ShouldStop(-2147483648);
 if (true) break;
 }} 
        catch (Exception e0) {

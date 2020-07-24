@@ -22,6 +22,8 @@ Library2=camera2
 Library3=javaobject
 Library4=runtimepermissions
 Library5=gps
+Library6=okhttputils2
+Library7=json
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=Starter
 Module2=actKamera
@@ -30,11 +32,11 @@ Module4=actLapor
 Module5=srvGPS
 Module6=gps
 NumberOfFiles=8
-NumberOfLibraries=5
+NumberOfLibraries=7
 NumberOfModules=6
 Version=9.5
 @EndOfDesignText@
-#Region  Project Attributes 
+	#Region  Project Attributes 
 	#ApplicationLabel: B4A Example
 	#VersionCode: 1
 	#VersionName: 

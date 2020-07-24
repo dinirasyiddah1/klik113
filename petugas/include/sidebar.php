@@ -1067,7 +1067,7 @@ function cari_tahun(rows) //fungsi cari panti
             <li <?php if($page == "Home") echo "class='active'";?>><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <button type="button" onclick="viewreport()" class="btn btn-primary btn-sm " data-toggle="tooltip" title="Melihat Semua Pos" 
                                                         style="margin: 7px" style="margin-right: 7px;"><i class="fa fa-eye"></i>
-                                                </button>
+                                                Check today's report</button>
 
           </ul>
 

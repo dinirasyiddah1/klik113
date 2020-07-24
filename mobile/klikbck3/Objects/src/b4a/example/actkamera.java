@@ -362,6 +362,7 @@ public b4a.example.starter _starter = null;
 public b4a.example.actlapor _actlapor = null;
 public b4a.example.srvgps _srvgps = null;
 public b4a.example.gps _gps = null;
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="actkamera";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
@@ -385,7 +386,7 @@ RDebugUtils.currentLine=917511;
 mostCurrent._cam._initialize /*String*/ (null,mostCurrent.activityBA,mostCurrent._pnlcamera);
 RDebugUtils.currentLine=917512;
  //BA.debugLineNum = 917512;BA.debugLine="Log(cam.SupportedHardwareLevel)";
-anywheresoftware.b4a.keywords.Common.LogImpl("6917512",mostCurrent._cam._getsupportedhardwarelevel /*String*/ (null),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("0917512",mostCurrent._cam._getsupportedhardwarelevel /*String*/ (null),0);
 RDebugUtils.currentLine=917513;
  //BA.debugLineNum = 917513;BA.debugLine="buttons = Array(btnAutoExposure, btnMode)";
 mostCurrent._buttons = anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(mostCurrent._btnautoexposure.getObject()),(Object)(mostCurrent._btnmode.getObject())});
@@ -612,7 +613,7 @@ this.state = 9;
 ;
 RDebugUtils.currentLine=1048590;
  //BA.debugLineNum = 1048590;BA.debugLine="Log(\"Start success: \" & Success)";
-anywheresoftware.b4a.keywords.Common.LogImpl("61048590","Start success: "+BA.ObjectToString(_success),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("01048590","Start success: "+BA.ObjectToString(_success),0);
 RDebugUtils.currentLine=1048591;
  //BA.debugLineNum = 1048591;BA.debugLine="SetState(Success, False, VideoMode)";
 _setstate(_success,anywheresoftware.b4a.keywords.Common.False,parent._videomode);
@@ -734,109 +735,27 @@ RDebugUtils.currentLine=1179651;
  //BA.debugLineNum = 1179651;BA.debugLine="End Sub";
 return "";
 }
-public static void  _btnmode_click() throws Exception{
+public static String  _btnmode_click() throws Exception{
 RDebugUtils.currentModule="actkamera";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "btnmode_click", false))
-	 {Debug.delegate(mostCurrent.activityBA, "btnmode_click", null); return;}
-ResumableSub_btnMode_Click rsub = new ResumableSub_btnMode_Click(null);
-rsub.resume(processBA, null);
-}
-public static class ResumableSub_btnMode_Click extends BA.ResumableSub {
-public ResumableSub_btnMode_Click(b4a.example.actkamera parent) {
-this.parent = parent;
-}
-b4a.example.actkamera parent;
-String _permission = "";
-boolean _result = false;
-
-@Override
-public void resume(BA ba, Object[] result) throws Exception{
-RDebugUtils.currentModule="actkamera";
-
-    while (true) {
-        switch (state) {
-            case -1:
-return;
-
-case 0:
-//C
-this.state = 1;
+	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnmode_click", null));}
+RDebugUtils.currentLine=1310720;
+ //BA.debugLineNum = 1310720;BA.debugLine="Sub btnMode_Click";
 RDebugUtils.currentLine=1310721;
  //BA.debugLineNum = 1310721;BA.debugLine="VideoMode = Not(VideoMode)";
-parent._videomode = anywheresoftware.b4a.keywords.Common.Not(parent._videomode);
-RDebugUtils.currentLine=1310722;
- //BA.debugLineNum = 1310722;BA.debugLine="If VideoMode Then";
-if (true) break;
-
-case 1:
-//if
-this.state = 8;
-if (parent._videomode) { 
-this.state = 3;
-}if (true) break;
-
-case 3:
-//C
-this.state = 4;
+_videomode = anywheresoftware.b4a.keywords.Common.Not(_videomode);
 RDebugUtils.currentLine=1310723;
- //BA.debugLineNum = 1310723;BA.debugLine="rp.CheckAndRequest(rp.PERMISSION_RECORD_AUDIO)";
-parent._rp.CheckAndRequest(processBA,parent._rp.PERMISSION_RECORD_AUDIO);
-RDebugUtils.currentLine=1310724;
- //BA.debugLineNum = 1310724;BA.debugLine="Wait For Activity_PermissionResult (Permission A";
-anywheresoftware.b4a.keywords.Common.WaitFor("activity_permissionresult", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "actkamera", "btnmode_click"), null);
-this.state = 9;
-return;
-case 9:
-//C
-this.state = 4;
-_permission = (String) result[0];
-_result = (Boolean) result[1];
-;
+ //BA.debugLineNum = 1310723;BA.debugLine="VideoMode = True";
+_videomode = anywheresoftware.b4a.keywords.Common.True;
 RDebugUtils.currentLine=1310725;
- //BA.debugLineNum = 1310725;BA.debugLine="If Result = False Then";
-if (true) break;
-
-case 4:
-//if
-this.state = 7;
-if (_result==anywheresoftware.b4a.keywords.Common.False) { 
-this.state = 6;
-}if (true) break;
-
-case 6:
-//C
-this.state = 7;
+ //BA.debugLineNum = 1310725;BA.debugLine="SetState(openstate, busystate, VideoMode)";
+_setstate(_openstate,_busystate,_videomode);
 RDebugUtils.currentLine=1310726;
- //BA.debugLineNum = 1310726;BA.debugLine="ToastMessageShow(\"No permission!\", True)";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("No permission!"),anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=1310727;
- //BA.debugLineNum = 1310727;BA.debugLine="VideoMode = False";
-parent._videomode = anywheresoftware.b4a.keywords.Common.False;
- if (true) break;
-
-case 7:
-//C
-this.state = 8;
-;
- if (true) break;
-
-case 8:
-//C
-this.state = -1;
-;
-RDebugUtils.currentLine=1310730;
- //BA.debugLineNum = 1310730;BA.debugLine="SetState(openstate, busystate, VideoMode)";
-_setstate(parent._openstate,parent._busystate,parent._videomode);
-RDebugUtils.currentLine=1310731;
- //BA.debugLineNum = 1310731;BA.debugLine="PrepareSurface";
+ //BA.debugLineNum = 1310726;BA.debugLine="PrepareSurface";
 _preparesurface();
-RDebugUtils.currentLine=1310732;
- //BA.debugLineNum = 1310732;BA.debugLine="End Sub";
-if (true) break;
-
-            }
-        }
-    }
+RDebugUtils.currentLine=1310727;
+ //BA.debugLineNum = 1310727;BA.debugLine="End Sub";
+return "";
 }
 public static anywheresoftware.b4a.keywords.Common.ResumableSubWrapper  _preparesurface() throws Exception{
 RDebugUtils.currentModule="actkamera";
@@ -1172,7 +1091,7 @@ _bmp = new anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper();
 _bmp = parent.mostCurrent._cam._datatobitmap /*anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper*/ (null,_data);
 RDebugUtils.currentLine=1572871;
  //BA.debugLineNum = 1572871;BA.debugLine="Log(\"Picture taken: \" & bmp) 'ignore";
-anywheresoftware.b4a.keywords.Common.LogImpl("61572871","Picture taken: "+BA.ObjectToString(_bmp),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("01572871","Picture taken: "+BA.ObjectToString(_bmp),0);
 RDebugUtils.currentLine=1572872;
  //BA.debugLineNum = 1572872;BA.debugLine="pnlBackground.SetVisibleAnimated(100, True)";
 parent.mostCurrent._pnlbackground.SetVisibleAnimated((int) (100),anywheresoftware.b4a.keywords.Common.True);
@@ -1231,7 +1150,7 @@ RDebugUtils.currentLine=1507328;
  //BA.debugLineNum = 1507328;BA.debugLine="Sub HandleError (Error As Exception)";
 RDebugUtils.currentLine=1507329;
  //BA.debugLineNum = 1507329;BA.debugLine="Log(\"Error: \" & Error)";
-anywheresoftware.b4a.keywords.Common.LogImpl("61507329","Error: "+BA.ObjectToString(_error),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("01507329","Error: "+BA.ObjectToString(_error),0);
 RDebugUtils.currentLine=1507330;
  //BA.debugLineNum = 1507330;BA.debugLine="ToastMessageShow(Error, True)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence(_error.getObject()),anywheresoftware.b4a.keywords.Common.True);

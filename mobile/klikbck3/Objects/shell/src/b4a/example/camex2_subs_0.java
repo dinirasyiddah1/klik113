@@ -527,7 +527,7 @@ case 3:
 this.state = 12;
  BA.debugLineNum = 273;BA.debugLine="Log(\"Focus not supported\")";
 Debug.ShouldStop(65536);
-parent.__c.runVoidMethod ("LogImpl","64063236",RemoteObject.createImmutable("Focus not supported"),0);
+parent.__c.runVoidMethod ("LogImpl","04063236",RemoteObject.createImmutable("Focus not supported"),0);
  if (true) break;
 
 case 5:
@@ -574,7 +574,7 @@ case 8:
 this.state = 11;
  BA.debugLineNum = 281;BA.debugLine="Log(\"Focus failed\")";
 Debug.ShouldStop(16777216);
-parent.__c.runVoidMethod ("LogImpl","64063244",RemoteObject.createImmutable("Focus failed"),0);
+parent.__c.runVoidMethod ("LogImpl","04063244",RemoteObject.createImmutable("Focus failed"),0);
  if (true) break;
 
 case 10:
@@ -582,7 +582,7 @@ case 10:
 this.state = 11;
  BA.debugLineNum = 283;BA.debugLine="Log(\"Focused!\")";
 Debug.ShouldStop(67108864);
-parent.__c.runVoidMethod ("LogImpl","64063246",RemoteObject.createImmutable("Focused!"),0);
+parent.__c.runVoidMethod ("LogImpl","04063246",RemoteObject.createImmutable("Focused!"),0);
  if (true) break;
 
 case 11:
@@ -1216,10 +1216,10 @@ _res.runVoidMethod ("Add",(Object)(_consts.runMethod(false,"Get",(Object)(_mode)
  }else {
  BA.debugLineNum = 419;BA.debugLine="Log(Consts) 'ignore";
 Debug.ShouldStop(4);
-camex2.__c.runVoidMethod ("LogImpl","64915209",BA.ObjectToString(_consts),0);
+camex2.__c.runVoidMethod ("LogImpl","04915209",BA.ObjectToString(_consts),0);
  BA.debugLineNum = 420;BA.debugLine="Log(\"Unknown consts: \" & mode)";
 Debug.ShouldStop(8);
-camex2.__c.runVoidMethod ("LogImpl","64915210",RemoteObject.concat(RemoteObject.createImmutable("Unknown consts: "),_mode),0);
+camex2.__c.runVoidMethod ("LogImpl","04915210",RemoteObject.concat(RemoteObject.createImmutable("Unknown consts: "),_mode),0);
  };
  }
 }Debug.locals.put("mode", _mode);
@@ -1314,10 +1314,10 @@ if (true) return BA.ObjectToString(_consts.runMethod(false,"Get",(Object)(_i)));
  }else {
  BA.debugLineNum = 404;BA.debugLine="Log(Consts)'ignore";
 Debug.ShouldStop(524288);
-camex2.__c.runVoidMethod ("LogImpl","64849670",BA.ObjectToString(_consts),0);
+camex2.__c.runVoidMethod ("LogImpl","04849670",BA.ObjectToString(_consts),0);
  BA.debugLineNum = 405;BA.debugLine="Log(\"Unknown const: \" & i)";
 Debug.ShouldStop(1048576);
-camex2.__c.runVoidMethod ("LogImpl","64849671",RemoteObject.concat(RemoteObject.createImmutable("Unknown const: "),_i),0);
+camex2.__c.runVoidMethod ("LogImpl","04849671",RemoteObject.concat(RemoteObject.createImmutable("Unknown const: "),_i),0);
  BA.debugLineNum = 406;BA.debugLine="Return \"\"";
 Debug.ShouldStop(2097152);
 if (true) return BA.ObjectToString("");
@@ -1475,7 +1475,7 @@ case 7:
 this.state = 8;
  BA.debugLineNum = 59;BA.debugLine="Log(\"Camera not found.\")";
 Debug.ShouldStop(67108864);
-parent.__c.runVoidMethod ("LogImpl","62031624",RemoteObject.createImmutable("Camera not found."),0);
+parent.__c.runVoidMethod ("LogImpl","02031624",RemoteObject.createImmutable("Camera not found."),0);
  BA.debugLineNum = 60;BA.debugLine="id = Camera.CameraIDs(0)";
 Debug.ShouldStop(134217728);
 __ref.setField ("_id" /*RemoteObject*/ ,__ref.getField(false,"_camera" /*RemoteObject*/ ).runMethod(false,"getCameraIDs").getArrayElement(true,BA.numberCast(int.class, 0)));
@@ -1514,7 +1514,7 @@ case 11:
 this.state = 12;
  BA.debugLineNum = 65;BA.debugLine="Log(\"Failed to open camera\")";
 Debug.ShouldStop(1);
-parent.__c.runVoidMethod ("LogImpl","62031630",RemoteObject.createImmutable("Failed to open camera"),0);
+parent.__c.runVoidMethod ("LogImpl","02031630",RemoteObject.createImmutable("Failed to open camera"),0);
  BA.debugLineNum = 66;BA.debugLine="Return 0";
 Debug.ShouldStop(2);
 if (true) {
@@ -1901,7 +1901,7 @@ Debug.locals.put("title", _title);
 Debug.ShouldStop(2097152);
  BA.debugLineNum = 439;BA.debugLine="Log($\"******  ${title} **********\"$)";
 Debug.ShouldStop(4194304);
-camex2.__c.runVoidMethod ("LogImpl","65111809",(RemoteObject.concat(RemoteObject.createImmutable("******  "),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)((_title))),RemoteObject.createImmutable(" **********"))),0);
+camex2.__c.runVoidMethod ("LogImpl","05111809",(RemoteObject.concat(RemoteObject.createImmutable("******  "),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)((_title))),RemoteObject.createImmutable(" **********"))),0);
  BA.debugLineNum = 440;BA.debugLine="Dim jo As JavaObject = CameraMap";
 Debug.ShouldStop(8388608);
 _jo = RemoteObject.createNew ("anywheresoftware.b4j.object.JavaObject");
@@ -1969,7 +1969,7 @@ _value = (__ref.runClassMethod (b4a.example.camex2.class, "_objectstolist" /*Rem
 ;
  BA.debugLineNum = 457;BA.debugLine="Log($\"${k.RunMethod(\"getName\", Null)}: ${value}\"";
 Debug.ShouldStop(256);
-camex2.__c.runVoidMethod ("LogImpl","65111827",(RemoteObject.concat(RemoteObject.createImmutable(""),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)(_k.runMethod(false,"RunMethod",(Object)(BA.ObjectToString("getName")),(Object)((camex2.__c.getField(false,"Null")))))),RemoteObject.createImmutable(": "),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)(_value)),RemoteObject.createImmutable(""))),0);
+camex2.__c.runVoidMethod ("LogImpl","05111827",(RemoteObject.concat(RemoteObject.createImmutable(""),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)(_k.runMethod(false,"RunMethod",(Object)(BA.ObjectToString("getName")),(Object)((camex2.__c.getField(false,"Null")))))),RemoteObject.createImmutable(": "),camex2.__c.runMethod(true,"SmartStringFormatter",(Object)(BA.ObjectToString("")),(Object)(_value)),RemoteObject.createImmutable(""))),0);
  }
 }Debug.locals.put("k", _k);
 ;
@@ -2342,7 +2342,7 @@ __ref.getField(false,"_mediarecorder" /*RemoteObject*/ ).runVoidMethod ("RunMeth
        catch (Exception e5) {
 			BA.rdebugUtils.runVoidMethod("setLastException",__ref.getField(false, "ba"), e5.toString()); BA.debugLineNum = 136;BA.debugLine="Log(LastException)";
 Debug.ShouldStop(128);
-camex2.__c.runVoidMethod ("LogImpl","62490373",BA.ObjectToString(camex2.__c.runMethod(false,"LastException",__ref.getField(false, "ba"))),0);
+camex2.__c.runVoidMethod ("LogImpl","02490373",BA.ObjectToString(camex2.__c.runMethod(false,"LastException",__ref.getField(false, "ba"))),0);
  };
  BA.debugLineNum = 138;BA.debugLine="RecordingVideo = False";
 Debug.ShouldStop(512);

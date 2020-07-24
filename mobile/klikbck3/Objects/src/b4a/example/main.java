@@ -408,6 +408,7 @@ BA.applicationContext.stopService(new android.content.Intent(BA.applicationConte
             if (__a != null)
 				__a.finish();}
 
+BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, httputils2service.class));
 }
 public anywheresoftware.b4a.keywords.Common __c = null;
 public b4a.example.starter _starter = null;
@@ -415,6 +416,7 @@ public b4a.example.actkamera _actkamera = null;
 public b4a.example.actlapor _actlapor = null;
 public b4a.example.srvgps _srvgps = null;
 public b4a.example.gps _gps = null;
+public b4a.example.httputils2service _httputils2service = null;
 public static String  _activity_create(boolean _firsttime) throws Exception{
 RDebugUtils.currentModule="main";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
@@ -450,13 +452,13 @@ public static String  _imageview1_click() throws Exception{
 RDebugUtils.currentModule="main";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "imageview1_click", false))
 	 {return ((String) Debug.delegate(mostCurrent.activityBA, "imageview1_click", null));}
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub ImageView1_Click";
-RDebugUtils.currentLine=327681;
- //BA.debugLineNum = 327681;BA.debugLine="StartActivity(actKamera)";
+RDebugUtils.currentLine=720896;
+ //BA.debugLineNum = 720896;BA.debugLine="Sub ImageView1_Click";
+RDebugUtils.currentLine=720897;
+ //BA.debugLineNum = 720897;BA.debugLine="StartActivity(actKamera)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._actkamera.getObject()));
-RDebugUtils.currentLine=327682;
- //BA.debugLineNum = 327682;BA.debugLine="End Sub";
+RDebugUtils.currentLine=720898;
+ //BA.debugLineNum = 720898;BA.debugLine="End Sub";
 return "";
 }
 }

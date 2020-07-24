@@ -61,5 +61,9 @@
 			android:label="B4A Example"
 			android:screenOrientation="unspecified">
 		</activity>
+		<service android:name=".httputils2service">
+		</service>
+		<receiver android:name=".httputils2service$httputils2service_BR">
+		</receiver>
 	</application>
 </manifest>

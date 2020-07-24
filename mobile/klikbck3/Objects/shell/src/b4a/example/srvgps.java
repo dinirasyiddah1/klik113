@@ -54,7 +54,8 @@ public static b4a.example.starter _starter = null;
 public static b4a.example.actkamera _actkamera = null;
 public static b4a.example.actlapor _actlapor = null;
 public static b4a.example.gps _gps = null;
+public static b4a.example.httputils2service _httputils2service = null;
   public Object[] GetGlobals() {
-		return new Object[] {"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"gps",Debug.moduleToString(b4a.example.gps.class),"GPS1",srvgps._gps1,"gpsStarted",srvgps._gpsstarted,"Main",Debug.moduleToString(b4a.example.main.class),"rp",srvgps._rp,"Service",srvgps.mostCurrent._service,"Starter",Debug.moduleToString(b4a.example.starter.class)};
+		return new Object[] {"actKamera",Debug.moduleToString(b4a.example.actkamera.class),"actLapor",Debug.moduleToString(b4a.example.actlapor.class),"gps",Debug.moduleToString(b4a.example.gps.class),"GPS1",srvgps._gps1,"gpsStarted",srvgps._gpsstarted,"HttpUtils2Service",Debug.moduleToString(b4a.example.httputils2service.class),"Main",Debug.moduleToString(b4a.example.main.class),"rp",srvgps._rp,"Service",srvgps.mostCurrent._service,"Starter",Debug.moduleToString(b4a.example.starter.class)};
 }
 }

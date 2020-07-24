@@ -19,6 +19,6 @@ ModuleClosedNodes3=
 ModuleClosedNodes4=
 ModuleClosedNodes5=
 ModuleClosedNodes6=
-NavigationStack=actLapor,Activity_Create,21,0,actLapor,Activity_Pause,34,0,Visual Designer,lapor.bal,-100,6,actLapor,Globals,11,0,Visual Designer,start.bal,-100,6,Main,Activity_Pause,41,0,CamEx2,Class_Globals,0,0,actKamera,Process_Globals,5,0,actKamera,Globals,17,0,Main,ImageView1_Click,43,0
+NavigationStack=actLapor,jobdone1,121,0,CamEx2,StartVideoRecording,123,0,actKamera,CaptureVideo,127,0,actKamera,HandleError,145,0,actKamera,Process_Globals,9,2,actKamera,btnRecord_Click,118,0,actKamera,TakePicture,148,0,CamEx2,PrepareSurfaceForVideo,106,0,Visual Designer,kamera.bal,-100,2,actKamera,btnMode_Click,107,2
 SelectedBuild=0
 VisibleModules=1,2,3,4,5
