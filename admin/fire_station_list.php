@@ -34,19 +34,6 @@ $query = pg_query("SELECT * FROM pos_damkar");
     </tr>
   </thead>
 
-  <?php
-// include "connect.php";
-
-
-//  $data=pg_query("SELECT * FROM public.pos_damkar order by id_pos_damkar");
-//  if ($data === FALSE) {
-//  die(pg_error());
-
-//  }
- 
-//  while($hasil=pg_fetch_array($data)){ 
- 
- ?>
 
   <tbody>
   

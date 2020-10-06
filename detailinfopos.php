@@ -11,14 +11,11 @@ $hasil=pg_query($querysearch);
 while($row = pg_fetch_array($hasil))
 	{
 		  $id=$row['id_pos_damkar'];
-		  // $price=$row['price'];
-		  // $culinary_name=$row['culinary_name'];
 		  $name=$row['nama_pos'];
 		  $alamat=$row['alamat'];
 		  $image=$row['image'];		 
 		  $longitude=$row['lng'];
 		  $latitude=$row['lat'];
-		  // $dataarray[]=array('id'=>$id,'name'=>$name,'culinary_name'=>$culinary_name,'price'=>$price,'address'=>$address,'cp'=>$cp,'close'=>$close,'fasilitas'=>$fasilitas,'open'=>$open,'longitude'=>$longitude,'latitude'=>$latitude);
 		  $dataarray[]=array('id_pos_damkar'=>$id,'nama_pos'=>$name,'alamat'=>$alamat,'image'=>$image,'longitude'=>$longitude,'latitude'=>$latitude);
 	}
 echo json_encode ($dataarray);

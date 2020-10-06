@@ -1,19 +1,18 @@
-
+var map;
 var drawingManager;
 var selectedShape;
 var markers = [];
-
 // ===== CALLBACK MAPS DRAWER =====
-function initialize(){
+function initMap(){
     map = new google.maps.Map(document.getElementById('map'),{
-    center: new google.maps.LatLng(-0.304820, 100.381421),
-    zoom: 16,
+    center: new google.maps.LatLng(-0.9416672,  100.4266585),
+    zoom: 20,
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: true,
     zoomControl: true,
-    mapTypeControl: true
-  }); 
-        
+    mapTypeControl: true,
+    gestureHandling: 'greedy'
+  });    
   //mencari lokasi dengan latlng
   var geocoder = new google.maps.Geocoder;
   var infowindow = new google.maps.InfoWindow;
@@ -21,7 +20,6 @@ function initialize(){
     setMapOnAll(null);
         geocodeLatLng(geocoder, map, infowindow);
     });
-    
     function geocodeLatLng(geocoder, map, infowindow) {
         var input = document.getElementById('latlng').value;
         var latlngStr = input.split(',', 2);
@@ -36,8 +34,6 @@ function initialize(){
               });
         map.setCenter(latlng);
         markers.push(marker);
-              /* infowindow.setContent(results[1].formatted_address);
-              infowindow.open(map, marker); */
         $('#showm,#hidem').remove();
         $('#floating-panel').append('<button class="btn btn-default my-btn" id="hidem" onclick="clearMarkers()" type="button" title="Hide marker"><i class="fa fa-map-marker"></button>');
             } else {
@@ -47,33 +43,16 @@ function initialize(){
             window.alert('Geocoder failed due to: ' + status);
           }
         });
-
-
-    var myLatLng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: myLatLng
-    });
-
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: 'Hello World!'
-    });
-
     }
-  //menampilkan digitasi bengkel
-  mesjid_dig = new google.maps.Data();
-	mesjid_dig.loadGeoJson('act/masjid.php?id='+id.value);
-	mesjid_dig.setMap(map);
-	mesjid_dig.setStyle({
+    unit_dig = new google.maps.Data();
+	unit_dig.loadGeoJson('kejadian_region.php');
+	unit_dig.setMap(map);
+	unit_dig.setStyle({
 		fillColor: 'red',
 		strokeColor: 'red'
 	});
-  //zoom peta sesuai digitasi
   var bounds = new google.maps.LatLngBounds();
-  mesjid_dig.addListener('addfeature', function(e) {
+  unit_dig.addListener('addfeature', function(e) {
     processPoints(e.feature.getGeometry(), bounds.extend, bounds);
     map.fitBounds(bounds);
   });
@@ -140,9 +119,7 @@ function initialize(){
   google.maps.event.addListener(map, 'click', clearSelection);
   google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', deleteSelectedShape);
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
+google.maps.event.addDomListener(window, 'load', initMap);
 function processPoints(geometry, callback, thisArg) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
@@ -193,21 +170,19 @@ function showMarkers() {
   $('#floating-panel').append('<button class="btn btn-default my-btn" id="hidem" onclick="clearMarkers()" type="button" title="Hide marker"><i class="fa fa-map-marker"></i></button>');
 }
 function hideReg() {
-  mesjid_dig.setMap(null);
+  unit_dig.setMap(null);
   $('#hider').remove();
   $('#regedit').append('<button class="btn btn-default my-btn" id="showr" title="Show region" onclick="showReg()"><i class="fa fa-eye-slash"> Show region</i></button>');
 }
 function showReg() {
-  mesjid_dig.setMap(map);
+  unit_dig.setMap(map);
   $('#showr').remove();
   $('#regedit').append('<button class="btn btn-default my-btn" id="hider" title="Hide region" onclick="hideReg()"><i class="fa fa-eye-slash"> Hide region</i></button>');
 }
-
 function resizeMap() {
    if(typeof map =="undefined") return;
    setTimeout( function(){resizingMap();} , 400);
 }
-
 function resizingMap() {
    if(typeof map =="undefined") return;
    var center = map.getCenter();

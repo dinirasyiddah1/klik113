@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">KLIK113 - WEBGIS Kebakaran Kota Padang</a>
+          <a class="navbar-brand" href="index.php">KLIK113 - GIS Fire Data Archiving In Padang City</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

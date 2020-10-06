@@ -43,7 +43,7 @@ include 'connect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">KLIK113 - WEBGIS Kebakaran Kota Padang</a>
+          <a class="navbar-brand" href="index.php">KLIK113 - GIS Fire Data Archiving In Padang City</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -55,7 +55,7 @@ include 'connect.php';
 
           <ul class="nav navbar-nav navbar-right navbar-user">                     
             <li class="dropdown user-dropdown">
-              <a href="login.php" class="" ><i class="fa fa-sign-in"></i> Log In</a>
+              <a href="logout.php" class="" ><i class="fa fa-sign-out"></i> Log Out</a>
               
             </li>
           </ul>
@@ -435,48 +435,48 @@ include 'connect.php';
               <div class="col-sm-5">
               <div class="panel-body">
               
-								<!-- menampilkan foto-->
-                                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- menampilkan foto-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-<!-- Indicators -->
-<ul class="carousel-indicators">
-<?php
-$i = 0;
-$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
-while($data1 = pg_fetch_array($sql1)){
-    $actives = '';
-    if($i == 0){
-        $actives = 'active';
-    }
-?>
-  <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
-  <?php $i++; }?>
-</ul>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+    <?php
+    $i = 0;
+    $sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+    while($data1 = pg_fetch_array($sql1)){
+        $actives = '';
+        if($i == 0){
+            $actives = 'active';
+        }
+    ?>
+    <li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
+    <?php $i++; }?>
+    </ul>
 
-<!-- The slideshow -->
-<div class="carousel-inner">
-<?php
-$i = 0;
-$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
-while($data1 = pg_fetch_array($sql1)){
-    $actives = '';
-    if($i == 0){
-        $actives = 'active';
-    }
-?>
-  <div class="item <?=$actives;?>">
-    <img src="../file/fireincident/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" height="400">
-  </div>
-  <?php $i++; }?>
-</div>
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+    <?php
+    $i = 0;
+    $sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+    while($data1 = pg_fetch_array($sql1)){
+        $actives = '';
+        if($i == 0){
+            $actives = 'active';
+        }
+    ?>
+        <div class="item <?=$actives;?>">
+            <img src="../file/fireincident/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" height="400">
+        </div>
+    <?php $i++; }?>
+    </div>
 
 
-<!-- Left and right controls -->
-<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-<span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-</a>
-<a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
     <span class="sr-only">Next</span>
   </a>
@@ -485,7 +485,7 @@ while($data1 = pg_fetch_array($sql1)){
 <br><br>
 <div>
     <!-- cetak laporan -->
-    <a class='btn btn-warning'  href='cetak.php?id_kejadian=<?=$hasil['id_kejadian']?>' target="_BLANK"><span style='color:black'><i class='fa fa-print'> Cetak Laporan</i></span></a>
+    <a class='btn btn-warning'  href='cetak.php?id_kejadian=<?=$hasil['id_kejadian']?>' target="_BLANK"><span style='color:black'><i class='fa fa-print'> Print Report </i></span></a>
         
     </div>
 					       </div>

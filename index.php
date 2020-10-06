@@ -30,62 +30,6 @@ var directionsDisplay;
 var infoDua=[];
 var rute = [];
 
-//Membuat Fungsi Menampilkan Seluruh pos damkar
-function viewkej()
-{
-  hapusMarkerTerdekat();
-  hapusRadius();
-  hapusInfo();
-  clearroute2();
-  $('#hasilcari').empty();
-  $('#hasilpencarian').empty();
-  $("#filterik").hide();
-  $('#hasilik').show();
-  $('#hasilcari1').show();
-  $('#hasilcari').empty();
-  $.ajax
-  ({ 
-    url: server+'viewpos.php', data: "", dataType: 'json', success: function(rows) 
-    { 
-      if(rows==null)
-      {
-        alert('Data Did Not Exist!');
-      }
-      else
-      {
-        $('#hasilcari').append("<thead><th>Name</th><th colspan='3'>Action</th></thead>");
-        console.log(rows);
-        for (var i in rows) 
-        { 
-          var row = rows[i];
-          var id = row.id_pos_damkar;
-          var name = row.nama_pos;
-          var address=row.addrealamatss;
-         
-          var lat=row.lat;
-          var lon = row.lng;
-          //var ik_status = row.ik_status;
-          console.log(name);
-          centerBaru = new google.maps.LatLng(lat, lon);
-          map.setCenter(centerBaru);
-          map.setZoom(15);  
-          var marker = new google.maps.Marker
-          ({
-            position: centerBaru,              
-            icon:'assets/img/cul.png',
-            animation: google.maps.Animation.DROP,
-            map: map
-          });
-          markersDua.push(marker);
-          map.setCenter(centerBaru);
-          // console.log(nama);
-           $('#hasilcari').append("<tr><td>"+name+"</td><td><a role='button' class='btn btn-success' onclick='detculi(\""+id+"\");detailinfokul(\""+id+"\");'>Show</a></td><td><a role='button' class='btn btn-danger fa fa-taxi' onclick='kulAngkot(\""+id+"\")'></a></td></tr>");
-        }
-      } 
-      $('#hasilpencarian').append("<h5 class='box-title' id='hasilpencarian'>Result :</h5>"+rows.length);
-    }
-  });           
-}
 
 </script>
   </head>

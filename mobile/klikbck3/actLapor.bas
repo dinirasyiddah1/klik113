@@ -12,7 +12,7 @@ Version=9.5
 Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
-	Dim server ="http://27caa6b85e69.ngrok.io/klik113/mobile/"
+	Dim server ="http://f7d03047bae2.ngrok.io/klik113/mobile/"
 End Sub
 
 Sub Globals
@@ -29,8 +29,9 @@ Sub Globals
 	
 	Private btnLapor As Button
 	Type id_lines (id_laporan As String)
-	Dim arrayid(100) As String
-	Private tampil_id="tampil_id" As String
+	
+	Private EditLat As EditText
+	Private EditLon As EditText
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
@@ -52,8 +53,8 @@ Sub Activity_Pause (UserClosed As Boolean)
 End Sub
 
 Public Sub LocationChanged(Location1 As Location)
-	lblLat.Text = "Lat = " & Location1.ConvertToMinutes(Location1.Latitude)
-	lblLon.Text = "Lon = " & Location1.ConvertToMinutes(Location1.Longitude)
+	EditLat.Text = "" & Location1.Latitude
+	EditLon.Text = "" & Location1.Longitude
 End Sub
 
 Sub id_laporan
@@ -80,21 +81,15 @@ Sub btnLapor_Click
 	no_hp = phone.Text
 	Log(no_hp)
 	
-	Dim lat As String
-	lat = lblLat.Text
+	Dim lat As Double
+	lat = EditLat.Text
 	Log(lat)
 	
-	Dim lon As String
-	lon = lblLon.Text
+	Dim lon As Double
+	lon = EditLon.Text
 	Log(lon)
 	
-	DateTime.DateFormat = "yyyy-MM-dd"
-	Dim tanggal= DateTime.Date(DateTime.now)
-	Log(tanggal)
 	
-	DateTime.TimeFormat = "hh:mm"
-	Dim jam = DateTime.Time(DateTime.Now)
-	Log (jam)
 	
 	Dim id_kejadian As Int
 	id_kejadian = 0
@@ -102,7 +97,7 @@ Sub btnLapor_Click
 	
 	Dim Job1 As HttpJob
 	Job1.Initialize("Job1",Me)
-	Job1.PostString(""&server&"laporkan.php","&nama_orang=" & nama_orang &"&lokasi="& lokasi &"&no_hp=" & no_hp &"&tanggal=" & tanggal &"&jam=" & jam  &"&lat=" & lat &"&lon=" & lon &"&id_kejadian=" & id_kejadian)
+	Job1.PostString(""&server&"laporkan.php","&nama_orang=" & nama_orang &"&lokasi="& lokasi &"&no_hp=" & no_hp &"&lat=" & lat &"&lon=" & lon &"&id_kejadian=" & id_kejadian)
 
 End Sub
 
@@ -125,28 +120,8 @@ Sub JobDone (Job1 As HttpJob)
 	Job1.Release
 End Sub
 
-Sub jobdone1 (Job As HttpJob)
-	ProgressDialogHide
-	If Job.Success Then
-		Dim res As String
-		Log("response :" &res)
-		Dim parser As JSONParser
-		parser.Initialize(res)
-		Select Job.JobName
-			Case tampil_id
-				Dim array_id As List
-				array_id = parser.NextArray
-				For i=0 To array_id.Size -1
-					Dim m As Map
-					m = array_id.Get(i)
-					Dim f As id_lines
-					f.Initialize
-					f.id_laporan= m.Get("id_laporan")
-					arrayid (i) =f.id_laporan
-	
-				Next
-				
-		End Select
-	End If
+
+
+Sub Activity_Click
 	
 End Sub

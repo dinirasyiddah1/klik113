@@ -1,0 +1,116 @@
+﻿Build1=Default,b4a.example
+File1=1.bal
+File10=truklik.jpg
+File2=891px-Logo_Padang.svg.png
+File3=kamera.bal
+File4=kisspng-computer-software-report-clip-art-point-of-sale-ma-5b62cf1d493272.2784313615332022052998.jpg
+File5=klik113.jpg
+File6=lapor.bal
+File7=start.bal
+File8=StillPicture.bal
+File9=truk.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+IconFile=
+Library1=core
+Library2=camera2
+Library3=javaobject
+Library4=runtimepermissions
+Library5=gps
+Library6=okhttputils2
+Library7=json
+Library8=phone
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<uses-permission~\n~  android:name="android.permission.WRITE_EXTERNAL_STORAGE"~\n~  android:maxSdkVersion="26" />~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~AddPermission(android.permission.WRITE_EXTERNAL_STORAGE)~\n~AddPermission(android.permission.READ_EXTERNAL_STORAGE)
+Module1=Starter
+Module2=actKamera
+Module3=actLapor
+Module4=srvGPS
+Module5=actCam
+Module6=CamEx2
+Module7=CamExx
+Module8=gps
+Module9=MultipartPost
+NumberOfFiles=10
+NumberOfLibraries=8
+NumberOfModules=9
+Version=9.5
+@EndOfDesignText@
+	#Region  Project Attributes 
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+Sub Process_Globals
+	Dim Timer1 As Timer
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Dim Panel1 As Panel
+	Dim Panel3 As Panel
+	
+	Dim WebView1 As WebView
+	Dim Button1 As Button
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("start")
+	Button1.Visible=False
+	WebView1.LoadUrl("http://4894ba1bb609.ngrok.io/klik113-master/mobile/incident_today.php")
+	Panel1.Visible=True ' put panel1 visible
+	
+	Panel1.BringToFront ' if some control is visible over, forces panel1 to be in front
+	Panel1.SetLayout((Activity.Width - Panel1.Width) / 2, (Activity.Height - Panel1.Height) / 2, 256dip, 256dip) ' center panel1 on the screen
+	
+	Timer1.Initialize("Timer1", 3000) ' start timer1 for 3 secs
+	Timer1.Enabled=True
+	
+End Sub
+
+Sub Activity_Resume
+	
+End Sub
+
+
+
+
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+Sub Timer1_tick
+
+	Panel1.Visible=False
+	Panel3.Visible=False
+	Timer1.Enabled = False
+	Button1.Visible=True
+	
+	
+
+End Sub
+
+
+
+Sub Button1_Click
+	StartActivity(actKamera)
+End Sub

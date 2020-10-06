@@ -4,13 +4,9 @@ include 'connect.php';
 // menyimpan data kedalam variabel
 $id				= $_POST['id_pos_damkar'];
 $geom 			= $_POST['geom'];
-
 $nama           = $_POST['nama_pos'];
 $alamat         = $_POST['alamat'];
-
 $image=$_FILES['url_photo']['name'];
-
-
 
 $query = pg_query("SELECT max(id_pos_damkar) as maxid FROM pos_damkar");
 $data = pg_fetch_array($query);
@@ -20,15 +16,12 @@ $no_urut++;
 $char = "FS";
 $id_pos = $char. sprintf("%04s",$no_urut);
 
-
-
 // query SQL untuk insert data
 $sql = pg_query
 	("INSERT INTO public.pos_damkar
 		(id_pos_damkar, nama_pos, alamat, geom)
 	VALUES 
 		('$id_pos', '$nama', '$alamat', ST_GeomFromText('$geom'))
-
 	"
 	);
 
@@ -57,15 +50,9 @@ $jumlah = count($_FILES['gambar']['name']);
       echo "Gambar tidak ada";
 	}
 
-
 if($sql){
-	
-
 	header('location:fire_station_list.php');
-	
 }else{
 	echo"gagal";
 }
-
-
 ?>

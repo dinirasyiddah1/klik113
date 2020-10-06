@@ -14,3 +14,4 @@ while($data=pg_fetch_array($hasil))
  }
  echo $load;
 ?>
+

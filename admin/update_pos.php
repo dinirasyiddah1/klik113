@@ -1,5 +1,4 @@
 <?php 
- 
 include 'connect.php';
 // menyimpan data kedalam variabel
 $id				= $_GET['id_pos_damkar'];
@@ -7,16 +6,12 @@ $geom 			= $_POST['geom'];
 $nama           = $_POST['nama_pos'];
 $alamat         = $_POST['alamat'];
 
-$image=$_FILES['image']['name'];
-
-
 // query SQL untuk update data
 $sql = pg_query
 	("UPDATE public.pos_damkar
 	SET id_pos_damkar='$id', nama_pos='$nama', alamat='$alamat', geom=ST_GeomFromText('$geom')
 	WHERE id_pos_damkar='$id'
 	");
-
 
 //upload foto
 $query = pg_query("SELECT max(id_gambar) AS maxid FROM gambar_pos");
@@ -43,15 +38,6 @@ if ($jumlah > 0) {
 else{
   echo "Gambar tidak ada";
 }
-
-
-// if($sql){
-// 	header('location:fire_station_list.php');
-// }else{
-// 	echo"gagal";
-// }
-
-
 
 
 ?>

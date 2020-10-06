@@ -34,7 +34,7 @@ include 'admin/connect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">KLIK113 - WEBGIS Kebakaran Kota Padang</a>
+          <a class="navbar-brand" href="index.php">KLIK113 - GIS Fire Data Archiving In Padang City</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,6 +70,7 @@ include 'admin/connect.php';
       <div class="card" style="width:185%"> 
         <div class="col-sm-3" id="hide2">
           <!-- menampilkan foto-->
+          <div class="panel-body">
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
 <!-- Indicators -->
@@ -115,7 +116,7 @@ while($data1 = pg_fetch_array($sql1)){
   </a>
 
 </div>
-        </div>
+        </div></div>
         <div class="col-sm-9">
           <div class="card-body">
               <h4 class="card-title"><b>Address</b></h4>

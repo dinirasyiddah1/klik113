@@ -109,9 +109,9 @@ include '../admin/connect.php';
                         else return false;
                         }
                       </script>
-                    <option value='Accept'>Accept</></option>
-                    <option value='Rejected'>Rejected</option>
-                    <option value='Done'>Done</option>
+                    <option style='color: blue' value='On progress'>Accept</></option>
+                    <option style='color: red' value='Rejected'>Rejected</option>
+                    <option style='color: green' value='Done'>Done</option>
                   </select>
                   &nbsp;&nbsp;
                   <button class='btn btn-warning' onclick='return konfirmasi()' type='submit' value='simpan'>ok</button></td></tr>

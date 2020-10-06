@@ -9,6 +9,15 @@ include 'admin/connect.php';
     <?php
       include ('include/head.php');
     ?>
+    <style type="text/css">
+        .container {
+            border: 1px solid #000;
+            width: 90%;
+        }
+        .margin {
+            margin: 10px 0px 10px 0px;
+        }
+    </style>
   </head>
 
   <body>
@@ -34,7 +43,7 @@ include 'admin/connect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">KLIK113 - WEBGIS Kebakaran Kota Padang</a>
+          <a class="navbar-brand" href="index.php">KLIK113 - GIS Fire Data Archiving In Padang City</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,18 +96,53 @@ include 'admin/connect.php';
 					                    <div class="panel-body">
 					                       <!--  <a class="btn btn-primary btn-lg btn-block">Tambah Panti Asuhan</a> -->
 					                        <div class="box-body">
-					                        	<table>
-					                        		<tbody>
-                                      <?php
-                                          while($data1 = pg_fetch_array($sql1)){
-                                            echo"
-                                            <img class='img-thumbnail' src='file/fireincident/".$id."/".$data1['nama_photo']."'   alt='Card image' style='width:20%'>
-          
-                                            ";
-                                          };
-                                      ?>
-					                        		</tbody>	
-					                        	</table>		
+					                        	<!-- menampilkan foto-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+<!-- Indicators -->
+<ul class="carousel-indicators">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+<li data-target="#myCarousel" data-slide-to="<?=$i;?>" class="<?=$actives;?>"></li>
+<?php $i++; }?>
+</ul>
+
+<!-- The slideshow -->
+<div class="carousel-inner">
+<?php
+$i = 0;
+$sql1 = pg_query("SELECT * from gambar_kejadian where id_kejadian='$id'");
+while($data1 = pg_fetch_array($sql1)){
+    $actives = '';
+    if($i == 0){
+        $actives = 'active';
+    }
+?>
+    <div class="item <?=$actives;?>">
+        <img src="file/fireincident/<?=$id;?>/<?=$data1['nama_photo'];?>" width="100%" height="400">
+    </div>
+<?php $i++; }?>
+</div>
+
+
+<!-- Left and right controls -->
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+<span class="glyphicon glyphicon-chevron-right"></span>
+<span class="sr-only">Next</span>
+</a>
+
+</div>	
 					                        </div>				
 					                    </div>
 					                </section>
@@ -120,6 +164,7 @@ include 'admin/connect.php';
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&callback=initMap">
     </script>
+    <script src="assets/js/IMG-BOX-master/img_box.js"></script>
     <script src="assets/js/jquery-1.10.2.js"></script>
     <script src="assets/js/bootstrap.js"></script>
     <script src="admin/script.js" type="text/javascript"></script>

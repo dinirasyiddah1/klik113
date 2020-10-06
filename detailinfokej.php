@@ -1,21 +1,19 @@
 <?php
-require 'admin/connect.php';
-$info = $_GET["info"];
-$querysearch ="select kejadian.id_kejadian, kejadian.jam, kejadian.id_regu, kejadian.lokasi,
-kejadian.kronologis, 
-ST_X(ST_Centroid(kejadian.geom)) AS lng, ST_Y(ST_CENTROID(kejadian.geom)) As lat, kejadian.kerusakan,
-kejadian.luas_area, kejadian.taksiran_kerugian, kejadian.username_admin, kejadian.username_petugas, kejadian.tanggal 
-from kejadian  where kejadian.id_kejadian = '$info'
-";
+    require 'admin/connect.php';
+    $info = $_GET["info"];
+    $querysearch ="select kejadian.id_kejadian, kejadian.jam, kejadian.id_regu, kejadian.lokasi,
+    kejadian.kronologis, 
+    ST_X(ST_Centroid(kejadian.geom)) AS lng, ST_Y(ST_CENTROID(kejadian.geom)) As lat, kejadian.kerusakan,
+    kejadian.luas_area, kejadian.taksiran_kerugian, kejadian.username_admin, kejadian.username_petugas, kejadian.tanggal 
+    from kejadian  where kejadian.id_kejadian = '$info'
+    ";
 
 
 $hasil=pg_query($querysearch);
 while($row = pg_fetch_array($hasil))
 	{
 		  $id=$row['id_kejadian'];
-		  // $price=$row['price'];
-		  // $culinary_name=$row['culinary_name'];
-          $jam=$row['jam'];
+		  $jam=$row['jam'];
           $id_regu=$row['id_regu'];
           $lokasi=$row['lokasi'];
           $kronologis=$row['kronologis'];
@@ -27,8 +25,7 @@ while($row = pg_fetch_array($hasil))
           $username_admin =$row['username_admin'];
           $username_petugas =$row['username_petugas'];
           $tanggal=$row['tanggal'];
-		  // $dataarray[]=array('id'=>$id,'name'=>$name,'culinary_name'=>$culinary_name,'price'=>$price,'address'=>$address,'cp'=>$cp,'close'=>$close,'fasilitas'=>$fasilitas,'open'=>$open,'longitude'=>$longitude,'latitude'=>$latitude);
-          $dataarray[]=array('id_kejadian'=>$id,'jam'=>$jam, 'id_regu'=>$id_regu, 'lokasi'=>$lokasi,
+		  $dataarray[]=array('id_kejadian'=>$id,'jam'=>$jam, 'id_regu'=>$id_regu, 'lokasi'=>$lokasi,
           'kronologis'=>$kronologis,'longitude'=>$longitude,
           'latitude'=>$latitude, 'kerusakan'=>$kerusakan, 'luas_area'=>$luas_area,
           'taksiran_kerugian'=>$taksiran_kerugian, 'username_admin' =>$username_admin,

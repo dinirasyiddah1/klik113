@@ -2,7 +2,7 @@
 include 'connect.php';
 // menyimpan data kedalam variabel
 $nama           = $_POST['name'];
-$umur			= $_post['age'];
+$umur			= $_POST['age'];
 $pekerjaan      = $_POST['job'];
 $suku           = $_POST['suku'];
 $alamat         = $_POST['address'];
@@ -15,6 +15,7 @@ $no_urut = substr($id_orang,2,5);
 $no_urut++;
 $char = "P";
 $id_orang = $char . sprintf("%05s",$no_urut);
+
 // query SQL untuk insert data
 $sql = pg_query
 	("INSERT INTO public.orang
@@ -23,16 +24,16 @@ $sql = pg_query
 		('$id_orang', '$nama', '$umur', '$pekerjaan', '$suku', '$alamat', '$no_hp')
 	");
 
-if($sql){
+// if($sql){
 	
 
-	header('location:input_incident.php');
-	echo "<div class='alert alert-success' role='alert'>
-	Data entered successfully
-  </div>";
-}else{
-	echo"gagal";
-}
+// 	header('location:input_incident.php');
+// 	echo "<div class='alert alert-success' role='alert'>
+// 	Data entered successfully
+//   </div>";
+// }else{
+// 	echo"gagal";
+// }
 
 
 ?>

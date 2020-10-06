@@ -592,7 +592,7 @@ include 'connect.php';
     document.getElementById('no_hp').value = NoHp[id].satu;
     };
     </script>
-    <script src="map_incident.js" type="text/javascript"></script>
+    <script src="mapupdate_incident.js" type="text/javascript"></script>
     <script src="../assets/js/jquery-1.10.2.js"></script>
     <script src="../assets/js/bootstrap.js"></script>
     <!-- <script src="script.js" type="text/javascript"></script> -->

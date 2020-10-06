@@ -1,4 +1,3 @@
-
 <?php
 include 'connect.php';
 // menyimpan data kedalam variabel
@@ -39,7 +38,6 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 
 
 
-
 				// query SQL untuk insert data
 			$sql = pg_query
 			("INSERT INTO public.kejadian
@@ -57,27 +55,24 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 			);
 			};
 
+			
+$queryLap = pg_query("SELECT max(id_laporan) AS maxLap FROM detail_pelapor");
+$data = pg_fetch_array($queryLap);
+$id_laporan = $data['maxLap'];
+$no_lap = substr($id_laporan,2,5);
+$no_lap++;
+$charLap = "L";
+$id_laporan = $charLap . sprintf("%05s",$no_lap);
+
 		foreach($pelapor as $pelapor_val){
 			$sql_pelapor = pg_query(
-				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelapor)
+				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelapor, id_laporan)
 				VALUES
-				 ('$id_kejadian','$pelapor_val','')
+				 ('$id_kejadian','$pelapor_val','', $id_laporan)
 				"
 			);
 		};
-		// foreach($objek_terbakar as $objek_terbakar_val){
-		// 	$sql_objek_terbakar = pg_query(
-		// 		"INSERT INTO detail_objek_terbakar (id_objek,id_kejadian,id_orang,jenis_kejadian)
-		// 		VALUES
-		// 		 ('$objek_terbakar_val','$id_kejadian','$pemilik','$jenis_kejadian')
-		// 		"
-		// 	);
-		// 	};
 
-			// var_dump($objek_terbakar);
-			// echo "<br/>";
-			// var_dump($pemilik);
-			// echo count($objek_terbakar);
 $a = 0;
 $b=0;			
 while ($a< count($objek_terbakar)) {
@@ -128,14 +123,7 @@ if ($b<count($pemilik)){
 		$skorban = $status_korban['maxstat'];
 		$skorban++;
 
-		// foreach ($korban as $korban_data) {
-		// 	$sql_kendaraan = pg_query(
-		// 		"INSERT INTO detail_korban (id_kejadian,id_korban,id_kondisi,status_korban)
-		// 		VALUES
-		// 		 ('$id_kejadian','$korban_data','$kondisi', '$skorban')
-		// 		"
-		// 	);
-		// };
+
 
 		$x = 0;
 $y=0;			
@@ -188,14 +176,5 @@ else{
 			}else{
 			echo"gagal";
 			}
-	
-
-
-
-
-
-
-
-
 
 ?>

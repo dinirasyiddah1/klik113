@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MEMBUAT CETAK PRINT LAPORAN DENGAN PHP - WWW.MALASNGODING.COM</title>
+	<title>Fire Incident Report</title>
     <style>
     }
     th{
@@ -10,13 +10,13 @@
     </style>
 </head>
 <body>
- <div id="source-html" style=>
+ <div id="source-html" >
 	<center>
 		<h2 style="font-family:'Britannic Bold';font-size:10pt;"><u>LAPORAN KEJADIAN</u></h2>
 	</center>
  
 	<br/>
- 
+ <div class="panel-body" >
 	<p style="font-family:'Franklin Gothic Medium'; font-size:10pt; text-align:left;">
     Melaporkan telah terjadi 
 	</p>
@@ -402,41 +402,25 @@
                              where id_kejadian='$id'");
             $data=pg_fetch_array($query);
         ?>
-        <tr><th><?=$data['jabatan'];?><br><br><br><th></tr>
+        <tr><th><?=$data['jabatan'];?><br><br><br><br><br><th></tr>
         
         <tr><th><u><?=$data['nama'];?></u></th></tr>
         <tr><td><?=$data['username_admin'];?></td></tr>
     </table>
 </div>
 <div>
-
+<br><br>
 </div>
-    <div class="content-footer">
-                <button id="btn-export" onclick="exportHTML();">Export to word doc</button>
-    </div>
-	
+    
+	</div>
+
 	<!-- <script>
 		window.print();
 	</script> -->
 	
     <script>
-    function exportHTML(){
-       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-            "xmlns='http://www.w3.org/TR/REC-html40'>"+
-            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-       var footer = "</body></html>";
-       var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
-       
-       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-       var fileDownload = document.createElement("a");
-       document.body.appendChild(fileDownload);
-       fileDownload.href = source;
-       fileDownload.download = 'document.doc';
-       fileDownload.click();
-       document.body.removeChild(fileDownload);
-    }
-</script>
+		window.print();
+	</script>
 
 </body>
 </html>

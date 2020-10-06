@@ -2,9 +2,13 @@
 session_start();
 include 'connect.php';
 
-	$page = "Fire Incident";
+  $page = "Fire Incident";
 
+  // untuk modal people bagian select suku
+  $querySuku = "SELECT * FROM suku";
+  $sqlSuku=pg_query($querySuku) or die (pg_error());
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +41,7 @@ include 'connect.php';
 			  
 <div class="col-lg-6">
 <div class="panel-body">
-        <form method="post" action="..admin/input_incident_aksi.php" enctype="multipart/form-data">
+        <form method="post" action="input_incident_aksi.php" enctype="multipart/form-data">
                 <table>
                 <br>
                     <div class="form-group">
@@ -52,9 +56,14 @@ include 'connect.php';
                     <label for="id">1. <span style="color:red">*</span> Date & Time </label><br>
                     <div class="panel panel-default">    
                     <div class="form-group panel-body">
-                      <input type="date" class="form-control" name="tanggal" value="" required>
-                      <input type="time" class="form-control" name="jam" value=""required> 
-                   <br>
+                      <div class="col-sm-6">
+                        <input type="date" class="form-control" name="tanggal" value="" required>
+                      </div>
+                    <div class="col-sm-6">
+                        <input type="time" class="form-control" name="jam" value=""required> 
+                    </div>
+                      
+                      <br><br><br>
                     <label for="id"><span style="color:red">*</span> Picket Team </label>
                       <select id="regu_piket" name="regu_piket" class="form-control" required>
                      <option value="">Please Select</option>
@@ -135,7 +144,7 @@ include 'connect.php';
                 </div>
                 </div>
                 <br>
-                    <button type="button" class="btn btn-info" data-toggle='modal'  data-target='#show'> + Enter Data of People Involved</button>  
+                    <button type="button" name="addPeople" id="addPeople" class="btn btn-info" data-toggle='modal'  data-target='#showPeople'> + Enter Data of People Involved</button>  
                     <br><br>
                 <div class="form-group">
                     <label for="pelapor">5. Reported By <span style="color:red">*</span></label>
@@ -257,7 +266,8 @@ include 'connect.php';
                     </select>
                     </div>
                     <div class="col-sm-5">
-                    <button type="button" class="btn btn-info" data-toggle='modal'  data-target='#show1'> + Enter agent data</button>
+                    <button type="button" name="addAgent" id="addAgent" class="btn btn-info" data-toggle='modal'  data-target='#showAgent'> + Enter agent data</button>  
+                    
                     </div> 
                    
                       <br><br>
@@ -354,37 +364,148 @@ include 'connect.php';
         </form>
         </div>
         </div>
+        </body>
+</html>
 
-<!-- Modal start here -->
-<div class="modal fade" id="show" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b>People Involved </b></h4>
+<!-- people -->
+<div id="showPeople" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"><b>People Involved </b></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<form method="post" id="form_people">
+                       <table>
+					   <div class="form-group">
+                    <label for="name"><span style="color:red">*</span> Name</label>
+                    <input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
                 </div>
-                <div class="modal-body">
-                    <div class="modal-data"></div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="text" class="form-control" id="age" name="age" autocomplete="off">
                 </div>
-            </div>
-      </div>
-</div>
-<!-- End of Modal -->
+                <div class="form-group">
+                    <label for="job">Job</label>
+                    <input type="text" class="form-control" id="job" name="job" autocomplete="off">
+                </div>
+				<div class="dropdown">
+                    <label for="id_suku">Tribe</label>
+                    <select id="suku" class="form-control" name="suku">
+                    
+                      <option value="">Please Select</option>
+                      <?php
+                              
+                              while ($rsuku = pg_fetch_assoc($sqlSuku)) {
+                          ?>
+                          <option value="<?=$rsuku['id_suku']?>" required><?=$rsuku['nama_suku']?></option>
+                          <?php }
+                            ?>
+        
+                  </select>
+                 </div>
+                 <br>
+                 <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" autocomplete="off">
+                </div>  
+                <div class="form-group">
+                    <label for="no_hp">Mobile phone number</label>
+                    <input type="text" class="form-control" id="no_hp" name="no_hp" autocomplete="off">
+                </div>
+				<div class="form-group">
+                    <button type="submit" name="simpanPeople" class="btn btn-primary" id="simpanPeople" >SAVE</button>
 
-<!-- Ini merupakan script yang terpenting -->
+                 </div>
+					   </table>             
+                  	</form>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup Modal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- script people -->
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#show').on('show.bs.modal', function (e) {
-            var getDetail = $(e.relatedTarget).data('id');
-            /* fungsi AJAX untuk melakukan fetch data */
+        $('#form_people').on('submit', function (event) {
+          event.preventDefault();
+          /* fungsi AJAX untuk melakukan fetch data */
             $.ajax({
-                type : 'post',
-                url : 'modal_orang.php',
-                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
-                data :  'getDetail='+ getDetail,
-                /* memanggil fungsi getDetail dan mengirimkannya */
+                url : 'modal_orang_aksi.php',
+                method : 'POST',
+                data   : $('#form_people').serialize(),
+                beforeSend:function(){
+                  $('#simpanPeople').val("Simpan")
+                },
                 success : function(data){
-                $('.modal-data').html(data);
+                $('#form_people')[0].reset();
+                $('#showPeople').modal('hide');  
+                /* menampilkan data dalam bentuk dokumen HTML */
+                }
+            });
+         });
+    });
+</script>
+
+  <!-- agent -->
+	<div id="showAgent" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"><b>Agent Data</b></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<form method="post" id="form_agent">
+						<table>
+						<div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" class="form-control" id="name" name="name" autocomplete="off">
+                      </div>
+					  <div class="form-group">
+                          <button type="submit" name="simpan" id="simpan" class="btn btn-primary">SAVE</button>
+                      </div>
+					   </table>
+                                                  
+                  	</form>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup Modal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#form_agent').on('submit', function (event) {
+          event.preventDefault();
+          /* fungsi AJAX untuk melakukan fetch data */
+            $.ajax({
+                url : 'modal_instansi_aksi.php',
+                method : 'POST',
+                data   : $('#form_agent').serialize(),
+                beforeSend:function(){
+                  $('#simpan').val("Simpan")
+                },
+                success : function(data){
+                $('#form_agent')[0].reset();
+                $('#showAgent').modal('hide');  
                 /* menampilkan data dalam bentuk dokumen HTML */
                 }
             });
@@ -392,42 +513,9 @@ include 'connect.php';
     });
   </script>
 
-  <!-- Modal agent here -->
-<div class="modal fade" id="show1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b>Agent Data </b></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-data"></div>
-                </div>
-            </div>
-      </div>
-</div>
-<!-- End of Modal -->
 
-<!-- Ini merupakan script yang terpenting -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#show1').on('show.bs.modal', function (e) {
-            var getDetail = $(e.relatedTarget).data('id');
-            /* fungsi AJAX untuk melakukan fetch data */
-            $.ajax({
-                type : 'post',
-                url : 'modal_instansi.php',
-                /* detail per identifier ditampung pada berkas detail.php yang berada di folder application/view */
-                data :  'getDetail='+ getDetail,
-                /* memanggil fungsi getDetail dan mengirimkannya */
-                success : function(data){
-                $('.modal-data').html(data);
-                /* menampilkan data dalam bentuk dokumen HTML */
-                }
-            });
-         });
-    });
-  </script>
+
+
     
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing">
@@ -452,6 +540,9 @@ include 'connect.php';
         <script>
             $(document).ready(function () {
                 $("#regu_piket").select2({
+                    placeholder: "Please Select"
+                });
+                $("#suku").select2({
                     placeholder: "Please Select"
                 });
                 $("#pelapor").select2({
@@ -488,5 +579,3 @@ include 'connect.php';
         </script>
 
     
-  </body>
-</html>

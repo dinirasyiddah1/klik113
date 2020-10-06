@@ -11,6 +11,15 @@ include 'connect.php';
   <?php
       include ('include/head.php');
     ?>
+    <style>
+.tableFixHead          { overflow-y: auto; height: 500px; }
+.tableFixHead thead th { position: sticky; top: 0; }
+
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+</style>
   </head>
 
   <body>
@@ -18,37 +27,34 @@ include 'connect.php';
     <div id="wrapper">
       <div class="panel-body">
         <a href="input_incident.php" style="font-size:20px">+ Fire Incident</a>
-        <table class="table table-striped">
+      </div>
+      <div style="margin-left:15px;" class="tableFixHead">
+        
+        <table class="table table-striped ">
   <thead>
     <tr>
-    <th>ID <i class="fa fa-sort"></th>
-      <th>Time <i class="fa fa-sort"></th>
-      <th>Picket Team <i class="fa fa-sort"></th>
-      <th>Location <i class="fa fa-sort"></th>
-      <th>Chronology <i class="fa fa-sort"></th>
-      <th>Report By <i class="fa fa-sort"></th>
-      <th>Witness <i class="fa fa-sort"></th>
-      <th>Damage <i class="fa fa-sort"></th>
-      <th>Area <i class="fa fa-sort"></th>
-      <th>Estimated Losses <i class="fa fa-sort"></th>
+      <th style="text-align:center;">ID </th>
+      <th style="text-align:center;" width="120px">Time </th>
+      <th style="text-align:center;" width="120px">Picket Team </th>
+      <th style="text-align:center;" width="350px">Location </th>
+      <th style="text-align:center;" width="100px">Report By </th>
+      <th style="text-align:center;" width="100px">Witness </th>
+      <th style="text-align:center;" width="150px">Damage </th>
+      <th style="text-align:center;" width="100px">Area </th>
+      <th style="text-align:center;" width="150px">Estimated Losses </th>
+      <th style="text-align:center;" ></th>
     </tr>
   </thead>
   <?php
 include "connect.php";
 
-
- 
-
  $data2=pg_query("SELECT * FROM kejadian INNER JOIN regu_piket ON (kejadian.id_regu = regu_piket.id_regu)
                     ORDER BY id_kejadian asc
-                    
  ")or die(pg_error());
-
- 
  $no=1;
  while($hasil=pg_fetch_array($data2)){ 
  ?>
-  <tbody>
+  <tbody >
     <tr>
       <th scope="row"><?=$hasil['id_kejadian'];?></th>
       <?php
@@ -59,9 +65,8 @@ include "connect.php";
             $format_jam=date_format($jam,'H:i')
             ?>
             <td><?=$format_jam;?> WIB</td>
-      <td><?=$hasil['nama_regu'];?></td>
+      <td align="center"><?=$hasil['nama_regu'];?></td>
       <td><?=$hasil['lokasi'];?></td>
-      <td><?=$hasil['kronologis'];?></td>
       <?php
       $id=$hasil['id_kejadian'];
       $data_pelapor = pg_query("SELECT * FROM kejadian 
@@ -85,12 +90,9 @@ include "connect.php";
       <td><?=$hasil['kerusakan'];?></td>
       <td><?=$hasil['luas_area'];?></td>
       <td><?=$hasil['taksiran_kerugian'];?></td>
-      <td></td>
-      
-      <td></td>
       <td>
-         <a class='btn btn-info' href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-eye'></i></span></a>
-        <a class='btn btn-primary' href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a>
+         <a href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:cyant'><i class='fa fa-eye'></i></span></a>
+        <a   href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:green'><i class='fa fa-pencil'></i>  </span> </a>
         <script type="text/javascript" language="JavaScript">
           function konfirmasi()
           {
@@ -99,7 +101,7 @@ include "connect.php";
           else return false;
           }
         </script>
-        <a class='btn btn-danger ' href="hapus_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>" onclick="return konfirmasi()"><span style='color:black'><i class='fa fa-trash-o'></i>  </span> </a>
+        <a href="hapus_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>" onclick="return konfirmasi()"><span style='color:red'><i class='fa fa-trash-o'></i>  </span> </a>
                 
       </td>
     </tr>
@@ -125,7 +127,6 @@ include "connect.php";
 
 <script src="../assets/js/jquery-1.10.2.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-
 
 <!-- Ini merupakan script yang terpenting -->
 <script type="text/javascript">

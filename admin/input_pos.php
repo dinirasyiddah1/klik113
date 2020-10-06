@@ -69,53 +69,11 @@ include 'connect.php';
     <?php
       include ("connect.php");
     ?>
-    <!-- <script>
-      // This example requires the Drawing library. Include the libraries=drawing
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
-
-      function initMap() {
-        map = new google.maps.Map(
-        document.getElementById('map'), 
-          {
-              zoom: 10,
-              center: new google.maps.LatLng(-0.9330859, 100.3610945),
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-        );
-
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.MARKER,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-          },
-          markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-          circleOptions: {
-            fillColor: '#ffff00',
-            fillOpacity: 1,
-            strokeWeight: 5,
-            clickable: false,
-            editable: true,
-            zIndex: 1
-          }
-        });
-        drawingManager.setMap(map);
-      }
-    </script> -->
+    
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing">
     </script>
     <script src="map_pos.js" type="text/javascript"></script>
-    <!-- <script src="placeid.js" type="text/javascript"> </script> -->
     <script src="../assets/js/jquery-1.10.2.js"></script>
-    <script src="../assets/js/bootstrap.js"></script>
-    <!-- <script src="script.js" type="text/javascript"></script> -->
-    
-    <!-- <script src="map.js" type="text/javascript"></script> -->
-
-
-
-    
+    <script src="../assets/js/bootstrap.js"></script>  
   </body>
 </html>

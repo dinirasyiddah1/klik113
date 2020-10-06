@@ -21,6 +21,168 @@ var directionsDisplay;
 var infoDua=[];
 var rute = [];
 
+// analisis spasial pos
+function dispos(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 0;}
+          if (id == '2') {var t = 1;}
+          if (id == '3') {var t = 1;}
+          if (id == '4') {var t = 0;}
+          if (id == '5') {var t = 1;}
+          if (id == '6') {var t = 1;}
+          if (id == '7') {var t = 0;}
+          if (id == '8') {var t = 0;}
+          if (id == '9') {var t = 0;}
+          if (id == '10') {var t = 0;}
+          if (id == '11') {var t = 1;}
+          
+          if (t < 1) {
+            color = '#ADD8E6';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t >= 1 && t <= 2) {
+            color = '#1E90FF';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t > 2) {
+            color = '#0000CD';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map); 
+  }
+
+// analisis spasial
+function diskej(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 0;}
+          if (id == '2') {var t = 8;}
+          if (id == '3') {var t = 8;}
+          if (id == '4') {var t = 8;}
+          if (id == '5') {var t = 2;}
+          if (id == '6') {var t = 0;}
+          if (id == '7') {var t = 0;}
+          if (id == '8') {var t = 0;}
+          if (id == '9') {var t = 4;}
+          if (id == '10') {var t = 0;}
+          if (id == '11') {var t = 0;}
+          
+          if (t < 2) {
+            color = '#008000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t >= 2 && t <= 5) {
+            color = '#FFFF00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t > 5) {
+            color = '	#FF0000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map); 
+  }
+
+  // analisis spasial reset
+function disreset(){
+  kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 0;}
+          if (id == '2') {var t = 8;}
+          if (id == '3') {var t = 8;}
+          if (id == '4') {var t = 8;}
+          if (id == '5') {var t = 2;}
+          if (id == '6') {var t = 0;}
+          if (id == '7') {var t = 0;}
+          if (id == '8') {var t = 0;}
+          if (id == '9') {var t = 4;}
+          if (id == '10') {var t = 0;}
+          if (id == '11') {var t = 0;}
+          
+          if (t < 2) {
+            color = '#008000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t >= 2 && t <= 5) {
+            color = '#FFFF00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          if (t > 5) {
+            color = '	#FF0000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map); 
+  }
+
 //Membuat Fungsi Menampilkan Seluruh pos damkar
 function viewpos()
 {
@@ -989,7 +1151,7 @@ function cari_tahun(rows) //fungsi cari panti
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">KLIK113 - WEBGIS Kebakaran Kota Padang</a>
+          <a class="navbar-brand" href="index.php">KLIK113 - GIS Fire Data Archiving In Padang City</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -1003,7 +1165,7 @@ function cari_tahun(rows) //fungsi cari panti
                                 <div class="collapse" id="submenu1" aria-expanded="false">
                                     <ul class="flex-column pl-2 nav">
                                     <li class="nav-item">
-                                            <a class="nav-link collapsed py-0" href="submenu1sub1" data-toggle="collapse" data-target="#submenu1sub1"><span class="fa fa-globe"> View All</a>
+                                            <a class="nav-link collapsed py-0" href="#submenu1sub1" data-toggle="collapse" data-target="#submenu1sub1"><span class="fa fa-globe"> View All</a>
                                             <div class="collapse small" id="submenu1sub1" aria-expanded="false">
                                                 <ul class="flex-column nav pl-4">
                                                     
@@ -1026,7 +1188,7 @@ function cari_tahun(rows) //fungsi cari panti
                                 <div class="collapse" id="submenu2" aria-expanded="false">
                                     <ul class="flex-column pl-2 nav">
                                     <li class="nav-item">
-                                            <a class="nav-link collapsed py-0" href="submenu2sub1" data-toggle="collapse" data-target="#submenu2sub1"><span class="fa fa-globe"> View All</a>
+                                            <a class="nav-link collapsed py-0" href="#submenu2sub1" data-toggle="collapse" data-target="#submenu2sub1"><span class="fa fa-globe"> View All</a>
                                             <div class="collapse small" id="submenu2sub1" aria-expanded="false">
                                                 <ul class="flex-column nav pl-4">
                                                     
@@ -1048,7 +1210,7 @@ function cari_tahun(rows) //fungsi cari panti
                                                     
                                                     <select class="form-control" id="kecamatan" >
                                                     <option value="">-Choose-</option>
-                                                        //<?php
+                                                        <?php
                                                           include("admin/connect.php");
                                                           $kecamatan=pg_query("select * from kecamatan order by nama_kecamatan ASC ") ;
 
@@ -1057,7 +1219,7 @@ function cari_tahun(rows) //fungsi cari panti
                                                             echo "<option  value='".$result['id_kecamatan']."'>".$result['nama_kecamatan']."</option>";
                                                           }
                                                         ?>
-                                                    </select> -->
+                                                    </select> 
                                                     <button type="submit" class="btn btn-default" id="caritpkec"  value="cari" onclick="caritpkec()"><i class="fa fa-search"></i></button>
           			                                  </li>
                                                     
@@ -1076,10 +1238,10 @@ function cari_tahun(rows) //fungsi cari panti
                                                     <select class="form-control" id="tahuncar" >
                                                     <option value="">-Choose-</option>
                                                         <?php
-                                                       include("admin/connect.php");
-                                                       $sql=pg_query("select * from kejadian order by tanggal ASC");
+                                                        include("admin/connect.php");
+                                                        $sql=pg_query("select * from kejadian order by tanggal ASC");
                                                       $temp=0;
-                                                       while($result=pg_fetch_assoc($sql))
+                                                        while($result=pg_fetch_assoc($sql))
                                                           {
                                                             $tahun=$result['tanggal'];
                                                             $subtahun= substr($tahun,0,4);
@@ -1090,7 +1252,7 @@ function cari_tahun(rows) //fungsi cari panti
                                                           }
                                                         ?>
                                                     </select>
-                                                     <button type="submit" class="btn btn-default" id="caritahun"value="" onclick="caritahun()"> <i class="fa fa-search"></i></button>                          
+                                                      <button type="submit" class="btn btn-default" id="caritahun"value="" onclick="caritahun()"> <i class="fa fa-search"></i></button>                          
                                                           
                                                   </li>
                                                     
@@ -1099,7 +1261,40 @@ function cari_tahun(rows) //fungsi cari panti
                                         </li>
                                     </ul>
                                 </div>
+                              </li>
+
+                              <li class="nav-item">
+                                <a class="nav-link " href="#submenu3" data-toggle="collapse" data-target="#submenu3"><span class="fa fa-search"></span> Data Distribution <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                                <div class="collapse" id="submenu3" aria-expanded="false">
+                                    <ul class="flex-column pl-2 nav">
+                                    <li class="nav-item">
+                                    <input type="checkbox" id="dispos" onclick="dispos()">
+                                    <label for="dispos" style="color:grey;"> All Fire Station</label><br>
+                                    <input type="checkbox" id="diskej" name="diskej" value="" onclick="diskej()">
+                                    <label for="diskej" style="color:grey;"> All Fire Incident</label><br>
+                                                <li class="nav-item">
+                                                    
+                                                    <select class="form-control" id="kecamatan" >
+                                                    <option value="">-Choose-</option>
+                                                    <option value="" >All FIre Station</option>
+                                                    <option value="">All Fire Incident</option>
+                                                    
+                                                        
+                                                    </select> 
+                                                    <button type="submit" class="btn btn-primary" id="caritpkec"  value="cari" onclick="dispos()">Show On Map</i></button>
+          			                                  
+                                                    <button type="submit" class="btn btn-danger" id="caritpkec"  value="cari" onclick="disreset()">Reset</i></button>
+          			                                  
+                                                  </li>
+                                            
+                                          </li>
+
+
+                                        
+                                    </ul>
+                                </div>
                             </li>
+                              
 
           </ul>
 
