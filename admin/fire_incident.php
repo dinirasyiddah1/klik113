@@ -42,7 +42,7 @@ th     { background:#eee; }
       <th style="text-align:center;" width="150px">Damage </th>
       <th style="text-align:center;" width="100px">Area </th>
       <th style="text-align:center;" width="150px">Estimated Losses </th>
-      <th style="text-align:center;" ></th>
+      <th style="text-align:center;" >Option</th>
     </tr>
   </thead>
   <?php
@@ -91,18 +91,25 @@ include "connect.php";
       <td><?=$hasil['luas_area'];?></td>
       <td><?=$hasil['taksiran_kerugian'];?></td>
       <td>
-         <a href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:cyant'><i class='fa fa-eye'></i></span></a>
-        <a   href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:green'><i class='fa fa-pencil'></i>  </span> </a>
-        <script type="text/javascript" language="JavaScript">
-          function konfirmasi()
-          {
-          tanya = confirm("Anda Yakin Akan Menghapus Data ?");
-          if (tanya == true) return true;
-          else return false;
-          }
-        </script>
-        <a href="hapus_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>" onclick="return konfirmasi()"><span style='color:red'><i class='fa fa-trash-o'></i>  </span> </a>
-                
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+          ...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href='kejadian_detail.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:cyant'><i class='fa fa-eye'></i></span></a><br>
+          <a class="dropdown-item"  href='edit_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>'><span style='color:green'><i class='fa fa-pencil'></i>  </span> </a><br>
+          <script type="text/javascript" language="JavaScript">
+            function konfirmasi()
+            {
+            tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+            if (tanya == true) return true;
+            else return false;
+            }
+          </script>
+        <a class="dropdown-item" href="hapus_incident.php?id_kejadian=<?=$hasil['id_kejadian']?>" onclick="return konfirmasi()"><span style='color:red'><i class='fa fa-trash-o'></i>  </span> </a>
+            
+        </div>
+      </div>
       </td>
     </tr>
 
@@ -160,8 +167,12 @@ include "connect.php";
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&libraries=drawing&callback=initMap">
     </script>
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+   
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>
+    <script src="../assets/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="../assets/js/tablesorter/tables.js"></script>
+
     <script src="script.js" type="text/javascript"></script>
 
   </body>

@@ -32,7 +32,7 @@ $id_pemilik			= $_POST['id_pemilik'];
 
 $image=$_FILES['image']['name'];
 
- 
+
 // query SQL untuk update data
 $sql = pg_query
 	("UPDATE public.kejadian
@@ -40,25 +40,27 @@ $sql = pg_query
 		geom=ST_GeomFromText('$geom'), kerusakan='$kerusakan',
 		luas_area='$luas_area', taksiran_kerugian='$taksiran_kerugian', username_admin='$admin', 
 		username_petugas='admin', tanggal = '$tanggal', rt='$rt', rw='$rw', kelurahan='$kelurahan'
-	WHERE id_kejadian='$id'
+	WHERE kejadian.id_kejadian='$id'
 	");
 
 //update detail_pelapor
-$select_pelapor = pg_query("select id_orang from detail_pelapor where id_kejadian='$id'");
-while($sel_pelapor = pg_fetch_array($select_pelapor)){
-	$sel_pel=$sel_pelapor['id_orang'];
-$pelapors = pg_query("SELECT max(status_pelapor) AS maxstatpel FROM detail_pelapor where id_orang ='$id_pelapor'");
-		$status_pelapor = pg_fetch_array($pelapors);
-		$spelapor = $status_pelapor['maxstatpel'];
-		$spelapor++;
 
-		foreach($id_pelapor as $pelapor_val){
-			$sql_pelapor = pg_query("UPDATE public.detail_pelapor
-			SET id_kejadian = '$id', id_orang='$pelapor_val', status_pelapor='$spelapor'
-			WHERE id_kejadian='$id' and id_orang = '$sel_pel'
-			");
-		};
-	};
+
+// $pelapors = pg_query("SELECT max(id_laporan) AS maxidpel FROM detail_pelapor where id_orang ='$id_pelapor'");
+// 		$laporan = pg_fetch_array($pelapors);
+// 		$id_laporan = $laporan['maxidpel'];
+// 		$id_laporan++;
+$sql_pelapor;
+foreach($id_pelapor as $pelapor_val){
+	//$pelapor = pg_query("SELECT id_laporan FROM detail_pelapor where id_kejadian = '$id' and id_orang='$pelapor_val'");
+	$sql_pelapor = pg_query("UPDATE public.detail_pelapor
+	SET id_orang='$pelapor_val'	WHERE id_kejadian='$id' 
+	");
+};
+
+//var_dump($sql_pelapor);
+
+	
 
 //update detail_saksi
 $select_saksi = pg_query("select id_orang from detail_saksi where id_kejadian='$id'");
@@ -121,6 +123,7 @@ foreach ($instansi as $value) {
 			");
 };
 };
+
 //update detail_kendaraan
 $select_kendaraan = pg_query("select nomor_plat from detail_kendaraan where id_kejadian='$id'");
 while($sel_kendaraan = pg_fetch_array($select_kendaraan)){
@@ -165,7 +168,7 @@ if ($jumlah > 0) {
 	pg_query($conn,"INSERT INTO gambar_kejadian VALUES('$id','$id_gambar', '$file_name')");		
 	$id_gambar++;		
   }
-  echo "Berhasil Upload";
+  header('location:fire_incident.php');
   
 }
 else{

@@ -189,7 +189,6 @@ include 'connect.php';
                     <!-- <script type="text/javascript">
                       $(document).ready(function(){
                         $(".pemilik").on('change',function(){
-
                           const pemilik = $( "#pemilik" ).val();
                           // var data = $('.pemilik').serialize();
                           // console.log(pemilik);
@@ -577,5 +576,3 @@ include 'connect.php';
                 });
             });
         </script>
-
-    

@@ -1,5 +1,7 @@
 <?
 include "admin/connect.php";
+
+
 ?>
 <script type="text/javascript">
 
@@ -20,9 +22,128 @@ var angkot = [];
 var directionsDisplay;
 var infoDua=[];
 var rute = [];
+var jumlah ='<?php print $jumlah?>';
+alert ($jumlah);
+
+
+
+function kecamatan(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id_kecamatan = feature.getProperty('id_kecamatan');
+      if (id_kecamatan == 1 ){ color = '#778899' 
+        return({
+          fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        }); 
+    }
+      else if(id_kecamatan == 2 ){ color = '#ffd777' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+    }
+      else if(id_kecamatan == 3 ){ color = '#ec87ec' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+
+    }  
+    else if(id_kecamatan == 4 ){ color = '#000080' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+
+    } 
+    else if(id_kecamatan == 5 ){ color = '#4C4CE0' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+
+    }
+    else if(id_kecamatan == 6 ){ color = '#CD853F' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+
+    } 
+    else if(id_kecamatan == 7 ){ color = '#EF3551' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+    }
+    else if(id_kecamatan == 8 ){ color = '#00FFFF' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+    }
+    else if(id_kecamatan == 9 ){ color = '#800000' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+    }
+    else if(id_kecamatan == 10 ){ color = '#32CD32' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+    }
+    else if(id_kecamatan == 11 ){ color = '#9932CC' 
+        return({
+        fillColor:color,
+          strokeWeight:2.0,
+          strokeColor:'black',
+          fillOpacity:0.3,
+          clickable: false
+        });
+
+    } 
+    });
+    kec.setMap(map); 
+}
 
 // analisis spasial pos
 function dispos(){
+  
     kec = new google.maps.Data();
     kec.loadGeoJson(server+'kecamatan.php');
     kec.setStyle(function(feature)
@@ -42,7 +163,7 @@ function dispos(){
           if (id == '11') {var t = 1;}
           
           if (t < 1) {
-            color = '#ADD8E6';
+            color = '#E9967A';
             return({
               fillColor:color,
               strokeWeight:2.0,
@@ -52,7 +173,7 @@ function dispos(){
             });
           }
           if (t >= 1 && t <= 2) {
-            color = '#1E90FF';
+            color = '#DC143C';
             return({
               fillColor:color,
               strokeWeight:2.0,
@@ -62,7 +183,7 @@ function dispos(){
             });
           }
           if (t > 2) {
-            color = '#0000CD';
+            color = '#FF8C00';
             return({
               fillColor:color,
               strokeWeight:2.0,
@@ -73,30 +194,32 @@ function dispos(){
           }
         });
       kec.setMap(map); 
+      hidelegendadis();
+      legendadispos();
   }
 
-// analisis spasial
+  // analisis spasial kejadian
 function diskej(){
     kec = new google.maps.Data();
     kec.loadGeoJson(server+'kecamatan.php');
     kec.setStyle(function(feature)
     {
       var id = feature.getProperty('id_kecamatan');
-        
-      if (id == '1') {var t = 0;}
-          if (id == '2') {var t = 8;}
-          if (id == '3') {var t = 8;}
-          if (id == '4') {var t = 8;}
-          if (id == '5') {var t = 2;}
-          if (id == '6') {var t = 0;}
-          if (id == '7') {var t = 0;}
-          if (id == '8') {var t = 0;}
-          if (id == '9') {var t = 4;}
-          if (id == '10') {var t = 0;}
-          if (id == '11') {var t = 0;}
-          
-          if (t < 2) {
-            color = '#008000';
+    
+      if (id == '1') {var t = 20;}
+          if (id == '2') {var t = 35;}
+          if (id == '3') {var t = 50;}
+          if (id == '4') {var t = 34;}
+          if (id == '5') {var t = 77;}
+          if (id == '6') {var t = 70;}
+          if (id == '7') {var t = 22;}
+          if (id == '8') {var t = 30;}
+          if (id == '9') {var t = 70;}
+          if (id == '10') {var t = 5;}
+          if (id == '11') {var t = 81;}
+          // sangat sedikit
+          if (t < 10) {
+            color = '	#32CD32';
             return({
               fillColor:color,
               strokeWeight:2.0,
@@ -105,7 +228,19 @@ function diskej(){
               clickable: true
             });
           }
-          if (t >= 2 && t <= 5) {
+          // sedikit
+          if (t >= 10 && t <= 30) {
+            color = '#ADFF2F';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedang
+          if (t >= 31 && t <= 50) {
             color = '#FFFF00';
             return({
               fillColor:color,
@@ -115,8 +250,100 @@ function diskej(){
               clickable: true
             });
           }
-          if (t > 5) {
-            color = '	#FF0000';
+          // banyak
+          if (t >= 51 && t <= 80) {
+            color = '	#FF8C00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sangat banyak
+          if (t > 80) {
+            color = '#FF0000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map);
+      hidelegendadispos();
+      legendadis(); 
+  }
+
+// kejadian 2017
+  function diskej1(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 32;}
+          if (id == '2') {var t = 25;}
+          if (id == '3') {var t = 50;}
+          if (id == '4') {var t = 4;}
+          if (id == '5') {var t = 77;}
+          if (id == '6') {var t = 70;}
+          if (id == '7') {var t = 22;}
+          if (id == '8') {var t = 30;}
+          if (id == '9') {var t = 70;}
+          if (id == '10') {var t = 35;}
+          if (id == '11') {var t = 81;}
+          // sangat sedikit
+          if (t < 10) {
+            color = '	#32CD32';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedikit
+          if (t >= 10 && t <= 30) {
+            color = '#ADFF2F';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedang
+          if (t >= 31 && t <= 50) {
+            color = '#FFFF00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // banyak
+          if (t >= 51 && t <= 80) {
+            color = '	#FF8C00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sangat banyak
+          if (t > 80) {
+            color = '#FF0000';
             return({
               fillColor:color,
               strokeWeight:2.0,
@@ -127,7 +354,229 @@ function diskej(){
           }
         });
       kec.setMap(map); 
+      hidelegendadispos();
+      legendadis(); 
   }
+
+  // kejadian 2018
+  function diskej2(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 20;}
+          if (id == '2') {var t = 35;}
+          if (id == '3') {var t = 50;}
+          if (id == '4') {var t = 34;}
+          if (id == '5') {var t = 88;}
+          if (id == '6') {var t = 40;}
+          if (id == '7') {var t = 22;}
+          if (id == '8') {var t = 30;}
+          if (id == '9') {var t = 70;}
+          if (id == '10') {var t = 5;}
+          if (id == '11') {var t = 61;}
+          // sangat sedikit
+          if (t < 10) {
+            color = '	#32CD32';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedikit
+          if (t >= 10 && t <= 30) {
+            color = '#ADFF2F';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedang
+          if (t >= 31 && t <= 50) {
+            color = '#FFFF00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // banyak
+          if (t >= 51 && t <= 80) {
+            color = '	#FF8C00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sangat banyak
+          if (t > 80) {
+            color = '#FF0000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map); 
+      hidelegendadispos();
+      legendadis(); 
+  }
+
+
+// kejadian 2019
+function diskej3(){
+    kec = new google.maps.Data();
+    kec.loadGeoJson(server+'kecamatan.php');
+    kec.setStyle(function(feature)
+    {
+      var id = feature.getProperty('id_kecamatan');
+        
+      if (id == '1') {var t = 8;}
+          if (id == '2') {var t = 60;}
+          if (id == '3') {var t = 26;}
+          if (id == '4') {var t = 204;}
+          if (id == '5') {var t = 37;}
+          if (id == '6') {var t = 90;}
+          if (id == '7') {var t = 52;}
+          if (id == '8') {var t = 20;}
+          if (id == '9') {var t = 70;}
+          if (id == '10') {var t = 25;}
+          if (id == '11') {var t = 51;}
+          // sangat sedikit
+          if (t < 10) {
+            color = '	#32CD32';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedikit
+          if (t >= 10 && t <= 30) {
+            color = '#ADFF2F';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sedang
+          if (t >= 31 && t <= 50) {
+            color = '#FFFF00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // banyak
+          if (t >= 51 && t <= 80) {
+            color = '	#FF8C00';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+          // sangat banyak
+          if (t > 80) {
+            color = '#FF0000';
+            return({
+              fillColor:color,
+              strokeWeight:2.0,
+              strokeColor:'black',
+              fillOpacity:1,
+              clickable: true
+            });
+          }
+        });
+      kec.setMap(map); 
+      hidelegendadispos();
+      legendadis(); 
+  }
+
+// analisis spasial
+// function diskej()
+// {
+//     kec = new google.maps.Data();
+//     $.ajax
+//   ({ 
+//     url: server+'tes.php?id_kecamatan='+kecamatan.id_kecamatan+, data: "", dataType: 'json', success: function(rows) 
+//     { 
+      
+//       while (var id = feature.getProperty('id_kecamatan'))
+//       {
+//        var t = rows.length;
+//       };
+//       // if (id == '1') {var t = 0;}
+//       //     if (id == '2') {var t = 8;}
+//       //     if (id == '3') {var t = 8;}
+//       //     if (id == '4') {var t = 8;}
+//       //     if (id == '5') {var t = 2;}
+//       //     if (id == '6') {var t = 0;}
+//       //     if (id == '7') {var t = 0;}
+//       //     if (id == '8') {var t = 0;}
+//       //     if (id == '9') {var t = 4;}
+//       //     if (id == '10') {var t = 0;}
+//       //     if (id == '11') {var t = 0;} 
+//           if (t < 2) {
+//             color = '#008000';
+//             return({
+//               fillColor:color,
+//               strokeWeight:2.0,
+//               strokeColor:'black',
+//               fillOpacity:1,
+//               clickable: true
+//             });
+//           }
+//           if (t >= 2 && t <= 5) {
+//             color = '#FFFF00';
+//             return({
+//               fillColor:color,
+//               strokeWeight:2.0,
+//               strokeColor:'black',
+//               fillOpacity:1,
+//               clickable: true
+//             });
+//           }
+//           if (t > 5) {
+//             color = '	#FF0000';
+//             return({
+//               fillColor:color,
+//               strokeWeight:2.0,
+//               strokeColor:'black',
+//               fillOpacity:1,
+//               clickable: true
+//             });
+//           }
+//     };
+//         });
+//       kec.setMap(map); 
+//   }
 
   // analisis spasial reset
 function disreset(){
@@ -242,61 +691,6 @@ function viewpos()
 
 
 //Membuat Fungsi Menampilkan Seluruh kejadian
-function viewkejadian()
-{
-  hapusMarkerTerdekat();
-  hapusRadius();
-  hapusInfo();
-  clearroute2();
-  $('#hasilcari').empty();
-  $('#hasilpencarian').empty();
-  $("#filterik").hide();
-  $('#hasilik').show();
-  $('#hasilcari1').show();
-  $('#hasilcari').empty();
-  $.ajax
-  ({ 
-    url: server+'viewkejadian.php', data: "", dataType: 'json', success: function(rows) 
-    { 
-      if(rows==null)
-      {
-        alert('Data Did Not Exist!');
-      }
-      else
-      {
-        $('#hasilcari').append("<thead><th>Address</th><th>Action</th></thead>");
-        console.log(rows);
-        for (var i in rows) 
-        { 
-          var row = rows[i];
-          var id = row.id_kejadian;
-          var address=row.lokasi;
-         
-          var lat=row.lat;
-          var lon = row.lng;
-          //var ik_status = row.ik_status;
-          console.log(address);
-          centerBaru = new google.maps.LatLng(lat, lon);
-          map.setCenter(centerBaru);
-          map.setZoom(8);  
-          var marker = new google.maps.Marker
-          ({
-            position: centerBaru,              
-            icon:'assets/img/fire-512d.png',
-            animation: google.maps.Animation.DROP,
-            map: map
-          });
-          markersDua.push(marker);
-          map.setCenter(centerBaru);
-          // console.log(nama);
-           $('#hasilcari').append("<tr><td>"+address+"</td><td><a role='button' class='btn btn-success' onclick='detkej(\""+id+"\");detailinfokejadian(\""+id+"\");'>Show</a></td></tr>");
-         }
-      } 
-      $('#hasilpencarian').append("<h5 class='box-title' id='hasilpencarian'>Result :</h5>"+rows.length);
-    }
-  });           
-}
-
 
 
 
@@ -1264,33 +1658,38 @@ function cari_tahun(rows) //fungsi cari panti
                               </li>
 
                               <li class="nav-item">
-                                <a class="nav-link " href="#submenu3" data-toggle="collapse" data-target="#submenu3"><span class="fa fa-search"></span> Data Distribution <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                                <a class="nav-link " href="#submenu3" data-toggle="collapse" data-target="#submenu3" onclick="hideLegenda()"><span class="fa fa-search"></span> Data Distribution <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
                                 <div class="collapse" id="submenu3" aria-expanded="false">
                                     <ul class="flex-column pl-2 nav">
-                                    <li class="nav-item">
-                                    <input type="checkbox" id="dispos" onclick="dispos()">
+                                    <li class="nav-item" style="padding-left:20px;">
+                                    <input type="radio" id="dispos" name="distributsi" value="" onclick="dispos()">
+                                    <label for="dispos" style="color:#DCDCDC"><b>All Fire Station</b></label><br>
+                                    <input type="radio" id="diskej" name="distributsi" value="" onclick="diskej()">
+                                    <label for="diskej" style="color:#DCDCDC">All Fire Incident</label><br>
+                                    
+                                    <!-- <input type="checkbox" id="dispos" onclick="dispos()">
                                     <label for="dispos" style="color:grey;"> All Fire Station</label><br>
                                     <input type="checkbox" id="diskej" name="diskej" value="" onclick="diskej()">
-                                    <label for="diskej" style="color:grey;"> All Fire Incident</label><br>
-                                                <li class="nav-item">
-                                                    
-                                                    <select class="form-control" id="kecamatan" >
-                                                    <option value="">-Choose-</option>
-                                                    <option value="" >All FIre Station</option>
-                                                    <option value="">All Fire Incident</option>
-                                                    
+                                    <label for="diskej" style="color:grey;"> All Fire Incident</label><br> -->
+                                    
+                                                <li class="form-group row col-sm-12" style="padding-left:20px;">
+                                                
+                                                <div class="col-sm-12">
+                                                    <select class="form-control" id="selDis" onchange="changeSelDis();" >
+                                                        <option value="" >-Based On Year-</option>
+                                                        <option value="1" >2017</option>
+                                                        <option value="2" >2018</option>
+                                                        <option value="3">2019</option>
+                                                        
                                                         
                                                     </select> 
-                                                    <button type="submit" class="btn btn-primary" id="caritpkec"  value="cari" onclick="dispos()">Show On Map</i></button>
-          			                                  
-                                                    <button type="submit" class="btn btn-danger" id="caritpkec"  value="cari" onclick="disreset()">Reset</i></button>
-          			                                  
+                                                   </div> 
                                                   </li>
                                             
                                           </li>
-
-
-                                        
+                                          <div  style="padding-left:70px">
+                                            <button type="button" class="btn btn-primary" onclick="basemap(); kecamatan();">reset</button>
+                                        </div>
                                     </ul>
                                 </div>
                             </li>
@@ -1311,5 +1710,23 @@ function cari_tahun(rows) //fungsi cari panti
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
-      
+     <script type="text/javascript"> 
+      function changeSelDis() {
+    var selectBox = document.getElementById("selDis");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    if(selectedValue == 1){
+        diskej1();
+        
+    }
+    else if(selectedValue==2){
+        diskej2();
+        
+    }
+    else{
+        diskej3();
+        
+    }
+   }
 
+  
+</script>

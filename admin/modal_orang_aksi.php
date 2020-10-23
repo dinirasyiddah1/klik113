@@ -24,16 +24,16 @@ $sql = pg_query
 		('$id_orang', '$nama', '$umur', '$pekerjaan', '$suku', '$alamat', '$no_hp')
 	");
 
-// if($sql){
+if($sql){
 	
 
-// 	header('location:input_incident.php');
-// 	echo "<div class='alert alert-success' role='alert'>
-// 	Data entered successfully
-//   </div>";
-// }else{
-// 	echo"gagal";
-// }
+	header('location:input_incident.php');
+	echo "<div class='alert alert-success' role='alert'>
+	Data entered successfully
+  </div>";
+}else{
+	echo"gagal";
+}
 
 
 ?>

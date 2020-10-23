@@ -13,31 +13,74 @@ if(isset($_SESSION['petugas'])){
 <html>
 <head>
 	<?php include('include/head.php'); ?>
+  <style>
+#card {
+        background: #fbfbfb;
+        border-radius: 8px;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+        height: 350px;
+        margin: 6rem auto 8.1rem auto;
+        width: 329px;
+}
+input[type=text],  
+        input[type=password] {  
+            width: 100%;  
+            padding: 12px 40px;  
+            margin: 8px 0;  
+            display: inline-block;  
+            border: 1px solid #ccc;  
+            box-sizing: border-box;  
+        }  
+.container {  
+            padding: 16px;  
+        }  
+      
+        .fontuser { 
+            position: relative; 
+        } 
+          
+        .fontuser i{ 
+            position: absolute; 
+            left: 15px; 
+            top: 20px; 
+            color: lightblue; 
+        } 
+          
+        .fontpassword { 
+            position: relative; 
+        } 
+
+        .fontpassword i{ 
+            position: absolute; 
+            left: 15px; 
+            top: 20px; 
+            color: lightblue; 
+        }
+       
+  </style>
 </head>
 <body>
-<div id="login-page">
-	  	<div style="width: 400px" class="container">
-	  	
-		      <form class="form-login" action="login_petugas_aksi.php" method="post">
-		        <h2 class="form-login-heading">LOG PETUGAS</h2>
-		        <div class="login-wrap" >
-		        <!--   <form > -->
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username" autofocus required/>
-        <!-- <span class="glyphicon glyphicon-user form-control-feedback"></span> -->
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password" required/>
-        <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
+<div id="card">
+  
+    <br>
+    <center><h2 class="form-login-heading">Worker</h2></center><br>
+	  <form class="form-login" action="login_petugas_aksi.php" method="post">
+      <div style="width: 300px" class="container">
+          <div class="form-group fontuser">
+              <input type="text" class="form-control" placeholder="Username" name="username" autofocus required/>
+              <i class="fa fa-user fa-lg"></i> 
+          </div>
+          <div class="form-group fontpassword">
+              <input type="password" class="form-control" placeholder="Password" name="password" required/>
+              <i class="fa fa-key fa-lg"></i> 
+          </div>
+        <div class="row">
+          <br>
+          <center><button style="width:270px" type="submit" class="btn btn-primary btn-block btn-flat" name="submit">Log In</button></center>
           
         </div>
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" name="submit">Log In</button>
         </div>
-      </div>
+</div>
       <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 

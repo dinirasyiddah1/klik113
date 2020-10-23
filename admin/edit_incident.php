@@ -126,9 +126,8 @@ include 'connect.php';
                                 ");
                                 while($objek_x = pg_fetch_array($objek_sql)){
                           ?>
-                    <input type="text " name="id_objk" id="id_objk" value="<?=$objek_x['id_objek']?>">
                                 <?php $i++; }?>
-                    <select name="objek_terbakar[]" id="objek_terbakar" class="form-control" multiple="multiple" required>
+                    <select name="objek_terbakar id="objek_terbakar" class="form-control"  required>
                           <?php $objek = pg_query("SELECT * FROM kejadian
                                 INNER JOIN detail_objek_terbakar ON detail_objek_terbakar.id_kejadian = kejadian.id_kejadian
                                 INNER JOIN objek_terbakar ON objek_terbakar.id_objek = detail_objek_terbakar.id_objek 
@@ -168,7 +167,7 @@ include 'connect.php';
                     <input type="text" class="form-control" id="penyebab" name="penyebab" value="<?=$hasil_peny['penyebab'];?>" autocomplete="off">
                     <br>
                     &nbsp;<label for="kategori_penyebab">Category Of Cause</label>&nbsp;
-                    <select id="kategori_penyebab" name="kategori_penyebab[]" class="form-control" multiple="multiple" required>
+                    <select id="kategori_penyebab" name="kategori_penyebab" class="form-control" required>
                        <?php
                           $penyebab = pg_query("SELECT * FROM kejadian
                           INNER JOIN detail_penyebab ON detail_penyebab.id_kejadian = kejadian.id_kejadian
@@ -177,7 +176,7 @@ include 'connect.php';
                           ");
                           while($penyebabx = pg_fetch_array($penyebab)){
                        ?>
-                       <option selected disabled value="<?=$penyebabx['id_penyebab']?>"><?=$penyebabx['nama_penyebab']?></option>
+                       <option selected value="<?=$penyebabx['id_penyebab']?>"><?=$penyebabx['nama_penyebab']?></option>
                               <?php
                               }
                               $query = "SELECT * FROM penyebab";
@@ -219,9 +218,9 @@ include 'connect.php';
                     <br><br>
                 <div class="form-group">
                     <label for="pelapor">5. Reported By <span style="color:red">*</span></label>
-                    <select name="pelapor[]" id="pelapor" class="form-control" multiple="multiple" required onchange="changeValue(this.value)">
+                    <select name="pelapor[]" id="pelapor" class="form-control" multiple required onchange="changeValue(this.value)">
                       
-                    <?php
+                          <?php
                               $query = "SELECT * FROM kejadian
                                           INNER JOIN detail_pelapor ON detail_pelapor.id_kejadian = kejadian.id_kejadian
                                           INNER JOIN orang ON orang.id_orang = detail_pelapor.id_orang
@@ -233,7 +232,7 @@ include 'connect.php';
                           
                           <option selected  value="<?=$data_pelapor['id_orang']?>" required><?=$data_pelapor['nama_orang']?></option>
                           <?php
-                              }
+                              
                           $query = pg_query("SELECT * FROM orang");
                           $jsArray = "var NoHp = new Array();\n";
                           while ($row = pg_fetch_assoc($query)) {
@@ -247,6 +246,7 @@ include 'connect.php';
                       </select>
                     <br><br>
                     <input type="text" class="form-control" id="no_hp" name="no_hp" value="<?=$data_pelapor['no_hp']?>" autocomplete="off">
+                <?php } ?>
                 </div>
                 
                     <label for="pemilik">6. Owner</label>
@@ -376,16 +376,16 @@ include 'connect.php';
                    <br>
 
                       <div class="col-sm-7">
-                      <select id="instansi" name="instansi[]" class="form-control" required multiple="multiple" > 
+                      <select id="instansi" name="instansi[]" class="form-control"  multiple="multiple" > 
                       <?php
-                            $instansi_query = pg_query("SELECT nama_instansi FROM kejadian
+                            $instansi_query = pg_query("SELECT * FROM kejadian
                                               INNER JOIN detail_instansi ON detail_instansi.id_kejadian = kejadian.id_kejadian
                                               INNER JOIN instansi ON instansi.id_instansi = detail_instansi.id_instansi
                                               WHERE kejadian.id_kejadian = '$id'");
                             while($instansi_data = pg_fetch_array($instansi_query)){
                             
                           ?>
-                          <option selected="selected" value="<?=$instansi_data['id_instansi'];?>"><?=$instansi_data['nama_instansi'];?></option>
+                          <option selected="selected" value="<?=$data_instansi['id_instansi'];?>" required><?=$data_instansi['nama_instansi'];?></option>
                       <?php
                             };
                               $query_instansi = pg_query("SELECT * FROM instansi");
@@ -406,7 +406,7 @@ include 'connect.php';
                     <label for="kendaraan">Vehicle / Equipment</label>
                     <select id="kendaraan" name="kendaraan[]" class="form-control" required multiple="multiple" > 
                     <?php
-                            $kendaraan_query = pg_query("SELECT nama_kendaraan FROM kejadian
+                            $kendaraan_query = pg_query("SELECT * FROM kejadian
                                               INNER JOIN detail_kendaraan ON detail_kendaraan.id_kejadian = kejadian.id_kejadian
                                               INNER JOIN kendaraan ON kendaraan.nomor_plat = detail_kendaraan.nomor_plat
                                               WHERE kejadian.id_kejadian = '$id'");
@@ -508,14 +508,15 @@ include 'connect.php';
                                 INNER JOIN admin ON admin.username_admin = kejadian.username_admin
                                 WHERE kejadian.id_kejadian='$id'"); 
                       $admin_data=pg_fetch_array($sql_admin);
+                      $username=$admin_data['username_admin'];
                 ?>
-                <option disabled selected value="<?=$admin_data['username_admin']?>"><?=$admin_data['nama']?></option>
+                <option selected value="<?=$admin_data['username_admin']?>"><?=$admin_data['nama']?></option>
                       <?php
-                              $query_admin = pg_query("SELECT * FROM admin");
+                              $query_admin = pg_query("SELECT * FROM admin WHERE username_admin!='$username'");
                               while ($admin = pg_fetch_array($query_admin)) {
                           ?>
-                          <option value="<?=$admin['username_admin']?>" ><?=$admin['nama']?></option>
-
+                          <option  value="<?=$admin['username_admin']?>"><?=$admin['nama']?></option>
+                     
                         <?php
                           }
                         ?>

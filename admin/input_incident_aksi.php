@@ -66,9 +66,9 @@ $id_laporan = $charLap . sprintf("%05s",$no_lap);
 
 		foreach($pelapor as $pelapor_val){
 			$sql_pelapor = pg_query(
-				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelapor, id_laporan)
+				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelaporan, id_laporan)
 				VALUES
-				 ('$id_kejadian','$pelapor_val','', $id_laporan)
+				 ('$id_kejadian','$pelapor_val','', '$id_laporan')
 				"
 			);
 		};

@@ -43,7 +43,8 @@ include 'connect.php';
           include "connect.php";
 
           $id=$_GET['id_pos_damkar'];
-          $data=pg_query("SELECT * FROM public.pos_damkar WHERE id_pos_damkar='$id'")or die(pg_error());
+          $data=pg_query("SELECT * FROM public.pos_damkar INNER JOIN gambar_pos
+          ON pos_damkar.id_pos_damkar = gambar_pos.id_pos_damkar WHERE pos_damkar.id_pos_damkar='$id'")or die(pg_error());
           
           
           $hasil=pg_fetch_array($data);
@@ -81,7 +82,7 @@ include 'connect.php';
                 </div>
                 <div class="form-group">
                   <label for="image">Gambar</label>
-                  <input type="file"id="image" class="form-control-file" name="gambar[]" value="<?=$hasil['image'];?>" multiple>
+                  <input type="file"id="image" class="form-control-file" name="gambar[]" value="<?=$hasil['nama_photo'];?>" multiple>
                   
                   
                   <br>

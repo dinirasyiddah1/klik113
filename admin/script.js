@@ -17,10 +17,10 @@ var marker_2 = [];
 function initMap(){
     basemap();
    kecamatan();
-   kejadian();
-   pos2();
-   detailinfopos(id144);
-   detailinfokej(id143)
+  //  kejadian();
+  //  pos2();
+  //  detailinfopos(id144);
+  //  detailinfokej(id143)
 }
 
 function basemap() //google maps
@@ -673,13 +673,14 @@ function aktifkanRadius(){ //fungsi radius panti
       circles.push(circle);     
     }   
     cekRadiusStatus = 'on';
-    pantiradius();
+    kejadianradius();
   }
 
-function pantiradius(){ //menampilkan panti berdasarkan radius
+function kejadianradius(){ //menampilkan kejadian berdasarkan radius
    
     $('#hasilcari1').show();
     $('#hasilcari1').empty();
+    $('#hasilpencarian').empty();
       hapusInfo();
       clearroute2();
     clearroute();
@@ -690,9 +691,11 @@ function pantiradius(){ //menampilkan panti berdasarkan radius
       console.log(pos.lng);
 
         $.ajax({ 
-        url: server+'pantiradius.php?lat='+pos.lat+'&lng='+pos.lng+'&rad='+rad, data: "", dataType: 'json', success: function(rows)
+        url: server+'kejadianradius.php?lat='+pos.lat+'&lng='+pos.lng+'&rad='+rad, data: "", dataType: 'json', success: function(rows)
         {
-            console.log("hy");
+          
+          $('#hasilcari1').append("<thead><th>Address</th><th>Action</th></thead>");
+            console.log("rows");
             for (var i in rows) 
             {   
               var row     = rows[i];
@@ -704,7 +707,7 @@ function pantiradius(){ //menampilkan panti berdasarkan radius
               marker = new google.maps.Marker
             ({
               position: centerBaru,
-              icon:'src/images/marker1.png',
+              icon:'assets/img/fire-512d.png',
               map: map,
               animation: google.maps.Animation.DROP,
             });
@@ -714,9 +717,13 @@ function pantiradius(){ //menampilkan panti berdasarkan radius
               map.setCenter(centerBaru);
               klikInfoWindow(id);
               map.setZoom(14);
-              $('#hasilcari1').append("<tr><td>"+nama+"</td><td><a role='button' title='info' class='fa fa-info' onclick='detailpanti_info(\""+id+"\");info1();'></a></td></tr>");
+              $('#hasilcari1').append("<tr><td>"+nama+"</td><td><a role='button'  class='btn btn-success' onclick='detailpanti_info(\""+id+"\");info1();'>Show</a></td></tr>");
+              // $('#hasilcari').append("<tr><td>"+nama+"</td><td><a role='button' class='btn btn-success' onclick='detailpanti_info(\""+id+"\");detailinfokejadian(\""+id+"\");'>Show</a></td></tr>");
+         
             } 
-            }    
+            $('#hasilpencarian').append("<h5 class='box-title' id='hasilpencarian'>Result :</h5>"+rows.length);
+      
+          }    
           });
 }
 
@@ -806,19 +813,19 @@ function legenda()
        var legend = document.createElement('div');
         legend.id = 'legend';
         var content = [];
-        content.push('<h4 style="color: white;">Legend</h4>');
-        content.push('<p><div class="color a" style="color: white;">&nbsp;Koto&nbsp;Tangah</div></p>');
-        content.push('<p><div class="color b" style="color: white;">&nbsp;Pauh</div></p>');
-        content.push('<p><div class="color c" style="color: white;">&nbsp;Padang&nbsp;Utara</div></p>');
-        content.push('<p><div class="color d" style="color: white;">&nbsp;Bungus</div></p>');
-        content.push('<p><div class="color e" style="color: white;">&nbsp;Padang&nbsp;Barat</div></p>');
-        content.push('<p><div class="color f" style="color: white;">&nbsp;Padang&nbsp;Timur</div></p>');
-        content.push('<p><div class="color g" style="color: white;">&nbsp;Padang&nbsp;Selatan</div></p>');
-        content.push('<p><div class="color h" style="color: white;">&nbsp;Lubuk&nbsp;Begalung</div></p>');
-        content.push('<p><div class="color i" style="color: white;">&nbsp;Nanggalo</div></p>');
-        content.push('<p><div class="color j" style="color: white;">&nbsp;Kuranji</div></p>');
-        content.push('<p><div class="color k" style="color: white;">&nbsp;Lubuk&nbsp;Kilangan</div></p>');
-          
+        content.push('<h4 style="color: black;">Legend Of Padang</h4>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#9932CC; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Koto Tangah</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#ffd777; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Pauh</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#800000; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Padang Utara</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#32CD32; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Bungus</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#00FFFF; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Padang Barat</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#4C4CE0; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Padang Timur</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#ec87ec; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Padang Selatan</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#000080; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Lubuk Begalung</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#EF3551; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Nanggalo</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#CD853F; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Kuranji</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#778899; height:10px;width:10px"></div><div class="col-sm-8" style="color: black;">Lubuk Kilangan</div></div>');
+        
         legend.innerHTML = content.join('');
         legend.index = 1;
         map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
@@ -827,7 +834,73 @@ function legenda()
 function hideLegenda() {
  $('#legend').remove();
  $('#tombol').empty();
- $('#tombol').append('<a type="button" id="showlegenda" onclick="legenda()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye-slash" style="color:black;"> </i></a> ');
+ $('#tombol').append('<a type="button" id="showlegenda" onclick="legenda()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye" style="color:black;"> </i></a> ');
+}
+
+function legendadis()
+{
+  $('#tomboldis').empty();
+ $('#tomboldis').append('<a type="button" id="hidelegendadis" onclick="hidelegendadis()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye-slash" style="color:black;"> View Legend</i></a> ');
+ 
+ var layer = new google.maps.FusionTablesLayer(
+  {
+          query: {
+            select: 'Location',
+            from: '1NIVOZxrr-uoXhpWSQH2YJzY5aWhkRZW0bWhfZw'
+          },
+          map: map
+        });
+       var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h4 style="color: black;">FIre Incident Distribution</h4>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#32CD32; height:20px;width:50px"></div><div class="col-sm-8" style="color: black;">&nbsp;Very Low</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#ADFF2F; height:20px;width:50px"></div><div class="col-sm-8" style="color: black;">&nbsp;Low</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#FFFF00; height:20px;width:50px"></div><div class="col-sm-8" style="color: black;">&nbsp;Medium</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#FF8C00; height:20px;width:50px"></div><div class="col-sm-8" style="color: black;">&nbsp;High</div></div>');
+        content.push('<div class="row"><div class="col-sm-4" style="background-color:#FF0000; height:20px;width:50px"></div><div class="col-sm-8" style="color: black;">&nbsp;Very High</div></div>');
+        
+        legend.innerHTML = content.join('');
+        legend.index = 1;
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+}
+
+function hidelegendadis() {
+ $('#legend').remove();
+ $('#tomboldis').empty();
+ $('#tomboldis').append('<a type="button" id="showlegendadis" onclick="legendadis()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye" style="color:black;"> View Legend</i></a> ');
+}
+
+// legenda pos
+function legendadispos()
+{
+  $('#tomboldis').empty();
+ $('#tomboldis').append('<a type="button" id="hidelegendadispos" onclick="hidelegendadispos()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye-slash" style="color:black;"> View Legend</i></a> ');
+ 
+ var layer = new google.maps.FusionTablesLayer(
+  {
+          query: {
+            select: 'Location',
+            from: '1NIVOZxrr-uoXhpWSQH2YJzY5aWhkRZW0bWhfZw'
+          },
+          map: map
+        });
+       var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h4 style="color: black;">Fire Station Distribution</h4>');
+        content.push('<div class="row"><div class="col-sm-8" style="color: black;">Fire Station</div><div class="col-sm-4" style="background-color:#DC143C; height:20px;width:50px"></div></div>');
+        content.push('<div class="row"><div class="col-sm-8" style="color: black;">No Fire Station</div><div class="col-sm-4" style="background-color:#E9967A; height:20px;width:50px"></div></div>');
+        
+        legend.innerHTML = content.join('');
+        legend.index = 1;
+        map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+}
+
+function hidelegendadispos() {
+ $('#legend').remove();
+ $('#tomboldis').empty();
+ $('#tomboldis').append('<a type="button" id="showlegendadispos" onclick="legendadispos()" class="btn btn-default btn-sm " data-toggle="tooltip"  style="margin-right: 7px;" ><i class="fa fa-eye" style="color:black;"> View Legend</i></a> ');
 }
 
 

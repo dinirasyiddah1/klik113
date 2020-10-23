@@ -51,14 +51,17 @@ $query = pg_query("SELECT * FROM pos_damkar");
                 <td style='text-align:center'>".$row['nama_pos']."</td>
                 <td style='text-align:center'>".$row['alamat']."</td>
                 <td style='text-align:center'>
-                <a class='btn btn-primary' data-toggle='modal' data-target='#show' data-id=".$row['id_pos_damkar']."><span style='color:black'><i class='fa fa-eye'></i></span></a>
-                
-                <a class='btn btn-success' href='edit_pos.php?id_pos_damkar=".$row['id_pos_damkar']."'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a>
-                
-
-                <a class='btn btn-danger ' href='hapus_pos.php?id_pos_damkar=".$row['id_pos_damkar']."' onclick='return konfirmasi()'><span style='color:black'><i class='fa fa-trash-o'></i>  </span> </a>
+                  <div class='dropdown'>
+                    <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                      ...
+                    </button>
+                    <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                      <a class='dropdown-item btn btn-primary' data-toggle='modal' data-target='#show' data-id=".$row['id_pos_damkar']."><span style='color:black'><i class='fa fa-eye'></i></span></a> <br>
+                      <a class='dropdown-item btn btn-success' href='edit_pos.php?id_pos_damkar=".$row['id_pos_damkar']."'><span style='color:black'><i class='fa fa-pencil'></i>  </span> </a><br>
+                      <a class='dropdown-item btn btn-danger ' href='hapus_pos.php?id_pos_damkar=".$row['id_pos_damkar']."' onclick='return konfirmasi()'><span style='color:black'><i class='fa fa-trash-o'></i>  </span> </a>
+                    </div>
+                  </div>
                 </td>
-                
                 </tr>";
             $no++;
         }
