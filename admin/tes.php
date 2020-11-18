@@ -13,28 +13,45 @@ th     { background:#eee; }
 </style>
 </head>
 <body>
+<div id="theVictim">
+                      <div class="col-sm-7">
+                      <select id="korban" name="korban[]" class="form-control" multiple="multiple">
+                        
+                             
+                              <option  value="" required>1</option>
+                              <option  value="" required>2</option>
+                              
+                              
+                      </select>
+                      </div>
+                      <div class="col-sm-5">
+                      <select id="kondisi" name="kondisi[]" class="form-control" multiple="multiple">
+                        
+                      <option  value="" required>1</option>
+                              <option  value="" required>2</option>
+                      </select> 
+                      </div>
+                   </div>
+                   
+                   <button id="add_btn" onclick="addRow()">Add new row</button>
+                   <script>
+                    function addRow(){
+                        var parentTable = document.getElementById('theVIctim');
+                        var tableRow = document.getElementsByTagName('select')[0].children;
+                        var unitTables = document.getElementsById('korban')[0];
+                        var newInputType = document.createElement('select');
+                        // newInputType.setAttribute('type', 'text');
+                        
+                        for(var i=0; i<unitTables.children.length; i++){
+                          var appendedInput = unitTables.children[i].appendChild(newInputType)
+                          parentTable.appendChild(appendedInput);
+                        }
+                      }
 
-<div >
-  <h1>Scroll Down</h1>
-  <p>Scroll down to see the sticky effect.</p>
-</div>
-
-<div class="tableFixHead">
-  <table>
-    <thead>
-      <tr><th>TH 1</th><th>TH 2</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>A1</td><td>A2</td></tr>
-      <tr><td>B1</td><td>B2</td></tr>
-      <tr><td>C1</td><td>C2</td></tr>
-      <tr><td>D1</td><td>D2</td></tr>
-      <tr><td>E1</td><td>E2</td></tr>
-    </tbody>
-  </table>
-</div>
-
+                    </script>
 
 
 </body>
 </html>
+<script src="../assets/js/jquery-1.10.2.js"></script>
+    <script src="../assets/js/bootstrap.js"></script>

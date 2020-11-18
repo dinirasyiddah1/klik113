@@ -1,9 +1,9 @@
 
 <?php
-   $FileName = $_GET['FileName'];
+   $FileName = $_GET['medium'];
 
    if (!$FileName)
-      $FileName = "FileName";
+      $FileName = "medium";
 
    if (strstr($FileName,"php"))
       return;

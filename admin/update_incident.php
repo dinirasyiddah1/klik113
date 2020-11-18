@@ -23,16 +23,14 @@ $personil			= $_POST['personil'];
 $instansi			= $_POST['instansi'];
 $kendaraan			= $_POST['kendaraan'];
 $id_korban			= $_POST['korban'];
+$kondisi		= $_POST['kondisi'];
 $penyebab			= $_POST['penyebab'];
 $id_penyebab		= $_POST['kategori_penyebab'];
 $objek_terbakar		= $_POST['objek_terbakar'];
 $pemilik			= $_POST['pemilik'];
-$id_objk			= $_POST['id_objk'];
-$id_pemilik			= $_POST['id_pemilik'];
 
 $image=$_FILES['image']['name'];
-
-
+$cek=0;
 // query SQL untuk update data
 $sql = pg_query
 	("UPDATE public.kejadian
@@ -42,7 +40,7 @@ $sql = pg_query
 		username_petugas='admin', tanggal = '$tanggal', rt='$rt', rw='$rw', kelurahan='$kelurahan'
 	WHERE kejadian.id_kejadian='$id'
 	");
-
+$cek++;
 //update detail_pelapor
 
 
@@ -60,92 +58,63 @@ foreach($id_pelapor as $pelapor_val){
 
 //var_dump($sql_pelapor);
 
-	
-
+$delete_saksi = pg_query("DELETE FROM detail_saksi WHERE id_kejadian='$id'");
 //update detail_saksi
-$select_saksi = pg_query("select id_orang from detail_saksi where id_kejadian='$id'");
-while($sel_saksi = pg_fetch_array($select_saksi)){
-	$sel_saks=$sel_saksi['id_orang'];
-		$saksis = pg_query("SELECT max(status_saksi) AS maxstatsak FROM detail_saksi where id_orang ='$id_saksi'");
-		$status_saksi = pg_fetch_array($saksis);
-		$ssaksi = $status_saksi['maxstatsak'];
-		$ssaksi++;
+foreach ($id_saksi as $saksi_val) {	
+	$sql_saksi = pg_query(
+		"INSERT INTO detail_saksi (id_kejadian,id_orang)
+		VALUES
+		 ('$id','$saksi_val')
+		"
+	);
+};
+		if($sql_saksi){
+			$cek++;
+		}
 
-		foreach($id_saksi as $saksi_val){
-			$sql_saksi = pg_query("UPDATE public.detail_saksi
-			SET id_kejadian = '$id', id_orang='$saksi_val', status_saksi='$ssaksi'
-			WHERE id_kejadian='$id' and id_orang='$sel_saks'
+
+	//update detail_korban
+$delete_korban = pg_query("DELETE FROM detail_korban WHERE id_kejadian='$id'");
+		foreach ($id_korban as $key=>$value) {	
+			$sql_korban = pg_query("INSERT INTO detail_korban (id_kejadian, id_korban, id_kondisi)
+			VALUES ('$id','$value', '$kondisi[$key]')
 			");
 		};
-	};
-		//update detail_korban
-$select_korban = pg_query("select id_korban from detail_korban where id_kejadian='$id'");
-while($sel_korban = pg_fetch_array($select_korban)){
-	$sel_kor=$sel_korban['id_korban'];
-		$korbans = pg_query("SELECT max(status_korban) AS maxstatkor FROM detail_korban where id_korban ='$id_korban'");
-		$status_korban = pg_fetch_array($korbans);
-		$skorban = $status_korban['maxstatkor'];
-		$skorban++;
 
-		foreach ($id_korban as $korban_val) {	
-			$sql_korban = pg_query("UPDATE public.detail_korban
-			SET id_kejadian = '$id', id_korban='$korban_val', status_korban='$skorban'
-			WHERE id_kejadian='$id' and id_korban = '$sel_kor'
-			");
-		};
-	};
 //update detail_objek_terbakar
-$a = 0;
-$b=0;	
-while ($a< count($objek_terbakar)) {
-	$objek=$objek_terbakar[$a];
-	$id_objk=$_POST['id_objk'];
-if ($b<count($pemilik)){
-	$milik=$pemilik[$b];
-		$sql_pemilik = pg_query("UPDATE public.detail_objek_terbakar
-			SET id_objek='$objek', id_kejadian = '$id', id_orang='$milik', jenis_kejadian='$jenis_kejadian'
-			WHERE id_objek = '$id_objk' and id_kejadian='$id' and id_orang = '$id_pemilik'
+$delete_objek = pg_query("DELETE FROM detail_objek_terbakar WHERE id_kejadian='$id'");
+foreach($objek_terbakar as $key=>$value){
+		$sql_objek = pg_query("INSERT INTO detail_objek_terbakar (id_objek, id_kejadian, id_orang, jenis_kejadian)
+					VALUEs ('$value', '$id', '$pemilik[$key]', '$jenis_kejadian')
 			");
-	echo $id_objk;
-		$b++;
- 	};
- $a++;
+};
+
+//update detail_penyebab
+$delete_penyebab = pg_query("DELETE FROM detail_penyebab WHERE id_kejadian='$id'");
+foreach($id_penyebab as $key=>$value){	
+	$sql_penyebab = pg_query("INSERT INTO detail_penyebab (id_penyebab, id_kejadian, penyebab)
+	VALUES('$value', '$id', '$penyebab')
+	");
 };
 
 //update detail_instansi
-$select_instansi = pg_query("select id_instansi from detail_instansi where id_kejadian='$id'");
-while($sel_instansi = pg_fetch_array($select_instansi)){
-	$sel_inst=$sel_instansi['id_instansi'];
+$delete_instansi = pg_query("DELETE FROM detail_instansi WHERE id_kejadian='$id'");
 foreach ($instansi as $value) {
-	$sql_instansi = pg_query("UPDATE public.detail_instansi
-			SET id_kejadian = '$id', id_instansi='$value', jumlah_personil='$sinstansi'
-			WHERE id_kejadian='$id' and id_instansi = '$sel_inst'
+	$sql_instansi = pg_query("INSERT INTO detail_instansi (id_kejadian, id_instansi, jumlah_personil)
+					VALUES ('$id', '$value', $personil)
 			");
-};
 };
 
 //update detail_kendaraan
-$select_kendaraan = pg_query("select nomor_plat from detail_kendaraan where id_kejadian='$id'");
-while($sel_kendaraan = pg_fetch_array($select_kendaraan)){
-	$sel_kend=$sel_kendaraan['nomor_plat'];
-foreach ($kendaraan as $nilai) {
-	$sql_kendaraan = pg_query("UPDATE public.detail_kendaraan
-			SET id_kejadian = '$id', nomor_plat='$nilai'
-			WHERE id_kejadian='$id' and nomor_plat='$sel_kend'
+$delete_kendaraan = pg_query("DELETE FROM detail_kendaraan WHERE id_kejadian='$id'");
+foreach ($kendaraan as $value) {
+	$sql_kendaraan = pg_query("INSERT INTO detail_kendaraan (id_kejadian, nomor_plat)
+						VALUES ('$id', '$value')
 			");
 };
-}
-//update detail_penyebab
-$select_penyebab = pg_query("select id_penyebab from detail_penyebab where id_kejadian='$id'");
-while($sel_penyebab = pg_fetch_array($select_penyebab)){
-	$sel_peny=$sel_penyebab['id_penyebab'];
-foreach ($id_penyebab as $penyebab_val) {	
-	$sql_penyebab = pg_query("UPDATE public.detail_penyebab
-	SET id_penyebab='$penyebab_val', id_kejadian = '$id', penyebab='$penyebab'
-	WHERE id_kejadian='$id' and id_penyebab = '$sel_peny'
-	");
-};
-}
+
+
+
 
 
 //upload foto
@@ -168,11 +137,11 @@ if ($jumlah > 0) {
 	pg_query($conn,"INSERT INTO gambar_kejadian VALUES('$id','$id_gambar', '$file_name')");		
 	$id_gambar++;		
   }
-  header('location:fire_incident.php');
+//   header('location:fire_incident.php');
   
 }
 else{
-  echo "Gambar tidak ada";
+//   echo "Gambar tidak ada";
 }
 
 

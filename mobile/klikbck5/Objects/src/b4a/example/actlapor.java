@@ -498,10 +498,18 @@ if (true) break;
         }
     }
 }
-public static String  _btnlapor_click() throws Exception{
+public static void  _btnlapor_click() throws Exception{
 RDebugUtils.currentModule="actlapor";
 if (Debug.shouldDelegate(mostCurrent.activityBA, "btnlapor_click", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnlapor_click", null));}
+	 {Debug.delegate(mostCurrent.activityBA, "btnlapor_click", null); return;}
+ResumableSub_btnLapor_Click rsub = new ResumableSub_btnLapor_Click(null);
+rsub.resume(processBA, null);
+}
+public static class ResumableSub_btnLapor_Click extends BA.ResumableSub {
+public ResumableSub_btnLapor_Click(b4a.example.actlapor parent) {
+this.parent = parent;
+}
+b4a.example.actlapor parent;
 String _lokasi = "";
 String _nama_orang = "";
 String _no_hp = "";
@@ -510,97 +518,210 @@ double _lon = 0;
 String _tanggal = "";
 String _jam = "";
 int _id_kejadian = 0;
-String _media = "";
 b4a.example.httpjob _job1 = null;
-RDebugUtils.currentLine=2490368;
- //BA.debugLineNum = 2490368;BA.debugLine="Sub btnLapor_Click";
-RDebugUtils.currentLine=2490369;
- //BA.debugLineNum = 2490369;BA.debugLine="Dim lokasi As String";
-_lokasi = "";
-RDebugUtils.currentLine=2490370;
- //BA.debugLineNum = 2490370;BA.debugLine="lokasi = address.Text";
-_lokasi = mostCurrent._address.getText();
+b4a.example.httpjob _j = null;
+String _img = "";
+b4a.example.httpjob._multipartfiledata _mp = null;
+
+@Override
+public void resume(BA ba, Object[] result) throws Exception{
+RDebugUtils.currentModule="actlapor";
+
+    while (true) {
+        switch (state) {
+            case -1:
+return;
+
+case 0:
+//C
+this.state = 1;
 RDebugUtils.currentLine=2490371;
- //BA.debugLineNum = 2490371;BA.debugLine="Log(lokasi)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490371",_lokasi,0);
+ //BA.debugLineNum = 2490371;BA.debugLine="Dim lokasi As String";
+_lokasi = "";
+RDebugUtils.currentLine=2490372;
+ //BA.debugLineNum = 2490372;BA.debugLine="lokasi = address.Text";
+_lokasi = parent.mostCurrent._address.getText();
 RDebugUtils.currentLine=2490373;
- //BA.debugLineNum = 2490373;BA.debugLine="Dim nama_orang As String";
-_nama_orang = "";
-RDebugUtils.currentLine=2490374;
- //BA.debugLineNum = 2490374;BA.debugLine="nama_orang = name.Text";
-_nama_orang = mostCurrent._name.getText();
+ //BA.debugLineNum = 2490373;BA.debugLine="Log(lokasi)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490373",_lokasi,0);
 RDebugUtils.currentLine=2490375;
- //BA.debugLineNum = 2490375;BA.debugLine="Log(nama_orang)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490375",_nama_orang,0);
+ //BA.debugLineNum = 2490375;BA.debugLine="Dim nama_orang As String";
+_nama_orang = "";
+RDebugUtils.currentLine=2490376;
+ //BA.debugLineNum = 2490376;BA.debugLine="nama_orang = name.Text";
+_nama_orang = parent.mostCurrent._name.getText();
 RDebugUtils.currentLine=2490377;
- //BA.debugLineNum = 2490377;BA.debugLine="Dim no_hp As String";
-_no_hp = "";
-RDebugUtils.currentLine=2490378;
- //BA.debugLineNum = 2490378;BA.debugLine="no_hp = phone.Text";
-_no_hp = mostCurrent._phone.getText();
+ //BA.debugLineNum = 2490377;BA.debugLine="Log(nama_orang)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490377",_nama_orang,0);
 RDebugUtils.currentLine=2490379;
- //BA.debugLineNum = 2490379;BA.debugLine="Log(no_hp)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490379",_no_hp,0);
+ //BA.debugLineNum = 2490379;BA.debugLine="Dim no_hp As String";
+_no_hp = "";
+RDebugUtils.currentLine=2490380;
+ //BA.debugLineNum = 2490380;BA.debugLine="no_hp = phone.Text";
+_no_hp = parent.mostCurrent._phone.getText();
 RDebugUtils.currentLine=2490381;
- //BA.debugLineNum = 2490381;BA.debugLine="Dim lat As Double";
-_lat = 0;
-RDebugUtils.currentLine=2490382;
- //BA.debugLineNum = 2490382;BA.debugLine="lat = EditLat.Text";
-_lat = (double)(Double.parseDouble(mostCurrent._editlat.getText()));
+ //BA.debugLineNum = 2490381;BA.debugLine="Log(no_hp)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490381",_no_hp,0);
 RDebugUtils.currentLine=2490383;
- //BA.debugLineNum = 2490383;BA.debugLine="Log(lat)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490383",BA.NumberToString(_lat),0);
+ //BA.debugLineNum = 2490383;BA.debugLine="Dim lat As Double";
+_lat = 0;
+RDebugUtils.currentLine=2490384;
+ //BA.debugLineNum = 2490384;BA.debugLine="lat = EditLat.Text";
+_lat = (double)(Double.parseDouble(parent.mostCurrent._editlat.getText()));
 RDebugUtils.currentLine=2490385;
- //BA.debugLineNum = 2490385;BA.debugLine="Dim lon As Double";
-_lon = 0;
-RDebugUtils.currentLine=2490386;
- //BA.debugLineNum = 2490386;BA.debugLine="lon = EditLon.Text";
-_lon = (double)(Double.parseDouble(mostCurrent._editlon.getText()));
+ //BA.debugLineNum = 2490385;BA.debugLine="Log(lat)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490385",BA.NumberToString(_lat),0);
 RDebugUtils.currentLine=2490387;
- //BA.debugLineNum = 2490387;BA.debugLine="Log(lon)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490387",BA.NumberToString(_lon),0);
+ //BA.debugLineNum = 2490387;BA.debugLine="Dim lon As Double";
+_lon = 0;
+RDebugUtils.currentLine=2490388;
+ //BA.debugLineNum = 2490388;BA.debugLine="lon = EditLon.Text";
+_lon = (double)(Double.parseDouble(parent.mostCurrent._editlon.getText()));
 RDebugUtils.currentLine=2490389;
- //BA.debugLineNum = 2490389;BA.debugLine="DateTime.DateFormat = \"yyyy-MM-dd\"";
-anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yyyy-MM-dd");
-RDebugUtils.currentLine=2490390;
- //BA.debugLineNum = 2490390;BA.debugLine="Dim tanggal= DateTime.Date(DateTime.now)";
-_tanggal = anywheresoftware.b4a.keywords.Common.DateTime.Date(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
+ //BA.debugLineNum = 2490389;BA.debugLine="Log(lon)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490389",BA.NumberToString(_lon),0);
 RDebugUtils.currentLine=2490391;
- //BA.debugLineNum = 2490391;BA.debugLine="Log(tanggal)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490391",_tanggal,0);
-RDebugUtils.currentLine=2490394;
- //BA.debugLineNum = 2490394;BA.debugLine="DateTime.TimeFormat = \"hh:mm\"";
-anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("hh:mm");
-RDebugUtils.currentLine=2490395;
- //BA.debugLineNum = 2490395;BA.debugLine="Dim jam = DateTime.Time(DateTime.Now)";
-_jam = anywheresoftware.b4a.keywords.Common.DateTime.Time(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
+ //BA.debugLineNum = 2490391;BA.debugLine="DateTime.DateFormat = \"yyyy-MM-dd\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setDateFormat("yyyy-MM-dd");
+RDebugUtils.currentLine=2490392;
+ //BA.debugLineNum = 2490392;BA.debugLine="Dim tanggal= DateTime.Date(DateTime.now)";
+_tanggal = anywheresoftware.b4a.keywords.Common.DateTime.Date(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
+RDebugUtils.currentLine=2490393;
+ //BA.debugLineNum = 2490393;BA.debugLine="Log(tanggal)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490393",_tanggal,0);
 RDebugUtils.currentLine=2490396;
- //BA.debugLineNum = 2490396;BA.debugLine="Log (jam)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490396",_jam,0);
+ //BA.debugLineNum = 2490396;BA.debugLine="DateTime.TimeFormat = \"hh:mm\"";
+anywheresoftware.b4a.keywords.Common.DateTime.setTimeFormat("hh:mm");
+RDebugUtils.currentLine=2490397;
+ //BA.debugLineNum = 2490397;BA.debugLine="Dim jam = DateTime.Time(DateTime.Now)";
+_jam = anywheresoftware.b4a.keywords.Common.DateTime.Time(anywheresoftware.b4a.keywords.Common.DateTime.getNow());
 RDebugUtils.currentLine=2490398;
- //BA.debugLineNum = 2490398;BA.debugLine="Dim id_kejadian As Int";
-_id_kejadian = 0;
-RDebugUtils.currentLine=2490399;
- //BA.debugLineNum = 2490399;BA.debugLine="id_kejadian = 0";
-_id_kejadian = (int) (0);
+ //BA.debugLineNum = 2490398;BA.debugLine="Log (jam)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490398",_jam,0);
 RDebugUtils.currentLine=2490400;
- //BA.debugLineNum = 2490400;BA.debugLine="Log(id_kejadian)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82490400",BA.NumberToString(_id_kejadian),0);
+ //BA.debugLineNum = 2490400;BA.debugLine="Dim id_kejadian As Int";
+_id_kejadian = 0;
+RDebugUtils.currentLine=2490401;
+ //BA.debugLineNum = 2490401;BA.debugLine="id_kejadian = 0";
+_id_kejadian = (int) (0);
 RDebugUtils.currentLine=2490402;
- //BA.debugLineNum = 2490402;BA.debugLine="Dim media As String = \"1.jpg\"";
-_media = "1.jpg";
-RDebugUtils.currentLine=2490404;
- //BA.debugLineNum = 2490404;BA.debugLine="Dim Job1 As HttpJob";
-_job1 = new b4a.example.httpjob();
-RDebugUtils.currentLine=2490405;
- //BA.debugLineNum = 2490405;BA.debugLine="Job1.Initialize(\"Job1\",Me)";
-_job1._initialize /*String*/ (null,processBA,"Job1",actlapor.getObject());
+ //BA.debugLineNum = 2490402;BA.debugLine="Log(id_kejadian)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490402",BA.NumberToString(_id_kejadian),0);
 RDebugUtils.currentLine=2490406;
- //BA.debugLineNum = 2490406;BA.debugLine="Job1.PostString(\"\"&server&\"upload.php\",\"&nama_ora";
-_job1._poststring /*String*/ (null,""+_server+"upload.php","&nama_orang="+_nama_orang+"&lokasi="+_lokasi+"&no_hp="+_no_hp+"&tanggal="+_tanggal+"&FileName="+_media+"&jam="+_jam+"&lat="+BA.NumberToString(_lat)+"&lon="+BA.NumberToString(_lon)+"&id_kejadian="+BA.NumberToString(_id_kejadian));
+ //BA.debugLineNum = 2490406;BA.debugLine="Dim Job1 As HttpJob";
+_job1 = new b4a.example.httpjob();
+RDebugUtils.currentLine=2490407;
+ //BA.debugLineNum = 2490407;BA.debugLine="Job1.Initialize(\"Job1\",Me)";
+_job1._initialize /*String*/ (null,processBA,"Job1",actlapor.getObject());
 RDebugUtils.currentLine=2490408;
- //BA.debugLineNum = 2490408;BA.debugLine="End Sub";
-return "";
+ //BA.debugLineNum = 2490408;BA.debugLine="Job1.PostString(\"\"&server&\"laporkan.php\",\"&nama_o";
+_job1._poststring /*String*/ (null,""+parent._server+"laporkan.php","&nama_orang="+_nama_orang+"&lokasi="+_lokasi+"&no_hp="+_no_hp+"&tanggal="+_tanggal+"&jam="+_jam+"&lat="+BA.NumberToString(_lat)+"&lon="+BA.NumberToString(_lon)+"&id_kejadian="+BA.NumberToString(_id_kejadian));
+RDebugUtils.currentLine=2490412;
+ //BA.debugLineNum = 2490412;BA.debugLine="Dim j As HttpJob";
+_j = new b4a.example.httpjob();
+RDebugUtils.currentLine=2490413;
+ //BA.debugLineNum = 2490413;BA.debugLine="Dim img As String = \"1.jpg\"";
+_img = "1.jpg";
+RDebugUtils.currentLine=2490414;
+ //BA.debugLineNum = 2490414;BA.debugLine="j.Initialize(\"\", Me)";
+_j._initialize /*String*/ (null,processBA,"",actlapor.getObject());
+RDebugUtils.currentLine=2490415;
+ //BA.debugLineNum = 2490415;BA.debugLine="Dim mp As MultipartFileData";
+_mp = new b4a.example.httpjob._multipartfiledata();
+RDebugUtils.currentLine=2490416;
+ //BA.debugLineNum = 2490416;BA.debugLine="mp.Initialize";
+_mp.Initialize();
+RDebugUtils.currentLine=2490417;
+ //BA.debugLineNum = 2490417;BA.debugLine="mp.Dir = File.DirDefaultExternal";
+_mp.Dir /*String*/  = anywheresoftware.b4a.keywords.Common.File.getDirDefaultExternal();
+RDebugUtils.currentLine=2490418;
+ //BA.debugLineNum = 2490418;BA.debugLine="mp.FileName = img";
+_mp.FileName /*String*/  = _img;
+RDebugUtils.currentLine=2490419;
+ //BA.debugLineNum = 2490419;BA.debugLine="mp.KeyName = \"file\"";
+_mp.KeyName /*String*/  = "file";
+RDebugUtils.currentLine=2490420;
+ //BA.debugLineNum = 2490420;BA.debugLine="mp.ContentType = \"image/jpg\"";
+_mp.ContentType /*String*/  = "image/jpg";
+RDebugUtils.currentLine=2490421;
+ //BA.debugLineNum = 2490421;BA.debugLine="j.PostMultipart(\"http://369dbe9d93aa.ngrok.io/kli";
+_j._postmultipart /*String*/ (null,"http://369dbe9d93aa.ngrok.io/klik113/mobile/UploadImage.php",(anywheresoftware.b4a.objects.collections.Map) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.collections.Map(), (anywheresoftware.b4a.objects.collections.Map.MyMap)(anywheresoftware.b4a.keywords.Common.Null)),anywheresoftware.b4a.keywords.Common.ArrayToList(new Object[]{(Object)(_mp)}));
+RDebugUtils.currentLine=2490422;
+ //BA.debugLineNum = 2490422;BA.debugLine="Wait For (j) JobDone(j As HttpJob)";
+anywheresoftware.b4a.keywords.Common.WaitFor("jobdone", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "actlapor", "btnlapor_click"), (Object)(_j));
+this.state = 11;
+return;
+case 11:
+//C
+this.state = 1;
+_j = (b4a.example.httpjob) result[0];
+;
+RDebugUtils.currentLine=2490423;
+ //BA.debugLineNum = 2490423;BA.debugLine="If j.Success Then";
+if (true) break;
+
+case 1:
+//if
+this.state = 10;
+if (_j._success /*boolean*/ ) { 
+this.state = 3;
+}if (true) break;
+
+case 3:
+//C
+this.state = 4;
+RDebugUtils.currentLine=2490424;
+ //BA.debugLineNum = 2490424;BA.debugLine="Log(j.GetString)";
+anywheresoftware.b4a.keywords.Common.LogImpl("12490424",_j._getstring /*String*/ (null),0);
+RDebugUtils.currentLine=2490425;
+ //BA.debugLineNum = 2490425;BA.debugLine="If img = j.GetString Then";
+if (true) break;
+
+case 4:
+//if
+this.state = 9;
+if ((_img).equals(_j._getstring /*String*/ (null))) { 
+this.state = 6;
+}else {
+this.state = 8;
+}if (true) break;
+
+case 6:
+//C
+this.state = 9;
+RDebugUtils.currentLine=2490426;
+ //BA.debugLineNum = 2490426;BA.debugLine="ToastMessageShow(\"Imagen Cargada.\", False)";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Imagen Cargada."),anywheresoftware.b4a.keywords.Common.False);
+ if (true) break;
+
+case 8:
+//C
+this.state = 9;
+RDebugUtils.currentLine=2490428;
+ //BA.debugLineNum = 2490428;BA.debugLine="ToastMessageShow(\"Error al cargar Imagen.\", Fal";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Error al cargar Imagen."),anywheresoftware.b4a.keywords.Common.False);
+ if (true) break;
+
+case 9:
+//C
+this.state = 10;
+;
+ if (true) break;
+
+case 10:
+//C
+this.state = -1;
+;
+RDebugUtils.currentLine=2490431;
+ //BA.debugLineNum = 2490431;BA.debugLine="j.Release";
+_j._release /*String*/ (null);
+RDebugUtils.currentLine=2490433;
+ //BA.debugLineNum = 2490433;BA.debugLine="End Sub";
+if (true) break;
+
+            }
+        }
+    }
 }
 public static String  _executeremotequery(String _query,String _jobname) throws Exception{
 RDebugUtils.currentModule="actlapor";
@@ -643,7 +764,7 @@ RDebugUtils.currentLine=2555904;
  //BA.debugLineNum = 2555904;BA.debugLine="Sub JobDone (Job1 As HttpJob)";
 RDebugUtils.currentLine=2555905;
  //BA.debugLineNum = 2555905;BA.debugLine="Log(\"JobName = \" & Job1.JobName & \", Success = \"";
-anywheresoftware.b4a.keywords.Common.LogImpl("82555905","JobName = "+_job1._jobname /*String*/ +", Success = "+BA.ObjectToString(_job1._success /*boolean*/ ),0);
+anywheresoftware.b4a.keywords.Common.LogImpl("12555905","JobName = "+_job1._jobname /*String*/ +", Success = "+BA.ObjectToString(_job1._success /*boolean*/ ),0);
 RDebugUtils.currentLine=2555906;
  //BA.debugLineNum = 2555906;BA.debugLine="If Job1.Success = True Then";
 if (_job1._success /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
@@ -653,7 +774,7 @@ switch (BA.switchObjectToInt(_job1._jobname /*String*/ ,"Job1")) {
 case 0: {
 RDebugUtils.currentLine=2555910;
  //BA.debugLineNum = 2555910;BA.debugLine="Log(\"behasil\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("82555910","behasil",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("12555910","behasil",0);
 RDebugUtils.currentLine=2555911;
  //BA.debugLineNum = 2555911;BA.debugLine="Msgbox(\"Report Data Success\",\"Success\")";
 anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("Report Data Success"),BA.ObjectToCharSequence("Success"),mostCurrent.activityBA);
@@ -663,7 +784,7 @@ anywheresoftware.b4a.keywords.Common.Msgbox(BA.ObjectToCharSequence("Report Data
  }else {
 RDebugUtils.currentLine=2555917;
  //BA.debugLineNum = 2555917;BA.debugLine="Log(\"Error: \" & Job1.ErrorMessage)";
-anywheresoftware.b4a.keywords.Common.LogImpl("82555917","Error: "+_job1._errormessage /*String*/ ,0);
+anywheresoftware.b4a.keywords.Common.LogImpl("12555917","Error: "+_job1._errormessage /*String*/ ,0);
 RDebugUtils.currentLine=2555918;
  //BA.debugLineNum = 2555918;BA.debugLine="ToastMessageShow(\"Error: \" & Job1.ErrorMessage,";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Error: "+_job1._errormessage /*String*/ ),anywheresoftware.b4a.keywords.Common.True);

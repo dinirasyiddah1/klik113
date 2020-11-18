@@ -68,11 +68,11 @@ input[type=text],
 		        
           <div style="width: 300px" class="container">
           <div class="form-group fontuser">
-              <input type="text" class="form-control" placeholder="Username" name="username" autofocus required/>
+              <input type="text" class="form-control" placeholder="Username" onfocus="this.value=''" name="username" required/>
               <i class="fa fa-user fa-lg"></i> 
           </div>
           <div class="form-group fontpassword">
-              <input type="password" class="form-control" placeholder="Password" name="password" required/>
+              <input type="password" class="form-control" placeholder="Password" onfocus="this.value=''" name="password" required/>
               <i class="fa fa-key fa-lg"></i> 
           </div>
         <div class="row">

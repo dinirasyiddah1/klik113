@@ -194,10 +194,10 @@ if (true) return BA.ObjectToString(_consts.Get(_i));
  }else {
 RDebugUtils.currentLine=11075590;
  //BA.debugLineNum = 11075590;BA.debugLine="Log(Consts)'ignore";
-__c.LogImpl("811075590",BA.ObjectToString(_consts),0);
+__c.LogImpl("111075590",BA.ObjectToString(_consts),0);
 RDebugUtils.currentLine=11075591;
  //BA.debugLineNum = 11075591;BA.debugLine="Log(\"Unknown const: \" & i)";
-__c.LogImpl("811075591","Unknown const: "+BA.NumberToString(_i),0);
+__c.LogImpl("111075591","Unknown const: "+BA.NumberToString(_i),0);
 RDebugUtils.currentLine=11075592;
  //BA.debugLineNum = 11075592;BA.debugLine="Return \"\"";
 if (true) return "";
@@ -597,7 +597,7 @@ case 3:
 this.state = 12;
 RDebugUtils.currentLine=10289156;
  //BA.debugLineNum = 10289156;BA.debugLine="Log(\"Focus not supported\")";
-parent.__c.LogImpl("810289156","Focus not supported",0);
+parent.__c.LogImpl("110289156","Focus not supported",0);
  if (true) break;
 
 case 5:
@@ -644,7 +644,7 @@ case 8:
 this.state = 11;
 RDebugUtils.currentLine=10289164;
  //BA.debugLineNum = 10289164;BA.debugLine="Log(\"Focus failed\")";
-parent.__c.LogImpl("810289164","Focus failed",0);
+parent.__c.LogImpl("110289164","Focus failed",0);
  if (true) break;
 
 case 10:
@@ -652,7 +652,7 @@ case 10:
 this.state = 11;
 RDebugUtils.currentLine=10289166;
  //BA.debugLineNum = 10289166;BA.debugLine="Log(\"Focused!\")";
-parent.__c.LogImpl("810289166","Focused!",0);
+parent.__c.LogImpl("110289166","Focused!",0);
  if (true) break;
 
 case 11:
@@ -1232,10 +1232,10 @@ _res.Add(_consts.Get(_mode));
  }else {
 RDebugUtils.currentLine=11141129;
  //BA.debugLineNum = 11141129;BA.debugLine="Log(Consts) 'ignore";
-__c.LogImpl("811141129",BA.ObjectToString(_consts),0);
+__c.LogImpl("111141129",BA.ObjectToString(_consts),0);
 RDebugUtils.currentLine=11141130;
  //BA.debugLineNum = 11141130;BA.debugLine="Log(\"Unknown consts: \" & mode)";
-__c.LogImpl("811141130","Unknown consts: "+BA.NumberToString(_mode),0);
+__c.LogImpl("111141130","Unknown consts: "+BA.NumberToString(_mode),0);
  };
  }
 };
@@ -1615,7 +1615,7 @@ case 7:
 this.state = 8;
 RDebugUtils.currentLine=8257544;
  //BA.debugLineNum = 8257544;BA.debugLine="Log(\"Camera not found.\")";
-parent.__c.LogImpl("88257544","Camera not found.",0);
+parent.__c.LogImpl("18257544","Camera not found.",0);
 RDebugUtils.currentLine=8257545;
  //BA.debugLineNum = 8257545;BA.debugLine="id = Camera.CameraIDs(0)";
 __ref._id /*String*/  = __ref._camera /*anywheresoftware.b4a.objects.Camera2*/ .getCameraIDs()[(int) (0)];
@@ -1654,7 +1654,7 @@ case 11:
 this.state = 12;
 RDebugUtils.currentLine=8257550;
  //BA.debugLineNum = 8257550;BA.debugLine="Log(\"Failed to open camera\")";
-parent.__c.LogImpl("88257550","Failed to open camera",0);
+parent.__c.LogImpl("18257550","Failed to open camera",0);
 RDebugUtils.currentLine=8257551;
  //BA.debugLineNum = 8257551;BA.debugLine="Return 0";
 if (true) {
@@ -1727,7 +1727,7 @@ RDebugUtils.currentLine=11337728;
  //BA.debugLineNum = 11337728;BA.debugLine="Private Sub PrintAllKeys (CameraMap As Object, tit";
 RDebugUtils.currentLine=11337729;
  //BA.debugLineNum = 11337729;BA.debugLine="Log($\"******  ${title} **********\"$)";
-__c.LogImpl("811337729",("******  "+__c.SmartStringFormatter("",(Object)(_title))+" **********"),0);
+__c.LogImpl("111337729",("******  "+__c.SmartStringFormatter("",(Object)(_title))+" **********"),0);
 RDebugUtils.currentLine=11337730;
  //BA.debugLineNum = 11337730;BA.debugLine="Dim jo As JavaObject = CameraMap";
 _jo = new anywheresoftware.b4j.object.JavaObject();
@@ -1794,7 +1794,7 @@ _value = (Object)(__ref._objectstolist /*anywheresoftware.b4a.objects.collection
 ;
 RDebugUtils.currentLine=11337747;
  //BA.debugLineNum = 11337747;BA.debugLine="Log($\"${k.RunMethod(\"getName\", Null)}: ${value}\"";
-__c.LogImpl("811337747",(""+__c.SmartStringFormatter("",_k.RunMethod("getName",(Object[])(__c.Null)))+": "+__c.SmartStringFormatter("",_value)+""),0);
+__c.LogImpl("111337747",(""+__c.SmartStringFormatter("",_k.RunMethod("getName",(Object[])(__c.Null)))+": "+__c.SmartStringFormatter("",_value)+""),0);
  }
 };
 RDebugUtils.currentLine=11337749;
@@ -2271,7 +2271,7 @@ __ref._mediarecorder /*anywheresoftware.b4j.object.JavaObject*/ .RunMethod("stop
        catch (Exception e5) {
 			ba.setLastException(e5);RDebugUtils.currentLine=8716293;
  //BA.debugLineNum = 8716293;BA.debugLine="Log(LastException)";
-__c.LogImpl("88716293",BA.ObjectToString(__c.LastException(ba)),0);
+__c.LogImpl("18716293",BA.ObjectToString(__c.LastException(ba)),0);
  };
 RDebugUtils.currentLine=8716295;
  //BA.debugLineNum = 8716295;BA.debugLine="RecordingVideo = False";

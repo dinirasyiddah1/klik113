@@ -38,10 +38,9 @@ Module5=actCam
 Module6=CamEx2
 Module7=CamExx
 Module8=gps
-Module9=MultipartPost
 NumberOfFiles=10
 NumberOfLibraries=8
-NumberOfModules=9
+NumberOfModules=8
 Version=9.5
 @EndOfDesignText@
 	#Region  Project Attributes 
@@ -76,7 +75,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	'Do not forget to load the layout file created with the visual designer. For example:
 	Activity.LoadLayout("start")
 	Button1.Visible=False
-	WebView1.LoadUrl("http://4894ba1bb609.ngrok.io/klik113-master/mobile/incident_today.php")
+	WebView1.LoadUrl("http://369dbe9d93aa.ngrok.io/klik113-master/mobile/incident_today.php")
 	Panel1.Visible=True ' put panel1 visible
 	
 	Panel1.BringToFront ' if some control is visible over, forces panel1 to be in front

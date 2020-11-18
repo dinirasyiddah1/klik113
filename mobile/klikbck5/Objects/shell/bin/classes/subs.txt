@@ -358,10 +358,10 @@ actlapor,activity_resume,0,0,60,64
 srvgps,rp
 
 
-actlapor,btnlapor_click,0,0,88,128
-,address,,name,,phone,,editlat,,editlon,,server
+actlapor,btnlapor_click,0,0,88,153
+,address,,name,,phone,,editlat,,editlon,,server,httputils2service,tempfolder
 
-httpjob,initialize,httpjob,poststring,httpjob,postbytes
+httpjob,initialize,httpjob,poststring,httpjob,postmultipart,httpjob,getstring,httpjob,release,httpjob,postbytes,httpjob,multipartstartsection,httpjob,getstring2
 actlapor,executeremotequery,0,0,81,86
 ,server
 
@@ -374,11 +374,11 @@ actlapor,id_laporan,0,0,77,79
 ,server
 
 ,executeremotequery,httpjob,initialize,httpjob,poststring,httpjob,postbytes
-actlapor,jobdone,1,0,130,147
+actlapor,jobdone,1,0,155,172
 httputils2service,tempfolder
 
 httpjob,release
-actlapor,label4_click,0,0,151,153
+actlapor,label4_click,0,0,176,178
 
 
 
@@ -398,6 +398,14 @@ httpjob,poststring,0,0,31,33
 
 
 ,postbytes
+httpjob,postmultipart,0,0,82,126
+
+
+,multipartstartsection,,postbytes
+httpjob,getstring,0,0,215,217
+httputils2service,tempfolder
+
+,getstring2
 httpjob,release,0,0,208,212
 httputils2service,tempfolder
 
@@ -450,10 +458,6 @@ httpjob,getinputstream,0,0,271,275
 httputils2service,tempfolder
 
 
-httpjob,getstring,0,0,215,217
-httputils2service,tempfolder
-
-,getstring2
 httpjob,getstring2,0,0,220,230
 httputils2service,tempfolder
 
@@ -482,10 +486,6 @@ httpjob,postfile,0,0,139,164
 
 
 ,postbytes
-httpjob,postmultipart,0,0,82,126
-
-
-,multipartstartsection,,postbytes
 httpjob,putbytes,0,0,47,50
 
 

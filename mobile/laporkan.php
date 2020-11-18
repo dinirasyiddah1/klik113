@@ -28,7 +28,7 @@ $query = pg_query("SELECT MAX(id_laporan) as id_laporan from detail_pelapor");
 	date_default_timezone_set('Asia/Jakarta');
 	$tanggal = date('d-m-Y');
 	$jam = date('H:i:s');
-	$media=0;
+	$media= $id_laporan . "1.jpg";
 	
 
 	$sql1 = pg_query("INSERT INTO public.orang(

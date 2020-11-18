@@ -112,7 +112,7 @@ var rute = [];
       include ("admin/connect.php");
     ?>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnfzteqn2wuGtWC63cDuFq9-UsGK47ukY&callback=initMap">
     </script>
     <script src="assets/js/jquery-1.10.2.js"></script>
     <script src="assets/js/bootstrap.js"></script>

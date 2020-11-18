@@ -1,5 +1,6 @@
-v<?
+<?
 include "../admin/connect.php";
+$tanggal = date('d-m-Y');
 ?>
 <script type="text/javascript">
 
@@ -123,6 +124,7 @@ function detailinforepo(id144){
            var row = rows[i];
           var id = row.id_laporan;
           var media = row.media;
+          var id_laporan = row.id_laporan;
           var tanggal = row.tanggal;
           var lokasi = row.lokasi;
           var latitude=row.lat;
@@ -153,7 +155,7 @@ function detailinforepo(id144){
            // $('#info').append("Nama : "+nama+" <br> Alamat : "+alamat+" <br> Kapasitas : "+kapasitas+"");
          infowindow = new google.maps.InfoWindow({
            position: centerBaru,
-           content: "<center><span style=color:black><b>Information</b><table><tr><center><img src='../file/pelaporan/"+media+"' width='50%'></center></tr><tr></tr><tr><td><i class='fa fa-home'></i>Tanggal</td><td>:</td><td> "+tanggal+"</td></tr><br><tr><td><i class='fa fa-map-marker'></i>Alamat</td><td>:</td><td> "+lokasi+"</td></tr><br><tr></tr></table></span><br>",   
+           content: "<center><span style=color:black><b>Information</b><table><tr><center><img src='../file/pelaporan/"+tanggal+"/"+media+"' width='50%'></center></tr><tr></tr><tr><td><i class='fa fa-home'></i>Tanggal</td><td>:</td><td> "+tanggal+"</td></tr><br><tr><td><i class='fa fa-map-marker'></i>Alamat</td><td>:</td><td> "+lokasi+"</td></tr><br><tr></tr></table></span><br>",   
             pixelOffset: new google.maps.Size(0, -33)
            });
          infoposisi.push(infowindow); 

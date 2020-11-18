@@ -169,10 +169,25 @@ finally {
 }
 public static void  _activity_permissionresult(RemoteObject _permission,RemoteObject _result) throws Exception{
 }
-public static RemoteObject  _btnlapor_click() throws Exception{
+public static void  _btnlapor_click() throws Exception{
 try {
 		Debug.PushSubsStack("btnLapor_Click (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,88);
-if (RapidSub.canDelegate("btnlapor_click")) { return b4a.example.actlapor.remoteMe.runUserSub(false, "actlapor","btnlapor_click");}
+if (RapidSub.canDelegate("btnlapor_click")) { b4a.example.actlapor.remoteMe.runUserSub(false, "actlapor","btnlapor_click"); return;}
+ResumableSub_btnLapor_Click rsub = new ResumableSub_btnLapor_Click(null);
+rsub.resume(null, null);
+}
+catch (Exception e) {
+			throw Debug.ErrorCaught(e);
+		} 
+finally {
+			Debug.PopSubsStack();
+		}}
+public static class ResumableSub_btnLapor_Click extends BA.ResumableSub {
+public ResumableSub_btnLapor_Click(b4a.example.actlapor parent) {
+this.parent = parent;
+}
+java.util.LinkedHashMap<String, Object> rsLocals = new java.util.LinkedHashMap<String, Object>();
+b4a.example.actlapor parent;
 RemoteObject _lokasi = RemoteObject.createImmutable("");
 RemoteObject _nama_orang = RemoteObject.createImmutable("");
 RemoteObject _no_hp = RemoteObject.createImmutable("");
@@ -181,104 +196,219 @@ RemoteObject _lon = RemoteObject.createImmutable(0);
 RemoteObject _tanggal = RemoteObject.createImmutable("");
 RemoteObject _jam = RemoteObject.createImmutable("");
 RemoteObject _id_kejadian = RemoteObject.createImmutable(0);
-RemoteObject _media = RemoteObject.createImmutable("");
 RemoteObject _job1 = RemoteObject.declareNull("b4a.example.httpjob");
- BA.debugLineNum = 88;BA.debugLine="Sub btnLapor_Click";
-Debug.ShouldStop(8388608);
- BA.debugLineNum = 89;BA.debugLine="Dim lokasi As String";
-Debug.ShouldStop(16777216);
-_lokasi = RemoteObject.createImmutable("");Debug.locals.put("lokasi", _lokasi);
- BA.debugLineNum = 90;BA.debugLine="lokasi = address.Text";
-Debug.ShouldStop(33554432);
-_lokasi = actlapor.mostCurrent._address.runMethod(true,"getText");Debug.locals.put("lokasi", _lokasi);
- BA.debugLineNum = 91;BA.debugLine="Log(lokasi)";
+RemoteObject _j = RemoteObject.declareNull("b4a.example.httpjob");
+RemoteObject _img = RemoteObject.createImmutable("");
+RemoteObject _mp = RemoteObject.declareNull("b4a.example.httpjob._multipartfiledata");
+
+@Override
+public void resume(BA ba, RemoteObject result) throws Exception{
+try {
+		Debug.PushSubsStack("btnLapor_Click (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,88);
+Debug.locals = rsLocals;Debug.currentSubFrame.locals = rsLocals;
+
+    while (true) {
+        switch (state) {
+            case -1:
+return;
+
+case 0:
+//C
+this.state = 1;
+ BA.debugLineNum = 91;BA.debugLine="Dim lokasi As String";
 Debug.ShouldStop(67108864);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490371",_lokasi,0);
- BA.debugLineNum = 93;BA.debugLine="Dim nama_orang As String";
-Debug.ShouldStop(268435456);
-_nama_orang = RemoteObject.createImmutable("");Debug.locals.put("nama_orang", _nama_orang);
- BA.debugLineNum = 94;BA.debugLine="nama_orang = name.Text";
-Debug.ShouldStop(536870912);
-_nama_orang = actlapor.mostCurrent._name.runMethod(true,"getText");Debug.locals.put("nama_orang", _nama_orang);
- BA.debugLineNum = 95;BA.debugLine="Log(nama_orang)";
-Debug.ShouldStop(1073741824);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490375",_nama_orang,0);
- BA.debugLineNum = 97;BA.debugLine="Dim no_hp As String";
-Debug.ShouldStop(1);
-_no_hp = RemoteObject.createImmutable("");Debug.locals.put("no_hp", _no_hp);
- BA.debugLineNum = 98;BA.debugLine="no_hp = phone.Text";
-Debug.ShouldStop(2);
-_no_hp = actlapor.mostCurrent._phone.runMethod(true,"getText");Debug.locals.put("no_hp", _no_hp);
- BA.debugLineNum = 99;BA.debugLine="Log(no_hp)";
-Debug.ShouldStop(4);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490379",_no_hp,0);
- BA.debugLineNum = 101;BA.debugLine="Dim lat As Double";
-Debug.ShouldStop(16);
-_lat = RemoteObject.createImmutable(0);Debug.locals.put("lat", _lat);
- BA.debugLineNum = 102;BA.debugLine="lat = EditLat.Text";
-Debug.ShouldStop(32);
-_lat = BA.numberCast(double.class, actlapor.mostCurrent._editlat.runMethod(true,"getText"));Debug.locals.put("lat", _lat);
- BA.debugLineNum = 103;BA.debugLine="Log(lat)";
-Debug.ShouldStop(64);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490383",BA.NumberToString(_lat),0);
- BA.debugLineNum = 105;BA.debugLine="Dim lon As Double";
-Debug.ShouldStop(256);
-_lon = RemoteObject.createImmutable(0);Debug.locals.put("lon", _lon);
- BA.debugLineNum = 106;BA.debugLine="lon = EditLon.Text";
-Debug.ShouldStop(512);
-_lon = BA.numberCast(double.class, actlapor.mostCurrent._editlon.runMethod(true,"getText"));Debug.locals.put("lon", _lon);
- BA.debugLineNum = 107;BA.debugLine="Log(lon)";
-Debug.ShouldStop(1024);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490387",BA.NumberToString(_lon),0);
- BA.debugLineNum = 109;BA.debugLine="DateTime.DateFormat = \"yyyy-MM-dd\"";
-Debug.ShouldStop(4096);
-actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"setDateFormat",BA.ObjectToString("yyyy-MM-dd"));
- BA.debugLineNum = 110;BA.debugLine="Dim tanggal= DateTime.Date(DateTime.now)";
-Debug.ShouldStop(8192);
-_tanggal = actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"Date",(Object)(actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"getNow")));Debug.locals.put("tanggal", _tanggal);Debug.locals.put("tanggal", _tanggal);
- BA.debugLineNum = 111;BA.debugLine="Log(tanggal)";
-Debug.ShouldStop(16384);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490391",_tanggal,0);
- BA.debugLineNum = 114;BA.debugLine="DateTime.TimeFormat = \"hh:mm\"";
-Debug.ShouldStop(131072);
-actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"setTimeFormat",BA.ObjectToString("hh:mm"));
- BA.debugLineNum = 115;BA.debugLine="Dim jam = DateTime.Time(DateTime.Now)";
-Debug.ShouldStop(262144);
-_jam = actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"Time",(Object)(actlapor.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"getNow")));Debug.locals.put("jam", _jam);Debug.locals.put("jam", _jam);
- BA.debugLineNum = 116;BA.debugLine="Log (jam)";
-Debug.ShouldStop(524288);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490396",_jam,0);
- BA.debugLineNum = 118;BA.debugLine="Dim id_kejadian As Int";
-Debug.ShouldStop(2097152);
-_id_kejadian = RemoteObject.createImmutable(0);Debug.locals.put("id_kejadian", _id_kejadian);
- BA.debugLineNum = 119;BA.debugLine="id_kejadian = 0";
-Debug.ShouldStop(4194304);
-_id_kejadian = BA.numberCast(int.class, 0);Debug.locals.put("id_kejadian", _id_kejadian);
- BA.debugLineNum = 120;BA.debugLine="Log(id_kejadian)";
-Debug.ShouldStop(8388608);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82490400",BA.NumberToString(_id_kejadian),0);
- BA.debugLineNum = 122;BA.debugLine="Dim media As String = \"1.jpg\"";
-Debug.ShouldStop(33554432);
-_media = BA.ObjectToString("1.jpg");Debug.locals.put("media", _media);Debug.locals.put("media", _media);
- BA.debugLineNum = 124;BA.debugLine="Dim Job1 As HttpJob";
+_lokasi = RemoteObject.createImmutable("");Debug.locals.put("lokasi", _lokasi);
+ BA.debugLineNum = 92;BA.debugLine="lokasi = address.Text";
 Debug.ShouldStop(134217728);
-_job1 = RemoteObject.createNew ("b4a.example.httpjob");Debug.locals.put("Job1", _job1);
- BA.debugLineNum = 125;BA.debugLine="Job1.Initialize(\"Job1\",Me)";
+_lokasi = parent.mostCurrent._address.runMethod(true,"getText");Debug.locals.put("lokasi", _lokasi);
+ BA.debugLineNum = 93;BA.debugLine="Log(lokasi)";
 Debug.ShouldStop(268435456);
-_job1.runClassMethod (b4a.example.httpjob.class, "_initialize" /*RemoteObject*/ ,actlapor.processBA,(Object)(BA.ObjectToString("Job1")),(Object)(actlapor.getObject()));
- BA.debugLineNum = 126;BA.debugLine="Job1.PostString(\"\"&server&\"upload.php\",\"&nama_ora";
-Debug.ShouldStop(536870912);
-_job1.runClassMethod (b4a.example.httpjob.class, "_poststring" /*RemoteObject*/ ,(Object)(RemoteObject.concat(RemoteObject.createImmutable(""),actlapor._server,RemoteObject.createImmutable("upload.php"))),(Object)(RemoteObject.concat(RemoteObject.createImmutable("&nama_orang="),_nama_orang,RemoteObject.createImmutable("&lokasi="),_lokasi,RemoteObject.createImmutable("&no_hp="),_no_hp,RemoteObject.createImmutable("&tanggal="),_tanggal,RemoteObject.createImmutable("&FileName="),_media,RemoteObject.createImmutable("&jam="),_jam,RemoteObject.createImmutable("&lat="),_lat,RemoteObject.createImmutable("&lon="),_lon,RemoteObject.createImmutable("&id_kejadian="),_id_kejadian)));
- BA.debugLineNum = 128;BA.debugLine="End Sub";
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490373",_lokasi,0);
+ BA.debugLineNum = 95;BA.debugLine="Dim nama_orang As String";
+Debug.ShouldStop(1073741824);
+_nama_orang = RemoteObject.createImmutable("");Debug.locals.put("nama_orang", _nama_orang);
+ BA.debugLineNum = 96;BA.debugLine="nama_orang = name.Text";
 Debug.ShouldStop(-2147483648);
-return RemoteObject.createImmutable("");
-}
+_nama_orang = parent.mostCurrent._name.runMethod(true,"getText");Debug.locals.put("nama_orang", _nama_orang);
+ BA.debugLineNum = 97;BA.debugLine="Log(nama_orang)";
+Debug.ShouldStop(1);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490377",_nama_orang,0);
+ BA.debugLineNum = 99;BA.debugLine="Dim no_hp As String";
+Debug.ShouldStop(4);
+_no_hp = RemoteObject.createImmutable("");Debug.locals.put("no_hp", _no_hp);
+ BA.debugLineNum = 100;BA.debugLine="no_hp = phone.Text";
+Debug.ShouldStop(8);
+_no_hp = parent.mostCurrent._phone.runMethod(true,"getText");Debug.locals.put("no_hp", _no_hp);
+ BA.debugLineNum = 101;BA.debugLine="Log(no_hp)";
+Debug.ShouldStop(16);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490381",_no_hp,0);
+ BA.debugLineNum = 103;BA.debugLine="Dim lat As Double";
+Debug.ShouldStop(64);
+_lat = RemoteObject.createImmutable(0);Debug.locals.put("lat", _lat);
+ BA.debugLineNum = 104;BA.debugLine="lat = EditLat.Text";
+Debug.ShouldStop(128);
+_lat = BA.numberCast(double.class, parent.mostCurrent._editlat.runMethod(true,"getText"));Debug.locals.put("lat", _lat);
+ BA.debugLineNum = 105;BA.debugLine="Log(lat)";
+Debug.ShouldStop(256);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490385",BA.NumberToString(_lat),0);
+ BA.debugLineNum = 107;BA.debugLine="Dim lon As Double";
+Debug.ShouldStop(1024);
+_lon = RemoteObject.createImmutable(0);Debug.locals.put("lon", _lon);
+ BA.debugLineNum = 108;BA.debugLine="lon = EditLon.Text";
+Debug.ShouldStop(2048);
+_lon = BA.numberCast(double.class, parent.mostCurrent._editlon.runMethod(true,"getText"));Debug.locals.put("lon", _lon);
+ BA.debugLineNum = 109;BA.debugLine="Log(lon)";
+Debug.ShouldStop(4096);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490389",BA.NumberToString(_lon),0);
+ BA.debugLineNum = 111;BA.debugLine="DateTime.DateFormat = \"yyyy-MM-dd\"";
+Debug.ShouldStop(16384);
+parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"setDateFormat",BA.ObjectToString("yyyy-MM-dd"));
+ BA.debugLineNum = 112;BA.debugLine="Dim tanggal= DateTime.Date(DateTime.now)";
+Debug.ShouldStop(32768);
+_tanggal = parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"Date",(Object)(parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"getNow")));Debug.locals.put("tanggal", _tanggal);Debug.locals.put("tanggal", _tanggal);
+ BA.debugLineNum = 113;BA.debugLine="Log(tanggal)";
+Debug.ShouldStop(65536);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490393",_tanggal,0);
+ BA.debugLineNum = 116;BA.debugLine="DateTime.TimeFormat = \"hh:mm\"";
+Debug.ShouldStop(524288);
+parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"setTimeFormat",BA.ObjectToString("hh:mm"));
+ BA.debugLineNum = 117;BA.debugLine="Dim jam = DateTime.Time(DateTime.Now)";
+Debug.ShouldStop(1048576);
+_jam = parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"Time",(Object)(parent.mostCurrent.__c.getField(false,"DateTime").runMethod(true,"getNow")));Debug.locals.put("jam", _jam);Debug.locals.put("jam", _jam);
+ BA.debugLineNum = 118;BA.debugLine="Log (jam)";
+Debug.ShouldStop(2097152);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490398",_jam,0);
+ BA.debugLineNum = 120;BA.debugLine="Dim id_kejadian As Int";
+Debug.ShouldStop(8388608);
+_id_kejadian = RemoteObject.createImmutable(0);Debug.locals.put("id_kejadian", _id_kejadian);
+ BA.debugLineNum = 121;BA.debugLine="id_kejadian = 0";
+Debug.ShouldStop(16777216);
+_id_kejadian = BA.numberCast(int.class, 0);Debug.locals.put("id_kejadian", _id_kejadian);
+ BA.debugLineNum = 122;BA.debugLine="Log(id_kejadian)";
+Debug.ShouldStop(33554432);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490402",BA.NumberToString(_id_kejadian),0);
+ BA.debugLineNum = 126;BA.debugLine="Dim Job1 As HttpJob";
+Debug.ShouldStop(536870912);
+_job1 = RemoteObject.createNew ("b4a.example.httpjob");Debug.locals.put("Job1", _job1);
+ BA.debugLineNum = 127;BA.debugLine="Job1.Initialize(\"Job1\",Me)";
+Debug.ShouldStop(1073741824);
+_job1.runClassMethod (b4a.example.httpjob.class, "_initialize" /*RemoteObject*/ ,actlapor.processBA,(Object)(BA.ObjectToString("Job1")),(Object)(actlapor.getObject()));
+ BA.debugLineNum = 128;BA.debugLine="Job1.PostString(\"\"&server&\"laporkan.php\",\"&nama_o";
+Debug.ShouldStop(-2147483648);
+_job1.runClassMethod (b4a.example.httpjob.class, "_poststring" /*RemoteObject*/ ,(Object)(RemoteObject.concat(RemoteObject.createImmutable(""),parent._server,RemoteObject.createImmutable("laporkan.php"))),(Object)(RemoteObject.concat(RemoteObject.createImmutable("&nama_orang="),_nama_orang,RemoteObject.createImmutable("&lokasi="),_lokasi,RemoteObject.createImmutable("&no_hp="),_no_hp,RemoteObject.createImmutable("&tanggal="),_tanggal,RemoteObject.createImmutable("&jam="),_jam,RemoteObject.createImmutable("&lat="),_lat,RemoteObject.createImmutable("&lon="),_lon,RemoteObject.createImmutable("&id_kejadian="),_id_kejadian)));
+ BA.debugLineNum = 132;BA.debugLine="Dim j As HttpJob";
+Debug.ShouldStop(8);
+_j = RemoteObject.createNew ("b4a.example.httpjob");Debug.locals.put("j", _j);
+ BA.debugLineNum = 133;BA.debugLine="Dim img As String = \"1.jpg\"";
+Debug.ShouldStop(16);
+_img = BA.ObjectToString("1.jpg");Debug.locals.put("img", _img);Debug.locals.put("img", _img);
+ BA.debugLineNum = 134;BA.debugLine="j.Initialize(\"\", Me)";
+Debug.ShouldStop(32);
+_j.runClassMethod (b4a.example.httpjob.class, "_initialize" /*RemoteObject*/ ,actlapor.processBA,(Object)(BA.ObjectToString("")),(Object)(actlapor.getObject()));
+ BA.debugLineNum = 135;BA.debugLine="Dim mp As MultipartFileData";
+Debug.ShouldStop(64);
+_mp = RemoteObject.createNew ("b4a.example.httpjob._multipartfiledata");Debug.locals.put("mp", _mp);
+ BA.debugLineNum = 136;BA.debugLine="mp.Initialize";
+Debug.ShouldStop(128);
+_mp.runVoidMethod ("Initialize");
+ BA.debugLineNum = 137;BA.debugLine="mp.Dir = File.DirDefaultExternal";
+Debug.ShouldStop(256);
+_mp.setField ("Dir" /*RemoteObject*/ ,parent.mostCurrent.__c.getField(false,"File").runMethod(true,"getDirDefaultExternal"));
+ BA.debugLineNum = 138;BA.debugLine="mp.FileName = img";
+Debug.ShouldStop(512);
+_mp.setField ("FileName" /*RemoteObject*/ ,_img);
+ BA.debugLineNum = 139;BA.debugLine="mp.KeyName = \"file\"";
+Debug.ShouldStop(1024);
+_mp.setField ("KeyName" /*RemoteObject*/ ,BA.ObjectToString("file"));
+ BA.debugLineNum = 140;BA.debugLine="mp.ContentType = \"image/jpg\"";
+Debug.ShouldStop(2048);
+_mp.setField ("ContentType" /*RemoteObject*/ ,BA.ObjectToString("image/jpg"));
+ BA.debugLineNum = 141;BA.debugLine="j.PostMultipart(\"http://369dbe9d93aa.ngrok.io/kli";
+Debug.ShouldStop(4096);
+_j.runClassMethod (b4a.example.httpjob.class, "_postmultipart" /*RemoteObject*/ ,(Object)(BA.ObjectToString("http://369dbe9d93aa.ngrok.io/klik113/mobile/UploadImage.php")),RemoteObject.declareNull("anywheresoftware.b4a.AbsObjectWrapper").runMethod(false, "ConvertToWrapper", RemoteObject.createNew("anywheresoftware.b4a.objects.collections.Map"), parent.mostCurrent.__c.getField(false,"Null")),(Object)(parent.mostCurrent.__c.runMethod(false, "ArrayToList", (Object)(RemoteObject.createNewArray("Object",new int[] {1},new Object[] {(_mp)})))));
+ BA.debugLineNum = 142;BA.debugLine="Wait For (j) JobDone(j As HttpJob)";
+Debug.ShouldStop(8192);
+parent.mostCurrent.__c.runVoidMethod ("WaitFor","jobdone", actlapor.processBA, anywheresoftware.b4a.pc.PCResumableSub.createDebugResumeSub(this, "actlapor", "btnlapor_click"), (_j));
+this.state = 11;
+return;
+case 11:
+//C
+this.state = 1;
+_j = (RemoteObject) result.getArrayElement(false,RemoteObject.createImmutable(0));Debug.locals.put("j", _j);
+;
+ BA.debugLineNum = 143;BA.debugLine="If j.Success Then";
+Debug.ShouldStop(16384);
+if (true) break;
+
+case 1:
+//if
+this.state = 10;
+if (_j.getField(true,"_success" /*RemoteObject*/ ).<Boolean>get().booleanValue()) { 
+this.state = 3;
+}if (true) break;
+
+case 3:
+//C
+this.state = 4;
+ BA.debugLineNum = 144;BA.debugLine="Log(j.GetString)";
+Debug.ShouldStop(32768);
+parent.mostCurrent.__c.runVoidMethod ("LogImpl","12490424",_j.runClassMethod (b4a.example.httpjob.class, "_getstring" /*RemoteObject*/ ),0);
+ BA.debugLineNum = 145;BA.debugLine="If img = j.GetString Then";
+Debug.ShouldStop(65536);
+if (true) break;
+
+case 4:
+//if
+this.state = 9;
+if (RemoteObject.solveBoolean("=",_img,_j.runClassMethod (b4a.example.httpjob.class, "_getstring" /*RemoteObject*/ ))) { 
+this.state = 6;
+}else {
+this.state = 8;
+}if (true) break;
+
+case 6:
+//C
+this.state = 9;
+ BA.debugLineNum = 146;BA.debugLine="ToastMessageShow(\"Imagen Cargada.\", False)";
+Debug.ShouldStop(131072);
+parent.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence("Imagen Cargada.")),(Object)(parent.mostCurrent.__c.getField(true,"False")));
+ if (true) break;
+
+case 8:
+//C
+this.state = 9;
+ BA.debugLineNum = 148;BA.debugLine="ToastMessageShow(\"Error al cargar Imagen.\", Fal";
+Debug.ShouldStop(524288);
+parent.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence("Error al cargar Imagen.")),(Object)(parent.mostCurrent.__c.getField(true,"False")));
+ if (true) break;
+
+case 9:
+//C
+this.state = 10;
+;
+ if (true) break;
+
+case 10:
+//C
+this.state = -1;
+;
+ BA.debugLineNum = 151;BA.debugLine="j.Release";
+Debug.ShouldStop(4194304);
+_j.runClassMethod (b4a.example.httpjob.class, "_release" /*RemoteObject*/ );
+ BA.debugLineNum = 153;BA.debugLine="End Sub";
+Debug.ShouldStop(16777216);
+if (true) break;
+
+            }
+        }
+    }
 catch (Exception e) {
 			throw Debug.ErrorCaught(e);
 		} 
 finally {
 			Debug.PopSubsStack();
 		}}
+}
 public static RemoteObject  _executeremotequery(RemoteObject _query,RemoteObject _jobname) throws Exception{
 try {
 		Debug.PushSubsStack("ExecuteRemoteQuery (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,81);
@@ -355,43 +485,43 @@ finally {
 		}}
 public static RemoteObject  _jobdone(RemoteObject _job1) throws Exception{
 try {
-		Debug.PushSubsStack("JobDone (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,130);
+		Debug.PushSubsStack("JobDone (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,155);
 if (RapidSub.canDelegate("jobdone")) { return b4a.example.actlapor.remoteMe.runUserSub(false, "actlapor","jobdone", _job1);}
 Debug.locals.put("Job1", _job1);
- BA.debugLineNum = 130;BA.debugLine="Sub JobDone (Job1 As HttpJob)";
-Debug.ShouldStop(2);
- BA.debugLineNum = 131;BA.debugLine="Log(\"JobName = \" & Job1.JobName & \", Success = \"";
-Debug.ShouldStop(4);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82555905",RemoteObject.concat(RemoteObject.createImmutable("JobName = "),_job1.getField(true,"_jobname" /*RemoteObject*/ ),RemoteObject.createImmutable(", Success = "),_job1.getField(true,"_success" /*RemoteObject*/ )),0);
- BA.debugLineNum = 132;BA.debugLine="If Job1.Success = True Then";
-Debug.ShouldStop(8);
+ BA.debugLineNum = 155;BA.debugLine="Sub JobDone (Job1 As HttpJob)";
+Debug.ShouldStop(67108864);
+ BA.debugLineNum = 156;BA.debugLine="Log(\"JobName = \" & Job1.JobName & \", Success = \"";
+Debug.ShouldStop(134217728);
+actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","12555905",RemoteObject.concat(RemoteObject.createImmutable("JobName = "),_job1.getField(true,"_jobname" /*RemoteObject*/ ),RemoteObject.createImmutable(", Success = "),_job1.getField(true,"_success" /*RemoteObject*/ )),0);
+ BA.debugLineNum = 157;BA.debugLine="If Job1.Success = True Then";
+Debug.ShouldStop(268435456);
 if (RemoteObject.solveBoolean("=",_job1.getField(true,"_success" /*RemoteObject*/ ),actlapor.mostCurrent.__c.getField(true,"True"))) { 
- BA.debugLineNum = 133;BA.debugLine="Select Job1.JobName";
-Debug.ShouldStop(16);
+ BA.debugLineNum = 158;BA.debugLine="Select Job1.JobName";
+Debug.ShouldStop(536870912);
 switch (BA.switchObjectToInt(_job1.getField(true,"_jobname" /*RemoteObject*/ ),BA.ObjectToString("Job1"))) {
 case 0: {
- BA.debugLineNum = 136;BA.debugLine="Log(\"behasil\")";
-Debug.ShouldStop(128);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82555910",RemoteObject.createImmutable("behasil"),0);
- BA.debugLineNum = 137;BA.debugLine="Msgbox(\"Report Data Success\",\"Success\")";
-Debug.ShouldStop(256);
+ BA.debugLineNum = 161;BA.debugLine="Log(\"behasil\")";
+Debug.ShouldStop(1);
+actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","12555910",RemoteObject.createImmutable("behasil"),0);
+ BA.debugLineNum = 162;BA.debugLine="Msgbox(\"Report Data Success\",\"Success\")";
+Debug.ShouldStop(2);
 actlapor.mostCurrent.__c.runVoidMethodAndSync ("Msgbox",(Object)(BA.ObjectToCharSequence("Report Data Success")),(Object)(BA.ObjectToCharSequence(RemoteObject.createImmutable("Success"))),actlapor.mostCurrent.activityBA);
  break; }
 }
 ;
  }else {
- BA.debugLineNum = 143;BA.debugLine="Log(\"Error: \" & Job1.ErrorMessage)";
-Debug.ShouldStop(16384);
-actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","82555917",RemoteObject.concat(RemoteObject.createImmutable("Error: "),_job1.getField(true,"_errormessage" /*RemoteObject*/ )),0);
- BA.debugLineNum = 144;BA.debugLine="ToastMessageShow(\"Error: \" & Job1.ErrorMessage,";
-Debug.ShouldStop(32768);
+ BA.debugLineNum = 168;BA.debugLine="Log(\"Error: \" & Job1.ErrorMessage)";
+Debug.ShouldStop(128);
+actlapor.mostCurrent.__c.runVoidMethod ("LogImpl","12555917",RemoteObject.concat(RemoteObject.createImmutable("Error: "),_job1.getField(true,"_errormessage" /*RemoteObject*/ )),0);
+ BA.debugLineNum = 169;BA.debugLine="ToastMessageShow(\"Error: \" & Job1.ErrorMessage,";
+Debug.ShouldStop(256);
 actlapor.mostCurrent.__c.runVoidMethod ("ToastMessageShow",(Object)(BA.ObjectToCharSequence(RemoteObject.concat(RemoteObject.createImmutable("Error: "),_job1.getField(true,"_errormessage" /*RemoteObject*/ )))),(Object)(actlapor.mostCurrent.__c.getField(true,"True")));
  };
- BA.debugLineNum = 146;BA.debugLine="Job1.Release";
-Debug.ShouldStop(131072);
+ BA.debugLineNum = 171;BA.debugLine="Job1.Release";
+Debug.ShouldStop(1024);
 _job1.runClassMethod (b4a.example.httpjob.class, "_release" /*RemoteObject*/ );
- BA.debugLineNum = 147;BA.debugLine="End Sub";
-Debug.ShouldStop(262144);
+ BA.debugLineNum = 172;BA.debugLine="End Sub";
+Debug.ShouldStop(2048);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -402,15 +532,15 @@ finally {
 		}}
 public static RemoteObject  _label4_click() throws Exception{
 try {
-		Debug.PushSubsStack("Label4_Click (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,151);
+		Debug.PushSubsStack("Label4_Click (actlapor) ","actlapor",3,actlapor.mostCurrent.activityBA,actlapor.mostCurrent,176);
 if (RapidSub.canDelegate("label4_click")) { return b4a.example.actlapor.remoteMe.runUserSub(false, "actlapor","label4_click");}
- BA.debugLineNum = 151;BA.debugLine="Sub Label4_Click";
-Debug.ShouldStop(4194304);
- BA.debugLineNum = 152;BA.debugLine="StartActivity(Main)";
-Debug.ShouldStop(8388608);
+ BA.debugLineNum = 176;BA.debugLine="Sub Label4_Click";
+Debug.ShouldStop(32768);
+ BA.debugLineNum = 177;BA.debugLine="StartActivity(Main)";
+Debug.ShouldStop(65536);
 actlapor.mostCurrent.__c.runVoidMethod ("StartActivity",actlapor.processBA,(Object)((actlapor.mostCurrent._main.getObject())));
- BA.debugLineNum = 153;BA.debugLine="End Sub";
-Debug.ShouldStop(16777216);
+ BA.debugLineNum = 178;BA.debugLine="End Sub";
+Debug.ShouldStop(131072);
 return RemoteObject.createImmutable("");
 }
 catch (Exception e) {
@@ -444,8 +574,8 @@ finally {
 		}}
 public static RemoteObject  _process_globals() throws Exception{
  //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 9;BA.debugLine="Dim server =\"http://4894ba1bb609.ngrok.io/klik113";
-actlapor._server = BA.ObjectToString("http://4894ba1bb609.ngrok.io/klik113-master/mobile/");
+ //BA.debugLineNum = 9;BA.debugLine="Dim server =\"http://369dbe9d93aa.ngrok.io/klik113";
+actlapor._server = BA.ObjectToString("http://369dbe9d93aa.ngrok.io/klik113/mobile/");
  //BA.debugLineNum = 10;BA.debugLine="Private rp As RuntimePermissions";
 actlapor._rp = RemoteObject.createNew ("anywheresoftware.b4a.objects.RuntimePermissions");
  //BA.debugLineNum = 11;BA.debugLine="End Sub";

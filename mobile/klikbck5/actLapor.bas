@@ -12,7 +12,7 @@ Version=9.5
 Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
-	Dim server ="http://4894ba1bb609.ngrok.io/klik113-master/mobile/"
+	Dim server ="http://369dbe9d93aa.ngrok.io/klik113/mobile/"
 	Private rp As RuntimePermissions
 End Sub
 
@@ -92,6 +92,8 @@ Sub ExecuteRemoteQuery(Query As String, JobName As String)
 End Sub
 
 Sub btnLapor_Click
+	
+	'upload data pelaporan
 	Dim lokasi As String
 	lokasi = address.Text
 	Log(lokasi)
@@ -125,11 +127,34 @@ Sub btnLapor_Click
 	id_kejadian = 0
 	Log(id_kejadian)
 	
-	Dim media As String = "1.jpg"
+	'Dim media As String = "1.jpg"
 	
 	Dim Job1 As HttpJob
 	Job1.Initialize("Job1",Me)
-	Job1.PostString(""&server&"upload.php","&nama_orang=" & nama_orang &"&lokasi="& lokasi &"&no_hp=" & no_hp &"&tanggal=" & tanggal &"&FileName=" & media &"&jam=" & jam  &"&lat=" & lat &"&lon=" & lon &"&id_kejadian=" & id_kejadian)
+	Job1.PostString(""&server&"laporkan.php","&nama_orang=" & nama_orang &"&lokasi="& lokasi &"&no_hp=" & no_hp &"&tanggal=" & tanggal &"&jam=" & jam  &"&lat=" & lat &"&lon=" & lon &"&id_kejadian=" & id_kejadian)
+
+
+	'upload image
+	Dim j As HttpJob
+	Dim img As String = "1.jpg"
+	j.Initialize("", Me)
+	Dim mp As MultipartFileData
+	mp.Initialize
+	mp.Dir = File.DirDefaultExternal
+	mp.FileName = img
+	mp.KeyName = "file"
+	mp.ContentType = "image/jpg"
+	j.PostMultipart("http://369dbe9d93aa.ngrok.io/klik113/mobile/UploadImage.php", Null, Array(mp))
+	Wait For (j) JobDone(j As HttpJob)
+	If j.Success Then
+		Log(j.GetString)
+		If img = j.GetString Then
+			ToastMessageShow("Imagen Cargada.", False)
+		Else
+			ToastMessageShow("Error al cargar Imagen.", False)
+		End If
+	End If
+	j.Release
 
 End Sub
 

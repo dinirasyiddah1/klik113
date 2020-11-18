@@ -19,9 +19,9 @@ main.mostCurrent._activity.runMethodAndSync(false,"LoadLayout",(Object)(RemoteOb
  BA.debugLineNum = 32;BA.debugLine="Button1.Visible=False";
 Debug.ShouldStop(-2147483648);
 main.mostCurrent._button1.runMethod(true,"setVisible",main.mostCurrent.__c.getField(true,"False"));
- BA.debugLineNum = 33;BA.debugLine="WebView1.LoadUrl(\"http://4894ba1bb609.ngrok.io/kl";
+ BA.debugLineNum = 33;BA.debugLine="WebView1.LoadUrl(\"http://369dbe9d93aa.ngrok.io/kl";
 Debug.ShouldStop(1);
-main.mostCurrent._webview1.runVoidMethod ("LoadUrl",(Object)(RemoteObject.createImmutable("http://4894ba1bb609.ngrok.io/klik113-master/mobile/incident_today.php")));
+main.mostCurrent._webview1.runVoidMethod ("LoadUrl",(Object)(RemoteObject.createImmutable("http://369dbe9d93aa.ngrok.io/klik113-master/mobile/incident_today.php")));
  BA.debugLineNum = 34;BA.debugLine="Panel1.Visible=True ' put panel1 visible";
 Debug.ShouldStop(2);
 main.mostCurrent._panel1.runMethod(true,"setVisible",main.mostCurrent.__c.getField(true,"True"));

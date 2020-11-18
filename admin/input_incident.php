@@ -84,7 +84,7 @@ include 'connect.php';
                 <div class="panel panel-default">    
                     <div class="form-group panel-body">
                     <label for="jenis_kejadian">2. Type Of Incident</label>
-                    <input type="text" class="form-control" id="jenis_kejadian" placeholder = "ex: Kebakaran Rumah" name="jenis_kejadian" autocomplete="off">
+                    <input type="text" class="form-control" id="jenis_kejadian" placeholder = "ex: Kebakaran Rumah" name="jenis_kejadian" autocomplete="off" maxlength="70">
                    <br>
                     &nbsp;<label for="objek_terbakar">Burning Object</label>&nbsp;
                     <select id="objek_terbakar" name="objek_terbakar[]" class="form-control" required multiple="multiple">
@@ -105,7 +105,7 @@ include 'connect.php';
                 <div class="panel panel-default">    
                     <div class="form-group panel-body">
                     <label for="penyebabn">3. The Cause Of The Incident</label>
-                    <input type="text" class="form-control" id="penyebab" name="penyebab" placeholder="ex: Kompor Gas" autocomplete="off">
+                    <input type="text" class="form-control" id="penyebab" name="penyebab" placeholder="ex: Kompor Gas" autocomplete="off" maxlength="70">
                     <br>
                     &nbsp;<label for="kategori_penyebab">Category Of Cause</label>&nbsp;
                     <select id="kategori_penyebab" name="kategori_penyebab[]" class="form-control" required multiple="multiple">
@@ -127,19 +127,19 @@ include 'connect.php';
                 <div class="panel panel-default">    
                     <div class="form-group panel-body">
                     <label for="lokasi">4. Location</label>
-                    <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Jl. Nama Jalan" autocomplete="off">
+                    <input type="text" class="form-control" id="lokasi" name="lokasi" placeholder="Jl. Nama Jalan" autocomplete="off" maxlength="100">
                   <br>
                   &nbsp;&nbsp;&nbsp;&nbsp;<label for="rtrw">RT / RW</label>&nbsp;
                   <br>
                   <div class="col-sm-6">
-                  <input type="text" class="form-control" id="rt" name="rt" placeholder="RT" autocomplete="off">
+                  <input type="number" class="form-control" id="rt" name="rt" placeholder="RT" autocomplete="off" min="0" max="99">
                   </div>
                   <div class="col-sm-6">
-                  <input type="text" class="form-control"  id="rw" name="rw" placeholder = "RW" autocomplete="off">
+                  <input type="number" class="form-control"  id="rw" name="rw" placeholder = "RW" autocomplete="off" min="0" max="99">
                  </div>
                   <br><br><br>
                   <label for="kelurahan">Village</label>
-                    <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Village" autocomplete="off">
+                    <input type="text" class="form-control" id="kelurahan" name="kelurahan" placeholder="Village" autocomplete="off" maxlength="30">
                   
                 </div>
                 </div>
@@ -246,7 +246,7 @@ include 'connect.php';
                 <div class="panel panel-default">
                   <div class="form-group panel-body"> 
                       <label for="personil">Number of personnel</label>
-                      <input type="text" class="form-control" id="personil" name="personil" placeholder="Number of personnel" autocomplete="off">
+                      <input type="number" class="form-control" id="personil" name="personil" placeholder="Number of personnel" autocomplete="off" min="0" max="9999">
                     <br>
                       <label for="instansi">Agent involved</label><br>
                       
@@ -294,47 +294,112 @@ include 'connect.php';
                 <div class="panel panel-default"> 
                 <div class="form-group panel-body"> 
                   <label for="korban">Victim</label><br>
-                  <div class="col-sm-7">
-                  <select id="korban" name="korban[]" class="form-control" multiple="multiple">
-                    
-                          <?php
-                              $query = "SELECT * FROM orang";
-                              $sql=pg_query($query) or die (pg_error());
+                  <!-- start victim -->
+                  <div class="control-group after-add-more">
+                      <div class="col-sm-5">
+                      <select  name="korban[]" class="form-control">
+                      <option  value="" disabled selected>Please Select</option>
                              
-                              while ($row = pg_fetch_assoc($sql)) {
-                          ?>
-                          <option  value="<?=$row['id_orang']?>" required><?=$row['nama_orang']?></option>
+                              <?php
+                                  $query = "SELECT * FROM orang";
+                                  $sql=pg_query($query) or die (pg_error());
+                                
+                                  while ($row = pg_fetch_assoc($sql)) {
+                              ?>
+                              <option  value="<?=$row['id_orang']?>" required><?=$row['nama_orang']?></option>
+                              
+                              <?php    
+                              };   
+                                    ?>
+                      </select>
+                      </div>
+                      <div class="col-sm-5">
+                      <select name="kondisi[]" class="form-control">
+                      <option  value="" disabled selected>Please Select</option>
+                     
+                        <?php
+                            $query = "SELECT * FROM kondisi";
+                            $sql=pg_query($query) or die (pg_error());
                           
-                          <?php    
-                          };   
-                                ?>
-                  </select>
-                  </div>
-                  <div class="col-sm-5">
-                  <select id="kondisi" name="kondisi[]" class="form-control" multiple="multiple">
-                    
-                    <?php
-                        $query = "SELECT * FROM kondisi";
-                        $sql=pg_query($query) or die (pg_error());
-                       
-                        while ($row = pg_fetch_assoc($sql)) {
-                    ?>
-                    <option  value="<?=$row['id_kondisi']?>" required><?=$row['kondisi']?></option>
-                    
-                    <?php    
-                    };   
-                          ?>
-                  </select> 
-                  </div>
+                            while ($row = pg_fetch_assoc($sql)) {
+                        ?>
+                        <option  value="<?=$row['id_kondisi']?>" required><?=$row['kondisi']?></option>
+                        
+                        <?php    
+                        };   
+                              ?>
+                      </select> 
+                      </div>
+                      <div class="col-sm-2">
+                      <button class="btn btn-success add-more" type="button">
+                        <i class="glyphicon glyphicon-plus"></i> Add
+                      </button>
+                      </div>
+                   </div>
+                  
+                   
+                   <!-- copy -->
+                   <div class="copy hide">
+                   <div class="control-group">
+                   <br><br>
+                      <div class="col-sm-5">
+                      <select id="korban" name="korban[]" class="form-control">
+                      <option disabled selected> Please Select </option>
+                              <?php
+                                  $query = "SELECT * FROM orang";
+                                  $sql=pg_query($query) or die (pg_error());
+                                
+                                  while ($row = pg_fetch_assoc($sql)) {
+                              ?>
+                              <option  value="<?=$row['id_orang']?>" required><?=$row['nama_orang']?></option>
+                              
+                              <?php    
+                              };   
+                                    ?>
+                      </select>
+                      </div>
+                      <div class="col-sm-5">
+                      <select id="kondisi" name="kondisi[]" class="form-control">
+                      <option disabled selected> Please Select </option>
+                        <?php
+                            $query = "SELECT * FROM kondisi";
+                            $sql=pg_query($query) or die (pg_error());
+                          
+                            while ($row = pg_fetch_assoc($sql)) {
+                        ?>
+                        <option  value="<?=$row['id_kondisi']?>" required><?=$row['kondisi']?></option>
+                        
+                        <?php    
+                        };   
+                              ?>
+                      </select> 
+                      </div>
+                      <div class="col-sm-2">
+                      <button class="btn btn-danger remove" type="button">
+                      <i class="glyphicon glyphicon-remove"></i> Del</button>
+                      </div>
+                   </div>
+                   </div>
+                  
+                   <!-- <button type="button" onclick="myFunction()">Add</button>
+                   <script>
+                    function myFunction() {
+                        var itm = document.getElementById("clone");
+                        var cln = itm.cloneNode(true);
+                        document.getElementById("clone-after").appendChild(cln);
+                      }
+
+                    </script> -->
+                      <!-- end victim -->
                 <br>
                     <label for="kerusakan">Damage</label>
-                    <input type="text" class="form-control" id="kerusakan" placeholder="ex: 1 house" name="kerusakan" autocomplete="off">
+                    <input type="text" class="form-control" id="kerusakan" placeholder="ex: 1 house" name="kerusakan" autocomplete="off" maxlength="40">
                 <br>
                     <label for="luas_area">Area</label>
-                    <input type="text" class="form-control" id="luas_area" name="luas_area" placeholder="x m2" autocomplete="off">
+                    <input type="text" class="form-control" id="luas_area" name="luas_area" placeholder="x m2" autocomplete="off" maxlength="40">
                 <br> 
                     <label for="taksiran_kerugian">estimated loss</label>
-                    <input type="text" class="form-control" id="taksiran_kerugian" placeholder="Rp.-" name="taksiran_kerugian" autocomplete="off">
+                    <input type="text" class="form-control" id="taksiran_kerugian" placeholder="Rp.-" name="taksiran_kerugian" autocomplete="off" maxlength="80">
                 </div>
                 </div>
                 <div class=" panel-succes">
@@ -378,23 +443,28 @@ include 'connect.php';
 				</div>
 				<!-- body modal -->
 				<div class="modal-body">
-					<form method="post" id="form_people">
+        
+					<form method="post" id="form_people" class="ajax">
+            <div class="alert alert-success js-alert hidden" role="alert">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Success!</strong> People data entered successfully !
+            </div>
                        <table>
 					   <div class="form-group">
                     <label for="name"><span style="color:red">*</span> Name</label>
-                    <input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
+                    <input type="text" class="form-control" id="name" name="name" autocomplete="off" required maxlength="20">
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="text" class="form-control" id="age" name="age" autocomplete="off">
+                    <input type="number" class="form-control" id="age" name="age" autocomplete="off" min="0" max="200">
                 </div>
                 <div class="form-group">
                     <label for="job">Job</label>
-                    <input type="text" class="form-control" id="job" name="job" autocomplete="off">
+                    <input type="text" class="form-control" id="job" name="job" autocomplete="off" maxlength="30">
                 </div>
 				<div class="dropdown">
-                    <label for="id_suku">Tribe</label>
-                    <select id="suku" class="form-control" name="suku">
+                    <label for="suku"><span style="color:red">*</span>Tribe</label><br>
+                    <select style="width:569px" id="suku" class="form-control" name="suku" required>
                     
                       <option value="">Please Select</option>
                       <?php
@@ -410,27 +480,39 @@ include 'connect.php';
                  <br>
                  <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" autocomplete="off">
+                    <input type="text" class="form-control" id="address" name="address" autocomplete="off" maxlength="100">
                 </div>  
                 <div class="form-group">
                     <label for="no_hp">Mobile phone number</label>
-                    <input type="text" class="form-control" id="no_hp" name="no_hp" autocomplete="off">
+                    <input type="tel" pattern="^\d{12}$" class="form-control" id="no_hp" name="no_hp" autocomplete="off">
+                    
                 </div>
-				<div class="form-group">
-                    <button type="submit" name="simpanPeople" class="btn btn-primary" id="simpanPeople" >SAVE</button>
-
+				<div class="modal-footer">
+                    <button type="submit" name="simpanPeople"  class="btn js-btn btn-primary" id="simpanPeople" >Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                  </div>
 					   </table>             
                   	</form>
 				</div>
 				<!-- footer modal -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup Modal</button>
-				</div>
+				
 			</div>
 		</div>
 	</div>
+<!-- script copy form korban -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".add-more").click(function(){ 
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
 
+      // saat tombol remove dklik control group akan dihapus 
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+</script>
 
 <!-- script people -->
 <script type="text/javascript">
@@ -438,6 +520,10 @@ include 'connect.php';
         $('#form_people').on('submit', function (event) {
           event.preventDefault();
           /* fungsi AJAX untuk melakukan fetch data */
+          event.preventDefault();
+          $('.js-alert').addClass('hidden');
+          $('.js-btn').button('loading');
+
             $.ajax({
                 url : 'modal_orang_aksi.php',
                 method : 'POST',
@@ -447,7 +533,9 @@ include 'connect.php';
                 },
                 success : function(data){
                 $('#form_people')[0].reset();
-                $('#showPeople').modal('hide');  
+                $('.js-alert').removeClass('hidden');
+                 $('.js-btn').button('reset');
+                // $('#showPeople').modal('hide');  
                 /* menampilkan data dalam bentuk dokumen HTML */
                 }
             });
@@ -468,10 +556,14 @@ include 'connect.php';
 				<!-- body modal -->
 				<div class="modal-body">
 					<form method="post" id="form_agent">
-						<table>
+          <div class="alert alert-success js-alert hidden" role="alert">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Success!</strong> Agent data entered successfully !
+            </div>
+            <table>
 						<div class="form-group">
                           <label for="name">Name</label>
-                          <input type="text" class="form-control" id="name" name="name" autocomplete="off">
+                          <input type="text" class="form-control" id="name" name="name" autocomplete="off" maxlength="50">
                       </div>
 					  <div class="form-group">
                           <button type="submit" name="simpan" id="simpan" class="btn btn-primary">SAVE</button>
@@ -495,6 +587,9 @@ include 'connect.php';
         $('#form_agent').on('submit', function (event) {
           event.preventDefault();
           /* fungsi AJAX untuk melakukan fetch data */
+          $('.js-alert').addClass('hidden');
+          $('.js-btn').button('loading');
+
             $.ajax({
                 url : 'modal_instansi_aksi.php',
                 method : 'POST',
@@ -504,7 +599,9 @@ include 'connect.php';
                 },
                 success : function(data){
                 $('#form_agent')[0].reset();
-                $('#showAgent').modal('hide');  
+                $('.js-alert').removeClass('hidden');
+                 $('.js-btn').button('reset');
+                // $('#showAgent').modal('hide');  
                 /* menampilkan data dalam bentuk dokumen HTML */
                 }
             });
@@ -565,12 +662,7 @@ include 'connect.php';
                 $("#kendaraan").select2({
                     placeholder: "Please Select"
                 });
-                $("#korban").select2({
-                    placeholder: "Please Select"
-                });
-                $("#kondisi").select2({
-                    placeholder: "Please Select"
-                });
+              
                 $("#admin").select2({
                     placeholder: "Fill in the name"
                 });

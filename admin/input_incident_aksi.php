@@ -28,6 +28,7 @@ $korban			= $_POST['korban'];
 $kondisi		= $_POST['kondisi'];
 $image=$_FILES['image']['name'];
 
+$cek=0;
 $query = pg_query("SELECT max(id_kejadian) AS maxid FROM kejadian");
 $data = pg_fetch_array($query);
 $id_kejadian = $data['maxid'];
@@ -45,7 +46,10 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 				VALUES 
 				('$id_kejadian', '$waktu', '$regu', '$alamat', '$kronologis', ST_GeomFromText('$geom'), '$kerusakan', '$luas_area', '$taksiran_kerugian','$admin','admin', '$tanggal','$rt','$rw','$kelurahan')
 			");
-
+if($sql){
+	$cek++;
+}
+$sql_penyebab;
 			foreach($id_penyebab as $penyebab_val){
 			$sql_penyebab = pg_query(
 				"INSERT INTO detail_penyebab (id_penyebab,id_kejadian,penyebab)
@@ -53,53 +57,75 @@ $id_kejadian = $char . sprintf("%04s",$no_urut);
 				('$penyebab_val','$id_kejadian','$penyebab')
 				"
 			);
-			};
-
 			
-$queryLap = pg_query("SELECT max(id_laporan) AS maxLap FROM detail_pelapor");
-$data = pg_fetch_array($queryLap);
-$id_laporan = $data['maxLap'];
-$no_lap = substr($id_laporan,2,5);
-$no_lap++;
-$charLap = "L";
-$id_laporan = $charLap . sprintf("%05s",$no_lap);
+			};
+			if($sql_penyebab){
+				$cek++;
+			}
 
-		foreach($pelapor as $pelapor_val){
+$y = count($pelapor);
+$id_laporan = array();
+
+	$query = pg_query("SELECT max(id_laporan) AS maxid FROM detail_pelapor");
+	$data = pg_fetch_array($query);
+	$lap = $data['maxid'];
+	$no_lap = substr($lap,2,5);
+	$charLap = "L";
+for($i=0; $i<$y; $i++){
+	$no_lap++;
+	
+	$id_lap = $charLap . sprintf("%05s",$no_lap);
+	$id_laporan[] = $id_lap;
+	
+};
+$sql_pelapor;
+				
+		foreach($pelapor as $index=>$pelapor_val ){
 			$sql_pelapor = pg_query(
 				"INSERT INTO detail_pelapor (id_kejadian,id_orang,status_pelaporan, id_laporan)
 				VALUES
-				 ('$id_kejadian','$pelapor_val','', '$id_laporan')
+				 ('$id_kejadian','$pelapor_val','New Report', '$id_laporan[$index]')
 				"
 			);
 		};
+		
+		if($sql_pelapor){
+			$cek++;
+		}
 
-$a = 0;
-$b=0;			
-while ($a< count($objek_terbakar)) {
-	$objek=$objek_terbakar[$a];
-	
-if ($b<count($pemilik)){
-	$milik=$pemilik[$b];
-	$sql_pemilik = pg_query(
-			"INSERT INTO detail_objek_terbakar (id_objek,id_kejadian,id_orang,jenis_kejadian)
+
+
+// objek terbakar & pemilik
+$sql_pemilik;		
+		foreach($objek_terbakar as $index=>$objek_val ){
+			$sql_pemilik = pg_query(
+				"INSERT INTO detail_objek_terbakar (id_objek,id_kejadian,id_orang,jenis_kejadian)
 			VALUES
-			 ('$objek','$id_kejadian','$milik','$jenis_kejadian')
-			"
+ 			 ('$objek_val','$id_kejadian','$pemilik[$index]','$jenis_kejadian')
+ 			"
 			);
-		$b++;
- 	}
- $a++;
+		};
+
+if($sql_pemilik){
+	$cek++;
 }
 
+// saksi
+$sql_saksi;
 		foreach ($saksi as $saksi_val) {	
 			$sql_saksi = pg_query(
-				"INSERT INTO detail_saksi (id_kejadian,id_orang,status_saksi)
+				"INSERT INTO detail_saksi (id_kejadian,id_orang)
 				VALUES
-				 ('$id_kejadian','$saksi_val','')
+				 ('$id_kejadian','$saksi_val')
 				"
 			);
 		};
+		if($sql_saksi){
+			$cek++;
+		}
 
+		// instansi
+		$sql_instansi;
 		foreach ($instansi as $value) {
 			$sql_instansi = pg_query(
 				"INSERT INTO detail_instansi (id_kejadian,id_instansi,jumlah_personil)
@@ -108,7 +134,12 @@ if ($b<count($pemilik)){
 				"
 			);
 		};
-			
+		if($sql_instansi){
+			$cek++;
+		}
+
+		// kendaraan
+		$sql_kendaraan;
 		foreach ($kendaraan as $isi) {
 			$sql_kendaraan = pg_query(
 				"INSERT INTO detail_kendaraan (id_kejadian,nomor_plat)
@@ -118,29 +149,18 @@ if ($b<count($pemilik)){
 			);
 		};
 
-		$korbans = pg_query("SELECT max(status_korban) AS maxstat FROM detail_korban where id_korban ='$korban'");
-		$status_korban = pg_fetch_array($korbans);
-		$skorban = $status_korban['maxstat'];
-		$skorban++;
-
-
-
-		$x = 0;
-$y=0;			
-while ($x< count($korban)) {
-	$kor=$korban[$x];
-	
-	if ($y<count($kondisi)){
-		$kond=$kondisi[$y];
-		$sql_kondisi = pg_query(
-			"INSERT INTO detail_korban (id_kejadian,id_korban, id_kondisi,status_korban)
-			VALUES
-			 ('$id_kejadian','$kor','$kond','$skorban')
-			"
-			);
-		$y++;
- 	}
- $x++;
+		if($sql_kendaraan){
+			$cek++;
+		};
+// korban
+$sql_korban;
+		foreach ($korban as $key=>$value) {	
+			$sql_korban = pg_query("INSERT INTO detail_korban (id_kejadian, id_korban, id_kondisi)
+			VALUES ('$id_kejadian','$value', '$kondisi[$key]')
+			");
+		};
+if($sql_korban){
+	$cek++;
 }
 
 			
@@ -163,7 +183,7 @@ if ($jumlah > 0) {
 	pg_query($conn,"INSERT INTO gambar_kejadian VALUES('$id_kejadian','$id_gambar', '$file_name')");		
 	$id_gambar++;		
   }
-  echo "Berhasil Upload";
+  $cek++;
   
 }
 else{
@@ -171,7 +191,7 @@ else{
 }
 
 
-			if($sql_kendaraan){
+			if($cek==9){
 			header('location:fire_incident.php');
 			}else{
 			echo"gagal";

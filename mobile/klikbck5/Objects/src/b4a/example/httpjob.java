@@ -98,6 +98,145 @@ RDebugUtils.currentLine=12779522;
  //BA.debugLineNum = 12779522;BA.debugLine="End Sub";
 return "";
 }
+public String  _postmultipart(b4a.example.httpjob __ref,String _link,anywheresoftware.b4a.objects.collections.Map _namevalues,anywheresoftware.b4a.objects.collections.List _files) throws Exception{
+__ref = this;
+RDebugUtils.currentModule="httpjob";
+if (Debug.shouldDelegate(ba, "postmultipart", true))
+	 {return ((String) Debug.delegate(ba, "postmultipart", new Object[] {_link,_namevalues,_files}));}
+String _boundary = "";
+anywheresoftware.b4a.objects.streams.File.OutputStreamWrapper _stream = null;
+byte[] _b = null;
+String _eol = "";
+boolean _empty = false;
+String _key = "";
+String _value = "";
+String _s = "";
+b4a.example.httpjob._multipartfiledata _fd = null;
+anywheresoftware.b4a.objects.streams.File.InputStreamWrapper _in = null;
+RDebugUtils.currentLine=13238272;
+ //BA.debugLineNum = 13238272;BA.debugLine="Public Sub PostMultipart(Link As String, NameValue";
+RDebugUtils.currentLine=13238273;
+ //BA.debugLineNum = 13238273;BA.debugLine="Dim boundary As String = \"-----------------------";
+_boundary = "---------------------------1461124740692";
+RDebugUtils.currentLine=13238274;
+ //BA.debugLineNum = 13238274;BA.debugLine="Dim stream As OutputStream";
+_stream = new anywheresoftware.b4a.objects.streams.File.OutputStreamWrapper();
+RDebugUtils.currentLine=13238275;
+ //BA.debugLineNum = 13238275;BA.debugLine="stream.InitializeToBytesArray(0)";
+_stream.InitializeToBytesArray((int) (0));
+RDebugUtils.currentLine=13238276;
+ //BA.debugLineNum = 13238276;BA.debugLine="Dim b() As Byte";
+_b = new byte[(int) (0)];
+;
+RDebugUtils.currentLine=13238277;
+ //BA.debugLineNum = 13238277;BA.debugLine="Dim eol As String = Chr(13) & Chr(10)";
+_eol = BA.ObjectToString(__c.Chr((int) (13)))+BA.ObjectToString(__c.Chr((int) (10)));
+RDebugUtils.currentLine=13238278;
+ //BA.debugLineNum = 13238278;BA.debugLine="Dim empty As Boolean = True";
+_empty = __c.True;
+RDebugUtils.currentLine=13238279;
+ //BA.debugLineNum = 13238279;BA.debugLine="If NameValues <> Null And NameValues.IsInitialize";
+if (_namevalues!= null && _namevalues.IsInitialized()) { 
+RDebugUtils.currentLine=13238280;
+ //BA.debugLineNum = 13238280;BA.debugLine="For Each key As String In NameValues.Keys";
+{
+final anywheresoftware.b4a.BA.IterableList group8 = _namevalues.Keys();
+final int groupLen8 = group8.getSize()
+;int index8 = 0;
+;
+for (; index8 < groupLen8;index8++){
+_key = BA.ObjectToString(group8.Get(index8));
+RDebugUtils.currentLine=13238281;
+ //BA.debugLineNum = 13238281;BA.debugLine="Dim value As String = NameValues.Get(key)";
+_value = BA.ObjectToString(_namevalues.Get((Object)(_key)));
+RDebugUtils.currentLine=13238282;
+ //BA.debugLineNum = 13238282;BA.debugLine="empty = MultipartStartSection (stream, empty)";
+_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
+RDebugUtils.currentLine=13238283;
+ //BA.debugLineNum = 13238283;BA.debugLine="Dim s As String = _ $\"--${boundary} Content-Dis";
+_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"\n"+"Content-Disposition: form-data; name=\""+__c.SmartStringFormatter("",(Object)(_key))+"\"\n"+"\n"+""+__c.SmartStringFormatter("",(Object)(_value))+"");
+RDebugUtils.currentLine=13238288;
+ //BA.debugLineNum = 13238288;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
+_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
+RDebugUtils.currentLine=13238289;
+ //BA.debugLineNum = 13238289;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
+_stream.WriteBytes(_b,(int) (0),_b.length);
+ }
+};
+ };
+RDebugUtils.currentLine=13238292;
+ //BA.debugLineNum = 13238292;BA.debugLine="If Files <> Null And Files.IsInitialized Then";
+if (_files!= null && _files.IsInitialized()) { 
+RDebugUtils.currentLine=13238293;
+ //BA.debugLineNum = 13238293;BA.debugLine="For Each fd As MultipartFileData In Files";
+{
+final anywheresoftware.b4a.BA.IterableList group17 = _files;
+final int groupLen17 = group17.getSize()
+;int index17 = 0;
+;
+for (; index17 < groupLen17;index17++){
+_fd = (b4a.example.httpjob._multipartfiledata)(group17.Get(index17));
+RDebugUtils.currentLine=13238294;
+ //BA.debugLineNum = 13238294;BA.debugLine="empty = MultipartStartSection (stream, empty)";
+_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
+RDebugUtils.currentLine=13238295;
+ //BA.debugLineNum = 13238295;BA.debugLine="Dim s As String = _ $\"--${boundary} Content-Dis";
+_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"\n"+"Content-Disposition: form-data; name=\""+__c.SmartStringFormatter("",(Object)(_fd.KeyName /*String*/ ))+"\"; filename=\""+__c.SmartStringFormatter("",(Object)(_fd.FileName /*String*/ ))+"\"\n"+"Content-Type: "+__c.SmartStringFormatter("",(Object)(_fd.ContentType /*String*/ ))+"\n"+"\n"+"");
+RDebugUtils.currentLine=13238301;
+ //BA.debugLineNum = 13238301;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
+_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
+RDebugUtils.currentLine=13238302;
+ //BA.debugLineNum = 13238302;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
+_stream.WriteBytes(_b,(int) (0),_b.length);
+RDebugUtils.currentLine=13238303;
+ //BA.debugLineNum = 13238303;BA.debugLine="Dim in As InputStream = File.OpenInput(fd.Dir,";
+_in = new anywheresoftware.b4a.objects.streams.File.InputStreamWrapper();
+_in = __c.File.OpenInput(_fd.Dir /*String*/ ,_fd.FileName /*String*/ );
+RDebugUtils.currentLine=13238304;
+ //BA.debugLineNum = 13238304;BA.debugLine="File.Copy2(in, stream)";
+__c.File.Copy2((java.io.InputStream)(_in.getObject()),(java.io.OutputStream)(_stream.getObject()));
+ }
+};
+ };
+RDebugUtils.currentLine=13238307;
+ //BA.debugLineNum = 13238307;BA.debugLine="empty = MultipartStartSection (stream, empty)";
+_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
+RDebugUtils.currentLine=13238308;
+ //BA.debugLineNum = 13238308;BA.debugLine="s = _ $\"--${boundary}-- \"$";
+_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"--\n"+"");
+RDebugUtils.currentLine=13238311;
+ //BA.debugLineNum = 13238311;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
+_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
+RDebugUtils.currentLine=13238312;
+ //BA.debugLineNum = 13238312;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
+_stream.WriteBytes(_b,(int) (0),_b.length);
+RDebugUtils.currentLine=13238313;
+ //BA.debugLineNum = 13238313;BA.debugLine="PostBytes(Link, stream.ToBytesArray)";
+__ref._postbytes /*String*/ (null,_link,_stream.ToBytesArray());
+RDebugUtils.currentLine=13238314;
+ //BA.debugLineNum = 13238314;BA.debugLine="req.SetContentType(\"multipart/form-data; boundary";
+__ref._req /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ .SetContentType("multipart/form-data; boundary="+_boundary);
+RDebugUtils.currentLine=13238315;
+ //BA.debugLineNum = 13238315;BA.debugLine="req.SetContentEncoding(\"UTF8\")";
+__ref._req /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ .SetContentEncoding("UTF8");
+RDebugUtils.currentLine=13238316;
+ //BA.debugLineNum = 13238316;BA.debugLine="End Sub";
+return "";
+}
+public String  _getstring(b4a.example.httpjob __ref) throws Exception{
+__ref = this;
+RDebugUtils.currentModule="httpjob";
+if (Debug.shouldDelegate(ba, "getstring", true))
+	 {return ((String) Debug.delegate(ba, "getstring", null));}
+RDebugUtils.currentLine=13828096;
+ //BA.debugLineNum = 13828096;BA.debugLine="Public Sub GetString As String";
+RDebugUtils.currentLine=13828097;
+ //BA.debugLineNum = 13828097;BA.debugLine="Return GetString2(\"UTF8\")";
+if (true) return __ref._getstring2 /*String*/ (null,"UTF8");
+RDebugUtils.currentLine=13828098;
+ //BA.debugLineNum = 13828098;BA.debugLine="End Sub";
+return "";
+}
 public String  _release(b4a.example.httpjob __ref) throws Exception{
 __ref = this;
 RDebugUtils.currentModule="httpjob";
@@ -373,20 +512,6 @@ RDebugUtils.currentLine=14286852;
  //BA.debugLineNum = 14286852;BA.debugLine="End Sub";
 return null;
 }
-public String  _getstring(b4a.example.httpjob __ref) throws Exception{
-__ref = this;
-RDebugUtils.currentModule="httpjob";
-if (Debug.shouldDelegate(ba, "getstring", true))
-	 {return ((String) Debug.delegate(ba, "getstring", null));}
-RDebugUtils.currentLine=13828096;
- //BA.debugLineNum = 13828096;BA.debugLine="Public Sub GetString As String";
-RDebugUtils.currentLine=13828097;
- //BA.debugLineNum = 13828097;BA.debugLine="Return GetString2(\"UTF8\")";
-if (true) return __ref._getstring2 /*String*/ (null,"UTF8");
-RDebugUtils.currentLine=13828098;
- //BA.debugLineNum = 13828098;BA.debugLine="End Sub";
-return "";
-}
 public String  _getstring2(b4a.example.httpjob __ref,String _encoding) throws Exception{
 __ref = this;
 RDebugUtils.currentModule="httpjob";
@@ -562,131 +687,6 @@ __c.CallSubDelayed2(ba,(Object)(_httputils2service.getObject()),"SubmitJob",this
  };
 RDebugUtils.currentLine=13369369;
  //BA.debugLineNum = 13369369;BA.debugLine="End Sub";
-return "";
-}
-public String  _postmultipart(b4a.example.httpjob __ref,String _link,anywheresoftware.b4a.objects.collections.Map _namevalues,anywheresoftware.b4a.objects.collections.List _files) throws Exception{
-__ref = this;
-RDebugUtils.currentModule="httpjob";
-if (Debug.shouldDelegate(ba, "postmultipart", true))
-	 {return ((String) Debug.delegate(ba, "postmultipart", new Object[] {_link,_namevalues,_files}));}
-String _boundary = "";
-anywheresoftware.b4a.objects.streams.File.OutputStreamWrapper _stream = null;
-byte[] _b = null;
-String _eol = "";
-boolean _empty = false;
-String _key = "";
-String _value = "";
-String _s = "";
-b4a.example.httpjob._multipartfiledata _fd = null;
-anywheresoftware.b4a.objects.streams.File.InputStreamWrapper _in = null;
-RDebugUtils.currentLine=13238272;
- //BA.debugLineNum = 13238272;BA.debugLine="Public Sub PostMultipart(Link As String, NameValue";
-RDebugUtils.currentLine=13238273;
- //BA.debugLineNum = 13238273;BA.debugLine="Dim boundary As String = \"-----------------------";
-_boundary = "---------------------------1461124740692";
-RDebugUtils.currentLine=13238274;
- //BA.debugLineNum = 13238274;BA.debugLine="Dim stream As OutputStream";
-_stream = new anywheresoftware.b4a.objects.streams.File.OutputStreamWrapper();
-RDebugUtils.currentLine=13238275;
- //BA.debugLineNum = 13238275;BA.debugLine="stream.InitializeToBytesArray(0)";
-_stream.InitializeToBytesArray((int) (0));
-RDebugUtils.currentLine=13238276;
- //BA.debugLineNum = 13238276;BA.debugLine="Dim b() As Byte";
-_b = new byte[(int) (0)];
-;
-RDebugUtils.currentLine=13238277;
- //BA.debugLineNum = 13238277;BA.debugLine="Dim eol As String = Chr(13) & Chr(10)";
-_eol = BA.ObjectToString(__c.Chr((int) (13)))+BA.ObjectToString(__c.Chr((int) (10)));
-RDebugUtils.currentLine=13238278;
- //BA.debugLineNum = 13238278;BA.debugLine="Dim empty As Boolean = True";
-_empty = __c.True;
-RDebugUtils.currentLine=13238279;
- //BA.debugLineNum = 13238279;BA.debugLine="If NameValues <> Null And NameValues.IsInitialize";
-if (_namevalues!= null && _namevalues.IsInitialized()) { 
-RDebugUtils.currentLine=13238280;
- //BA.debugLineNum = 13238280;BA.debugLine="For Each key As String In NameValues.Keys";
-{
-final anywheresoftware.b4a.BA.IterableList group8 = _namevalues.Keys();
-final int groupLen8 = group8.getSize()
-;int index8 = 0;
-;
-for (; index8 < groupLen8;index8++){
-_key = BA.ObjectToString(group8.Get(index8));
-RDebugUtils.currentLine=13238281;
- //BA.debugLineNum = 13238281;BA.debugLine="Dim value As String = NameValues.Get(key)";
-_value = BA.ObjectToString(_namevalues.Get((Object)(_key)));
-RDebugUtils.currentLine=13238282;
- //BA.debugLineNum = 13238282;BA.debugLine="empty = MultipartStartSection (stream, empty)";
-_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
-RDebugUtils.currentLine=13238283;
- //BA.debugLineNum = 13238283;BA.debugLine="Dim s As String = _ $\"--${boundary} Content-Dis";
-_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"\n"+"Content-Disposition: form-data; name=\""+__c.SmartStringFormatter("",(Object)(_key))+"\"\n"+"\n"+""+__c.SmartStringFormatter("",(Object)(_value))+"");
-RDebugUtils.currentLine=13238288;
- //BA.debugLineNum = 13238288;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
-_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
-RDebugUtils.currentLine=13238289;
- //BA.debugLineNum = 13238289;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
-_stream.WriteBytes(_b,(int) (0),_b.length);
- }
-};
- };
-RDebugUtils.currentLine=13238292;
- //BA.debugLineNum = 13238292;BA.debugLine="If Files <> Null And Files.IsInitialized Then";
-if (_files!= null && _files.IsInitialized()) { 
-RDebugUtils.currentLine=13238293;
- //BA.debugLineNum = 13238293;BA.debugLine="For Each fd As MultipartFileData In Files";
-{
-final anywheresoftware.b4a.BA.IterableList group17 = _files;
-final int groupLen17 = group17.getSize()
-;int index17 = 0;
-;
-for (; index17 < groupLen17;index17++){
-_fd = (b4a.example.httpjob._multipartfiledata)(group17.Get(index17));
-RDebugUtils.currentLine=13238294;
- //BA.debugLineNum = 13238294;BA.debugLine="empty = MultipartStartSection (stream, empty)";
-_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
-RDebugUtils.currentLine=13238295;
- //BA.debugLineNum = 13238295;BA.debugLine="Dim s As String = _ $\"--${boundary} Content-Dis";
-_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"\n"+"Content-Disposition: form-data; name=\""+__c.SmartStringFormatter("",(Object)(_fd.KeyName /*String*/ ))+"\"; filename=\""+__c.SmartStringFormatter("",(Object)(_fd.FileName /*String*/ ))+"\"\n"+"Content-Type: "+__c.SmartStringFormatter("",(Object)(_fd.ContentType /*String*/ ))+"\n"+"\n"+"");
-RDebugUtils.currentLine=13238301;
- //BA.debugLineNum = 13238301;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
-_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
-RDebugUtils.currentLine=13238302;
- //BA.debugLineNum = 13238302;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
-_stream.WriteBytes(_b,(int) (0),_b.length);
-RDebugUtils.currentLine=13238303;
- //BA.debugLineNum = 13238303;BA.debugLine="Dim in As InputStream = File.OpenInput(fd.Dir,";
-_in = new anywheresoftware.b4a.objects.streams.File.InputStreamWrapper();
-_in = __c.File.OpenInput(_fd.Dir /*String*/ ,_fd.FileName /*String*/ );
-RDebugUtils.currentLine=13238304;
- //BA.debugLineNum = 13238304;BA.debugLine="File.Copy2(in, stream)";
-__c.File.Copy2((java.io.InputStream)(_in.getObject()),(java.io.OutputStream)(_stream.getObject()));
- }
-};
- };
-RDebugUtils.currentLine=13238307;
- //BA.debugLineNum = 13238307;BA.debugLine="empty = MultipartStartSection (stream, empty)";
-_empty = __ref._multipartstartsection /*boolean*/ (null,_stream,_empty);
-RDebugUtils.currentLine=13238308;
- //BA.debugLineNum = 13238308;BA.debugLine="s = _ $\"--${boundary}-- \"$";
-_s = ("--"+__c.SmartStringFormatter("",(Object)(_boundary))+"--\n"+"");
-RDebugUtils.currentLine=13238311;
- //BA.debugLineNum = 13238311;BA.debugLine="b = s.Replace(CRLF, eol).GetBytes(\"UTF8\")";
-_b = _s.replace(__c.CRLF,_eol).getBytes("UTF8");
-RDebugUtils.currentLine=13238312;
- //BA.debugLineNum = 13238312;BA.debugLine="stream.WriteBytes(b, 0, b.Length)";
-_stream.WriteBytes(_b,(int) (0),_b.length);
-RDebugUtils.currentLine=13238313;
- //BA.debugLineNum = 13238313;BA.debugLine="PostBytes(Link, stream.ToBytesArray)";
-__ref._postbytes /*String*/ (null,_link,_stream.ToBytesArray());
-RDebugUtils.currentLine=13238314;
- //BA.debugLineNum = 13238314;BA.debugLine="req.SetContentType(\"multipart/form-data; boundary";
-__ref._req /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ .SetContentType("multipart/form-data; boundary="+_boundary);
-RDebugUtils.currentLine=13238315;
- //BA.debugLineNum = 13238315;BA.debugLine="req.SetContentEncoding(\"UTF8\")";
-__ref._req /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ .SetContentEncoding("UTF8");
-RDebugUtils.currentLine=13238316;
- //BA.debugLineNum = 13238316;BA.debugLine="End Sub";
 return "";
 }
 public String  _putbytes(b4a.example.httpjob __ref,String _link,byte[] _data) throws Exception{
